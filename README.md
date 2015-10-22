@@ -1,2 +1,2 @@
 # Star
-A new frontend project solution
+A scalable frontend project solution
