@@ -1,0 +1,1 @@
+{"version":3,"sources":["com/gsx/components/IDestroyable.ts"],"names":[],"mappings":"AAAA;;;;GAIG","file":"com/gsx/components/IDestroyable.js","sourcesContent":["/**\n * @file 销毁接口。\n *\n * @author kuanghongrui@baijiahulian.com\n */\n\nexport interface IDestroyable {\n    /**\n     * 销毁。\n     */\n    destroy(): void;\n}\n"],"sourceRoot":"/source/"}
