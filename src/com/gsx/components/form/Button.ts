@@ -1,5 +1,5 @@
 /**
- * @file UIComponent基类。
+ * @file 最简单的按钮类。
  *
  * @author kuanghongrui@baijiahulian.com
  */
