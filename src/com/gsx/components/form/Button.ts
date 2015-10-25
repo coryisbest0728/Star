@@ -82,7 +82,31 @@ export class Button extends UIComponent implements ISkinable {
      * @override
      */
     public getSpecSkinClass(): string {
-        return this.params.specSkinClass || 'btn-primary';
+        var node = this.getNode();
+        if (node) {
+            var classNames = (<HTMLElement>node).className.trim().split(' ');
+            var baseSkinClasses = this.getBaseSkinClass().trim().split(' ');
+            return classNames.filter(function (className) {
+                className = className.trim();
+                for (var i = 0, j = baseSkinClasses.length; i < j; ++i) {
+                    var baseSkinClass = baseSkinClasses[i].trim();
+                    if (baseSkinClass === className) {
+                        return false;
+                    }
+                }
+                return true;
+            }).join(' ');
+        } else {
+            return this.params.specSkinClass || 'btn-primary';
+        }
+    }
+
+    /**
+     * Set the spec skin class to change the skin style of the button.
+     * @param {string} specSkinClass 
+     */
+    public setSpecSkinClass(specSkinClass: string): void {
+        (<HTMLElement>this.getNode()).className = this.getBaseSkinClass() + ' ' + specSkinClass;
     }
 
     /**

@@ -7,6 +7,7 @@
 import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
 import {IBox} from 'com/gsx/components/IBox';
 import {IContained} from 'com/gsx/components/IContained';
+import {IContainer} from 'com/gsx/components/IContainer';
 import {IDestroyable} from 'com/gsx/components/IDestroyable';
 import {ITemplated} from 'com/gsx/components/ITemplated';
 
@@ -46,14 +47,19 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
         
     }
 
+    /**
+     * @override
+     * The subclass must implement this method.
+     */
     public getTemplateString(): string {
+        throw new Error('Please implements the method com.gsx.component.ITemplated#getTemplateString():string');
         return '';
     }
 
     /**
      * @override
      */
-    public getParent(): IContained {
+    public getParent(): IContainer {
         return null;
     }
 

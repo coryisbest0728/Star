@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IContained} from './IContained';
+import {IContainer} from './IContainer';
 
 export interface IContained {
     /**
