@@ -1,5 +1,5 @@
 /**
- * @file 具有皮肤能力的接口。
+ * @file Skin ability interface.
  *
  * @author kuanghongrui@baijiahulian.com
  */

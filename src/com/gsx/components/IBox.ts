@@ -1,37 +1,37 @@
 /**
- * @file 
+ * @file As box, it include width, height, x coordinate and y coordinate.
  *
  * @author kuanghongrui@baijiahulian.com
  */
 
 export interface IBox {
     /**
-     * 获取盒子的宽度。
-     * 单位pixel
+     * Get the width of this box instance.
+     * Unit is pixel
      *
-     * @return {number} 盒子的宽度。
+     * @return {number} The width of box.
      */
     getWidth(): number;
 
     /**
-     * 获取盒子的高度。
-     * 单位pixel
+     * Get the height of this box instance.
+     * Unit is pixel
      *
-     * @return {number} 盒子的高度。
+     * @return {number} The height of box.
      */
     getHeight(): number;
 
     /**
-     * 获取盒子的x轴坐标。
+     * Get the x coordinate of this box instance.
      *
-     * @return {number} x轴坐标。
+     * @return {number} The x coordinate of box.
      */
     getX(): number;
 
     /**
-     * 获取盒子的y轴坐标。
+     * Get the y coordinate of this box instance.
      *
-     * @return {number} y轴坐标。
+     * @return {number} The y coordinate of box.
      */
     getY(): number;
 }

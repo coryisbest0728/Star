@@ -1,5 +1,5 @@
 /**
- * @file 事件触发源实现。
+ * @file The implement of IEventDispatcher.
  *
  * @author kuanghongrui@baijiahulian.com
  */

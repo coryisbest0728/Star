@@ -1,5 +1,6 @@
 /**
- * @file 容器接口。
+ * @file The container interface.
+ *     It always contains the contained
  *
  * @author kuanghongrui@baijiahulian.com
  */

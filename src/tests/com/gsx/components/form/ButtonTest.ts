@@ -1,5 +1,5 @@
 /**
- * @file 普通按钮单测
+ * @file The unit test for the Button
  *
  * @author kuanghongrui@baijiahulian.com
  */
@@ -8,7 +8,7 @@
 
 import {Button} from 'com/gsx/components/form/Button';
 
-describe('简单按钮的测试', function () {
+describe('The unit test for the Button', function () {
     beforeEach(function () {
         this.button = new Button({
             label: 'Test'
@@ -16,32 +16,32 @@ describe('简单按钮的测试', function () {
         document.body.appendChild(this.button.getNode());
     });
 
-    it('测试按钮创建', function () {
-        expect(this.button.getNode() instanceof Node).toBeTruthy('按钮dom节点已经生成');
-        expect(document.body.contains(this.button.getNode())).toBeTruthy('按钮已经放入document环境中');
-        expect(this.button.getParent()).toBeNull('按钮没有父亲组件，不在任何容器内。');
+    it('Creation of the button', function () {
+        expect(this.button.getNode() instanceof Node).toBeTruthy('The dom node of this button has been created');
+        expect(document.body.contains(this.button.getNode())).toBeTruthy('The button has been excisted in the document');
+        expect(this.button.getParent()).toBeNull('This button has not any parent component, and not in the any container.');
     });
 
-    it('测试按钮的label', function () {
+    it('The label of ths button', function () {
         expect(this.button.getLabel()).toBe('Test');
 
         this.button.setLabel('Test2');
-        expect(this.button.getLabel()).toBe('Test2', '按钮的label为Test2');
-        expect(this.button.getLabel()).toBe((<HTMLElement>this.button.getNode()).innerHTML, '和渲染出来的label一样为Test2');
+        expect(this.button.getLabel()).toBe('Test2', 'The lable of the button is \'Test2\'');
+        expect(this.button.getLabel()).toBe((<HTMLElement>this.button.getNode()).innerHTML, 'It is \'Test2\' as the lable of rendered one.');
     });
 
-    it('测试按钮的disabled状态', function () {
+    it('The disabled of the button', function () {
         expect(this.button.getDisabled()).toBe(false);
 
         this.button.setDisabled(true);
-        expect(this.button.getDisabled()).toBe(true, '按钮的disabled为true');
+        expect(this.button.getDisabled()).toBe(true, 'The disabled of the button is true');
         expect(this.button.getDisabled())
-            .toBe((<Element>this.button.getNode()).hasAttribute('disabled'), '按钮已经被禁用');
+            .toBe((<Element>this.button.getNode()).hasAttribute('disabled'), 'The button has been disabled already.');
 
         this.button.setDisabled(false);
-        expect(this.button.getDisabled()).toBe(false, '按钮的disabled为false');
+        expect(this.button.getDisabled()).toBe(false, 'The disabled of the button is false');
         expect(this.button.getDisabled())
-            .toBe((<Element>this.button.getNode()).hasAttribute('disabled'), '按钮已经被启用');
+            .toBe((<Element>this.button.getNode()).hasAttribute('disabled'), 'The button has been enabled already.');
     });
 
     it('The button\'s width must be 0', function () {

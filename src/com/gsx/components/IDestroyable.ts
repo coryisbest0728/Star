@@ -1,12 +1,12 @@
 /**
- * @file 销毁接口。
+ * @file Destroyable interface.
  *
  * @author kuanghongrui@baijiahulian.com
  */
 
 export interface IDestroyable {
     /**
-     * 销毁。
+     * Destroy this instance.
      */
     destroy(): void;
 }

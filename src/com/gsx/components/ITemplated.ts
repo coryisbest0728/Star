@@ -1,5 +1,5 @@
 /**
- * @file 模板接口。
+ * @file The interface of templated.
  *
  * @author kuanghongrui@baijiahulian.com
  */

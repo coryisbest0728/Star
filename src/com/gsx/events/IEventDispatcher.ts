@@ -1,5 +1,5 @@
 /**
- * @file 事件触发源接口。
+ * @file The interface of event dispatcher.
  *
  * @author kuanghongrui@baijiahulian.com
  */

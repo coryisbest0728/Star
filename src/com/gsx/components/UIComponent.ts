@@ -1,5 +1,5 @@
 /**
- * @file UIComponent基类。
+ * @file The base class of UI component.
  *
  * @author kuanghongrui@baijiahulian.com
  */

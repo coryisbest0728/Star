@@ -1,5 +1,5 @@
 /**
- * @file 最简单的按钮类。
+ * @file The button component.
  *
  * @author kuanghongrui@baijiahulian.com
  */
@@ -10,7 +10,7 @@ import {UIComponent} from 'com/gsx/components/UIComponent';
 export class Button extends UIComponent implements ISkinable {
 
     /**
-     * 初始化时传入的参数。
+     * The params of inital.
      */
     private params: {label?: string; disabled?: boolean; specSkinClass?: string;};
 
@@ -38,24 +38,26 @@ export class Button extends UIComponent implements ISkinable {
     }
 
     /**
-     * 获取按钮被禁用状态。
-     * @return {boolean} 按钮是否被禁用。
+     * Get the status of disabled.
+     * @return {boolean} Whether disabled or not。
      */
     public getDisabled(): boolean {
         return (<Element>this.getNode()).hasAttribute('disabled');
     }
     
     /**
-     * 获取按钮的标签名。
-     * @return {string} 按钮的标签名
+     * Get the label of the button.
+     * @return {string} The label of the button.
      */
     public getLabel(): string {
         return (<HTMLElement>this.getNode()).innerHTML;
     }
 
     /**
-     * 设置按钮是否被禁用。
-     * @param {boolean} disabled 按钮被禁用状态。
+     * Set the status of button. Disable or enable.
+     * True is disabled.
+     * False is enabled.
+     * @param {boolean} disabled The status of disabled.
      */
     public setDisabled(disabled: boolean): void {
         if (disabled) {

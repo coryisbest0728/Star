@@ -1,12 +1,15 @@
 /**
- * @file 被装载物接口。
+ * @file The contained interface. It only has parent container.
  *
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {IContained} from './IContained';
+
 export interface IContained {
     /**
-     * 获取其父亲。
+     * Get it's parent as container.
+     * @return {IContainer} parent.
      */
-    getParent(): IContained;
+    getParent(): IContainer;
 }
