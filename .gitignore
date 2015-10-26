@@ -3,6 +3,5 @@
 /tests-release/tests/
 /.settings/
 /lib/
-!/lib/typings/
 .DS_Store
 .project
