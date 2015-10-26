@@ -1,0 +1,6 @@
+/node_modules/
+/tests-release/com/
+/tests-release/tests/
+/.settings/
+.DS_Store
+.project
