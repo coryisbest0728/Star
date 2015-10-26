@@ -4,9 +4,9 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
+import {FormComponent} from 'com/gsx/components/form/FormComponent';
 
-export class Button extends SkinableComponent {
+export class Button extends FormComponent {
 
     /**
      * The params of inital.
@@ -16,15 +16,14 @@ export class Button extends SkinableComponent {
     constructor(params?: {label?: string; disabled?: boolean; specSkinClass?: string;}) {
         this.params = params;
         super(params);
+        this.setSpecSkinClass(this.params.specSkinClass || 'btn-primary');
     }
 
     /**
      * @override
      */
     public getTemplateString(): string {
-        return '<button class="'
-            + this.getBaseSkinClass() + ' ' + this.getSpecSkinClass()
-            + '" type="button"></button>';
+        return '<button class="' + this.getSkinClass() + '" type="button"></button>';
     }
 
     /**
@@ -37,14 +36,6 @@ export class Button extends SkinableComponent {
     }
 
     /**
-     * Get the status of disabled.
-     * @return {boolean} Whether disabled or not。
-     */
-    public getDisabled(): boolean {
-        return (<Element>this.getNode()).hasAttribute('disabled');
-    }
-    
-    /**
      * Get the label of the button.
      * @return {string} The label of the button.
      */
@@ -53,19 +44,16 @@ export class Button extends SkinableComponent {
     }
 
     /**
-     * Set the status of button. Disable or enable.
-     * True is disabled.
-     * False is enabled.
-     * @param {boolean} disabled The status of disabled.
+     * @override
      */
-    public setDisabled(disabled: boolean): void {
-        if (disabled) {
-            (<Element>this.getNode()).setAttribute('disabled', 'disabled');
-        } else {
-            (<Element>this.getNode()).removeAttribute('disabled');
-        }
+    protected getOriginSpecSkinClass(): string {
+        return this.params.specSkinClass || 'btn-primary';
     }
 
+    /**
+     * Set the button label to display.
+     * @param {string} label The button label.
+     */
     public setLabel(label: string): void {
         (<HTMLElement>this.getNode()).innerHTML = label;
     }
@@ -75,18 +63,6 @@ export class Button extends SkinableComponent {
      */
     public getBaseSkinClass(): string {
         return 'btn';
-    }
-
-    /**
-     * @override
-     */
-    public getSpecSkinClass(): string {
-        var node = this.getNode();
-        if (node) {
-            return this.getSpecSkinClassFromNode();
-        } else {
-            return this.params.specSkinClass || 'btn-primary';
-        }
     }
 
     /**

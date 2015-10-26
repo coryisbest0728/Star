@@ -9,6 +9,8 @@ import {UIComponent} from 'com/gsx/components/UIComponent';
 
 export class SkinableComponent extends UIComponent implements ISkinable {
 
+    private specSkinClass: string = '';
+
     /**
      * @override
      */
@@ -17,17 +19,38 @@ export class SkinableComponent extends UIComponent implements ISkinable {
     }
 
     /**
+     * Get the original specific skin class name.
+     * @return {string} The original specific skin class name.
+     */
+    protected getOriginSpecSkinClass(): string {
+        return '';
+    }
+
+    /**
      * @override
      */
     public getSpecSkinClass(): string {
-        return '';
+        var node = this.getNode();
+        if (node) {
+            return this.getSpecSkinClassFromNode();
+        } else {
+            return this.specSkinClass || this.getOriginSpecSkinClass();
+        }
+    }
+
+    /**
+     * Get the skin class name.
+     * @return {string} Get the skin class name.
+     */
+    public getSkinClass(): string {
+        return this.getBaseSkinClass() + ' ' + this.getSpecSkinClass();
     }
 
     /**
      * Get specific skin class name from component node.
      * @return {string} The specific skin class name.
      */
-    protected getSpecSkinClassFromNode(): string {
+    private getSpecSkinClassFromNode(): string {
         var classNames = (<HTMLElement>this.getNode()).className.trim().split(' ');
         var baseSkinClasses = this.getBaseSkinClass().trim().split(' ');
         return classNames.filter(function (className) {
@@ -47,6 +70,19 @@ export class SkinableComponent extends UIComponent implements ISkinable {
      * @param {string} specSkinClass 
      */
     public setSpecSkinClass(specSkinClass: string): void {
-        (<HTMLElement>this.getNode()).className = this.getBaseSkinClass() + ' ' + specSkinClass;
+        var node = this.getNode();
+        if (node) {
+            (<HTMLElement>node).className = this.getBaseSkinClass() + ' ' + specSkinClass;
+        } else {
+            this.specSkinClass = specSkinClass;
+        }
+    }
+
+    /**
+     * @override
+     */
+    public destroy(): void {
+        super.destroy();
+        delete this.specSkinClass;
     }
 }
