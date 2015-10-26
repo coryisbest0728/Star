@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry excluding="**/bower_components/*|**/test/*|**/node_modules/*|**/dep/*|**/*.min.js|**/lib/*" kind="src" path="src"/>
-	<classpathentry excluding="**/bower_components/*/|**/test/*/|**/node_modules/*/|**/dep/*/|**/*.min.js/|**/lib/*/" kind="src" path="lib"/>
-	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.wst.jsdt.launching.baseBrowserLibrary"/>
-	<classpathentry kind="output" path=""/>
-</classpath>
