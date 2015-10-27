@@ -14,7 +14,7 @@ import {ITemplated} from 'com/gsx/components/ITemplated';
 export class UIComponent extends EventDispatcher implements IBox, ITemplated, IContained, IDestroyable {
 
     /**
-     * 该组件对应的node节点。
+     * The node of the ui component.
      */
     private node:Node;
 
