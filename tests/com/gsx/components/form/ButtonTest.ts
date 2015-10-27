@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-/// <reference path="../../../../../../lib/typings/tsd.d.ts" />
+/// <reference path="../../../../../lib/typings/tsd.d.ts" />
 
 import {Button} from 'com/gsx/components/form/Button';
 

@@ -14,6 +14,7 @@ var projectConfig = tsc.createProject('./tsconfig.json');
 var projectTestConfig = tsc.createProject('./tsconfig-test.json');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
+var deletefile = require('gulp-delete-file');
 var runSequence = require('run-sequence');
 var requirejsOptimize = require('gulp-requirejs-optimize');
 
@@ -25,8 +26,8 @@ var md5 = require('md5');
 var config = {
     src: './src/',
     srcTS: './src/**/*.ts',
-    tests: './src/tests/',
-    testsTS: './src/tests/**/*.ts',
+    tests: './tests/',
+    testsTS: './tests/**/*.ts',
     lib: './lib/',
     libTS: './lib/typings/**/*.d.ts',
     dest: './release/',
@@ -36,7 +37,7 @@ var config = {
 };
 
 /**
- * Lint all custom TypeScript files.
+ * Lint src TypeScript files.
  */
 gulp.task('ts-lint', function () {
     return gulp.src(config.srcTS)
@@ -47,8 +48,8 @@ gulp.task('ts-lint', function () {
 /**
  * Compile TypeScript and include references to library and app .d.ts files.
  */
-gulp.task('compile-ts', function () {
-    var tsResult = gulp.src([config.srcTS, config.libTS, '!' + config.testsTS])
+gulp.task('compile-ts', function (cb) {
+    var tsResult = gulp.src([config.srcTS, config.libTS])
         .pipe(sourcemaps.init())
         .pipe(tsc(projectConfig));
     tsResult.dts.pipe(gulp.dest(config.dest));
@@ -58,14 +59,40 @@ gulp.task('compile-ts', function () {
 });
 
 /**
+ * Lint all TypeScript files.
+ */
+gulp.task('ts-lint-tests', function () {
+    return gulp.src([config.srcTS, config.testsTS])
+        .pipe(tslint())
+        .pipe(tslint.report('prose'));
+});
+
+/**
+ * copy source ts to the tests folder.
+ */
+gulp.task('copy-src-to-tests', function () {
+    return gulp.src(config.srcTS).pipe(gulp.dest(config.tests));
+});
+
+/**
  * Compile tests TypeScript and include references to library and app .d.ts files.
  */
-gulp.task('compile-tests-ts', function () {
-    var tsResult = gulp.src([config.srcTS, config.libTS])
+gulp.task('compile-tests-ts', function (cb) {
+    gulp.src(path.normalize(config.tests + '/test.js')).pipe(gulp.dest(config.testsDest));
+    var tsResult = gulp.src([config.testsTS, config.libTS])
         .pipe(tsc(projectTestConfig));
     tsResult.dts.pipe(gulp.dest(config.testsDest));
-    return tsResult.js
-        .pipe(gulp.dest(config.testsDest));
+    return tsResult.js.pipe(gulp.dest(config.testsDest));
+});
+
+/**
+ * Remove the source ts in the tests folder.
+ */
+gulp.task('remove-tests-src-ts', function () {
+    return gulp.src(path.normalize(config.tests + '/**/*.ts')).pipe(deletefile({
+        reg: /\w*Test\.ts$/,
+        deleteMatch: false
+    }));
 });
 
 /**
@@ -88,7 +115,7 @@ gulp.task('clean-release', function (cb) {
 });
 
 gulp.task('clean-tests', function (cb) {
-    return del([path.normalize(config.testsDest + '/*.js'), '!' + path.normalize(config.testsDest + '/test.js')], cb);
+    return del(config.testsDest, cb);
 });
 
 /**
@@ -102,5 +129,5 @@ gulp.task('release', function (cb) {
  * The task for executing tests of the project
  */
 gulp.task('tests', function (cb) {
-    runSequence('ts-lint', 'clean-tests', 'compile-tests-ts', cb);
+    runSequence('ts-lint-tests', 'clean-tests', 'copy-src-to-tests', 'compile-tests-ts', 'remove-tests-src-ts', cb);
 });

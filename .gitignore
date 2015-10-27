@@ -1,6 +1,6 @@
 /node_modules/
-/tests-release/com/
-/tests-release/tests/
+/release/
+/tests-release/
 /.settings/
 /lib/
 .DS_Store
