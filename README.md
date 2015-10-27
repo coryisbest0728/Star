@@ -1,7 +1,7 @@
 # Star
 A scalable frontend project solution
 
-## Installation the dependency modules
+## Installation dependency modules
 
 ```bash
 $ npm install   --save-dev  # npm
