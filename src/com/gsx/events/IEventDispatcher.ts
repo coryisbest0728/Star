@@ -4,6 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {EventType} from 'com/gsx/events/EventType';
+
 export interface IEventDispatcher {
     /**
      * Register a new EventListener for the given event.
@@ -14,6 +16,7 @@ export interface IEventDispatcher {
      * @api public
      */
     on(eventType: string, fn: Function, context?: any): IEventDispatcher;
+    on(eventType: EventType, fn: Function, context?: any): IEventDispatcher;
 
     /**
      * Return a list of assigned event listeners.
@@ -23,6 +26,7 @@ export interface IEventDispatcher {
      * @api public
      */
     listeners(eventType: string): Function[];
+    listeners(eventType: EventType): Function[];
 
     /**
      * Emit an event to all registered event listeners.
@@ -32,6 +36,7 @@ export interface IEventDispatcher {
      * @api public
      */
     emit(eventType: string, ...args: any[]): boolean;
+    emit(eventType: EventType, ...args: any[]): boolean;
 
     /**
      * Add an EventListener that's only called once.
@@ -42,6 +47,7 @@ export interface IEventDispatcher {
      * @api public
      */
     once(eventType: string, fn: Function, context?: any): IEventDispatcher;
+    once(eventType: EventType, fn: Function, context?: any): IEventDispatcher;
 
     /**
      * Remove event listeners.
@@ -52,4 +58,5 @@ export interface IEventDispatcher {
      * @api public
      */
     off(eventType: string, fn: Function, once?: boolean): IEventDispatcher;
+    off(eventType: EventType, fn: Function, once?: boolean): IEventDispatcher;
 }

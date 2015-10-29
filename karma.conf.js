@@ -23,7 +23,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-        'release/**/*.js'
+        'release/**/*.js',
+        'tests-release/**/*.ts'
     ],
 
 

@@ -15,8 +15,7 @@ export class Button extends FormComponent {
 
     constructor(params?: {label?: string; disabled?: boolean; specSkinClass?: string;}) {
         this.params = params;
-        super(params);
-        this.setSpecSkinClass(this.params.specSkinClass || 'btn-primary');
+        super();
     }
 
     /**

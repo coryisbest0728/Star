@@ -5,6 +5,7 @@
  */
 
 import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
+import {EventType} from 'com/gsx/events/EventType';
 import {IBox} from 'com/gsx/components/IBox';
 import {IContained} from 'com/gsx/components/IContained';
 import {IContainer} from 'com/gsx/components/IContainer';
@@ -25,28 +26,48 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
     }
 
     /**
+     * Convert the enum event type to the string.
+     */
+    private convertEventTypeToString(eventType: EventType): string {
+        return eventType + '';
+    }
+
+    /**
      * To listener events.
      */
     protected listenerEvents() {
         var node:Node = this.getNode();
-        node.addEventListener('focus', this.emit.bind(this, 'focus'));
-        node.addEventListener('blur', this.emit.bind(this, 'blur'));
-        node.addEventListener('contextmenu', this.emit.bind(this, 'contextmenu'));
-        node.addEventListener('resize', this.emit.bind(this, 'resize'));
+        // the event emit
+        node.addEventListener(this.convertEventTypeToString(EventType.FOCUS), this.emit.bind(this, EventType.FOCUS));
+        node.addEventListener(this.convertEventTypeToString(EventType.BLUR), this.emit.bind(this, EventType.BLUR));
+        node.addEventListener(this.convertEventTypeToString(EventType.CONTEXT_MENU),
+            this.emit.bind(this, EventType.CONTEXT_MENU));
+        node.addEventListener(this.convertEventTypeToString(EventType.RESIZE), this.emit.bind(this, EventType.RESIZE));
 
-        node.addEventListener('keydown', this.emit.bind(this, 'keydown'));
-        node.addEventListener('keypress', this.emit.bind(this, 'keypress'));
-        node.addEventListener('keyup', this.emit.bind(this, 'keyup'));
+        // The key event emit
+        node.addEventListener(this.convertEventTypeToString(EventType.KEY_DOWN),
+            this.emit.bind(this, EventType.KEY_DOWN));
+        node.addEventListener(this.convertEventTypeToString(EventType.KEY_PRESS),
+            this.emit.bind(this, EventType.KEY_PRESS));
+        node.addEventListener(this.convertEventTypeToString(EventType.KEY_UP), this.emit.bind(this, EventType.KEY_UP));
 
-        node.addEventListener('click', this.emit.bind(this, 'click'));
-        node.addEventListener('dbclick', this.emit.bind(this, 'dbclick'));
-        node.addEventListener('mousedown', this.emit.bind(this, 'mousedown'));
-        node.addEventListener('mouseup', this.emit.bind(this, 'mouseup'));
-        node.addEventListener('mousemove', this.emit.bind(this, 'mousemove'));
-        node.addEventListener('mouseover', this.emit.bind(this, 'mouseover'));
-        node.addEventListener('mouseout', this.emit.bind(this, 'mouseout'));
-        node.addEventListener('mousewheel', this.emit.bind(this, 'mousewheel'));
-        node.addEventListener('scroll', this.emit.bind(this, 'scroll'));
+        // The mouse event emit
+        node.addEventListener(this.convertEventTypeToString(EventType.CLICK), this.emit.bind(this, EventType.CLICK));
+        node.addEventListener(this.convertEventTypeToString(EventType.DBCLICK),
+            this.emit.bind(this, EventType.DBCLICK));
+        node.addEventListener(this.convertEventTypeToString(EventType.MOUSE_DOWN),
+            this.emit.bind(this, EventType.MOUSE_DOWN));
+        node.addEventListener(this.convertEventTypeToString(EventType.MOUSE_UP),
+            this.emit.bind(this, EventType.MOUSE_UP));
+        node.addEventListener(this.convertEventTypeToString(EventType.MOUSE_MOVE),
+            this.emit.bind(this, EventType.MOUSE_MOVE));
+        node.addEventListener(this.convertEventTypeToString(EventType.MOUSE_OVER),
+            this.emit.bind(this, EventType.MOUSE_OVER));
+        node.addEventListener(this.convertEventTypeToString(EventType.MOUSE_OUT),
+            this.emit.bind(this, EventType.MOUSE_OUT));
+        node.addEventListener(this.convertEventTypeToString(EventType.MOUSE_WHEEL),
+            this.emit.bind(this, EventType.MOUSE_WHEEL));
+        node.addEventListener(this.convertEventTypeToString(EventType.SCROLL), this.emit.bind(this, EventType.SCROLL));
     }
 
     /**

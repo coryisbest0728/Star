@@ -6,6 +6,7 @@
 
 /// <reference path="../../../../../lib/typings/tsd.d.ts" />
 
+import {EventType} from 'com/gsx/events/EventType';
 import {Button} from 'com/gsx/components/form/Button';
 
 describe('The unit test for the Button', function () {
@@ -58,6 +59,15 @@ describe('The unit test for the Button', function () {
         expect(this.button.getSpecSkinClass())
             .toBe(specSkinClass, 'The spec skin class settled value is "' + specSkinClass + '"');
     });
+
+    it('Click the button', function (done) {
+        var button = this.button;
+        this.button.on(EventType.CLICK, function () {
+            expect(this).toBe(button, 'The context is the button self.');
+            done();
+        });
+        expect(this.button.emit(EventType.CLICK)).toBeTruthy('The click event has been listened');
+    })
 
     it('The button\'s width must be 0', function () {
         expect(this.button.getWidth()).toBe(0);
