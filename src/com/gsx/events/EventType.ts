@@ -6,15 +6,18 @@
 
 export enum EventType {
 
+    // The event type
     FOCUS,
     BLUR,
     CONTEXT_MENU,
     RESIZE,
 
+    // The key event type
     KEY_DOWN,
     KEY_PRESS,
     KEY_UP,
 
+    // The mouse event type
     CLICK,
     DBCLICK,
     MOUSE_DOWN,
