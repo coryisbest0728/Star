@@ -6,12 +6,28 @@
 
 export interface ISkinable {
     /**
-     * 获取基础皮肤类型。
+     * Get base skin class name.
      */
     getBaseSkinClass(): string;
 
     /**
-     * 获取特定皮肤类型。
+     * Get the spec skin class name.
      */
     getSpecSkinClass(): string;
+
+    /**
+     * Add the skin class name.
+     */
+    addSpecSkinClass(skinClass: string): void;
+
+    /**
+     * remove the skin class name.
+     */
+    removeSpecSkinClass(skinClass: string): void;
+
+    /**
+     * The given skin class has existed or not.
+     * @return {boolean} exist or not.
+     */
+    hasSkinClass(skinClass: string): boolean;
 }

@@ -41,7 +41,10 @@ describe('The unit test for the Button', function () {
         expect(this.button.getDisabled()).toBe(true, 'The disabled of the button is true');
         expect(this.button.getDisabled())
             .toBe((<Element>this.button.getNode()).hasAttribute('disabled'), 'The button has been disabled already.');
+    });
 
+    it('Enable the button', function () {
+        this.button.setDisabled(true);
         this.button.setDisabled(false);
         expect(this.button.getDisabled()).toBe(false, 'The disabled of the button is false');
         expect(this.button.getDisabled())
@@ -70,14 +73,11 @@ describe('The unit test for the Button', function () {
         mouseEvent.initEvent("click", true, true);
         button.getNode().dispatchEvent(mouseEvent);
         expect(this.button.emit(EventType.CLICK)).toBeTruthy('The click event has been listened');
-    })
-
-    it('The button\'s width must be 0', function () {
-        expect(this.button.getWidth()).toBe(0);
     });
 
-    it('The button\'s height must be 0', function () {
-        expect(this.button.getHeight()).toBe(0);
+    it('The box of the button', function () {
+        expect(this.button.getWidth()).not.toBe(0);
+        expect(this.button.getHeight()).not.toBe(0);
     });
 
     afterEach(function () {

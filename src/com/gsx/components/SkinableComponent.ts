@@ -81,6 +81,27 @@ export class SkinableComponent extends UIComponent implements ISkinable {
     /**
      * @override
      */
+    public addSpecSkinClass(skinClass: string): void {
+        this.setSpecSkinClass(this.getSpecSkinClass() + ' ' + skinClass);
+    }
+
+    /**
+     * @override
+     */
+    public removeSpecSkinClass(skinClass: string): void {
+        this.setSpecSkinClass(this.getSpecSkinClass().replace(new RegExp(skinClass, 'g'), '').trim());
+    }
+
+    /**
+     * @override
+     */
+    public hasSkinClass(skinClass: string): boolean {
+        return new RegExp(skinClass, 'g').test(this.getSkinClass());
+    }
+
+    /**
+     * @override
+     */
     public destroy(): void {
         super.destroy();
         delete this.specSkinClass;

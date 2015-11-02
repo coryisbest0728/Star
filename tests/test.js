@@ -25,9 +25,17 @@ requirejs.config({
         }
     },
 
+    map: {
+        '*': {
+            'css': '../lib/require-css/css.min'
+        }
+    },
+
     // ask Require.js to load these files (all our tests)
     deps: testClassFiles,
 
     // start test run, once Require.js is done
     callback: window.__karma__.start
 });
+
+require(['css!../lib/bootstrap/dist/css/bootstrap.min.css', 'css!../lib/bootstrap/dist/css/bootstrap-theme.min.css']);

@@ -6,6 +6,7 @@
 
 import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
 import {EventType} from 'com/gsx/events/EventType';
+import {GeometryUtil} from 'com/gsx/utils/GeometryUtil';
 import {IBox} from 'com/gsx/components/IBox';
 import {IContained} from 'com/gsx/components/IContained';
 import {IContainer} from 'com/gsx/components/IContainer';
@@ -105,27 +106,27 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
      * @override
      */
     public getWidth(): number {
-        return 0;
+        return GeometryUtil.getBox(<HTMLElement>this.getNode()).getWidth();
     }
 
     /**
      * @override
      */
     public getHeight(): number {
-        return 0;
+        return GeometryUtil.getBox(<HTMLElement>this.getNode()).getHeight();
     }
 
     /**
      * @override
      */
     public getX(): number {
-        return 0;
+        return GeometryUtil.getBox(<HTMLElement>this.getNode()).getX();
     }
 
     /**
      * @override
      */
     public getY(): number {
-        return 0;
+        return GeometryUtil.getBox(<HTMLElement>this.getNode()).getY();
     }
 }
