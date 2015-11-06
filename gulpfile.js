@@ -14,7 +14,6 @@ var projectConfig = tsc.createProject('./tsconfig.json');
 var projectTestConfig = tsc.createProject('./tsconfig-test.json');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
-var deletefile = require('gulp-delete-file');
 var runSequence = require('run-sequence');
 var requirejsOptimize = require('gulp-requirejs-optimize');
 
@@ -29,11 +28,14 @@ var config = {
     tests: './tests/',
     testsTS: './tests/**/*.ts',
     lib: './lib/',
+    libJS: './lib/**/*.js',
     libTS: './lib/typings/**/*.d.ts',
     dest: './release/',
     destJS: './release/**/*.js',
     testsDest: './tests-release/',
-    testsDestJS: './tests-release/**/*.js'
+    testsDestJS: './tests-release/**/*.js',
+    temp: './temp/',
+    tempTS: './temp/**/*.ts'
 };
 
 /**
@@ -43,6 +45,16 @@ gulp.task('ts-lint', function () {
     return gulp.src(config.srcTS)
         .pipe(tslint())
         .pipe(tslint.report('prose'));
+});
+
+/**
+ * copy lib js to the release.
+ */
+gulp.task('copy-lib-to-release', function () {
+    return gulp.src([
+        path.normalize(config.lib + '/**/index.js'),
+        path.normalize(config.lib + '/**/require.js')
+    ]).pipe(gulp.dest(path.normalize(config.dest + '/lib/')));
 });
 
 /**
@@ -68,10 +80,10 @@ gulp.task('ts-lint-tests', function () {
 });
 
 /**
- * copy source ts to the tests folder.
+ * copy source ts and tests source ts to the temp folder.
  */
-gulp.task('copy-src-to-tests', function () {
-    return gulp.src(config.srcTS).pipe(gulp.dest(config.tests));
+gulp.task('copy-ts-to-temp', function () {
+    return gulp.src([config.srcTS, config.testsTS]).pipe(gulp.dest(config.temp));
 });
 
 /**
@@ -79,20 +91,17 @@ gulp.task('copy-src-to-tests', function () {
  */
 gulp.task('compile-tests-ts', function (cb) {
     gulp.src(path.normalize(config.tests + '/test.js')).pipe(gulp.dest(config.testsDest));
-    var tsResult = gulp.src([config.testsTS, config.libTS])
+    var tsResult = gulp.src([config.tempTS, config.libTS])
         .pipe(tsc(projectTestConfig));
     tsResult.dts.pipe(gulp.dest(config.testsDest));
     return tsResult.js.pipe(gulp.dest(config.testsDest));
 });
 
 /**
- * Remove the source ts in the tests folder.
+ * Remove the temp folder.
  */
-gulp.task('remove-tests-src-ts', function () {
-    return gulp.src(path.normalize(config.tests + '/**/*.ts')).pipe(deletefile({
-        reg: /\w*Test\.ts$/,
-        deleteMatch: false
-    }));
+gulp.task('clean-temp', function () {
+    return del(config.temp);
 });
 
 /**
@@ -102,7 +111,15 @@ gulp.task('requirejs-optimize-release', function () {
     return gulp.src(config.destJS)
         .pipe(requirejsOptimize({
             baseUrl: config.dest,
-            optimize: 'none'
+            optimize: 'none',
+            paths: {
+                'eventemitter3': './lib/eventemitter3/index'
+            },
+            shim: {
+                'eventemitter3': {
+                    exports: 'EventEmitter'
+                }
+            }
         }))
         .pipe(gulp.dest(config.dest));
 });
@@ -110,24 +127,24 @@ gulp.task('requirejs-optimize-release', function () {
 /**
  * Remove all generated JavaScript files from TypeScript compilation.
  */
-gulp.task('clean-release', function (cb) {
-    return del(config.dest, cb);
+gulp.task('clean-release', function () {
+    return del(config.dest);
 });
 
-gulp.task('clean-tests', function (cb) {
-    return del(config.testsDest, cb);
+gulp.task('clean-tests', function () {
+    return del(config.testsDest);
 });
 
 /**
  * The task for releasing the project
  */
 gulp.task('release', function (cb) {
-    runSequence('ts-lint', 'clean-release', 'compile-ts', 'requirejs-optimize-release', cb);
+    runSequence('ts-lint', 'clean-release', 'copy-lib-to-release', 'compile-ts', 'requirejs-optimize-release', cb);
 });
 
 /**
  * The task for executing tests of the project
  */
 gulp.task('tests', function (cb) {
-    runSequence('ts-lint-tests', 'clean-tests', 'copy-src-to-tests', 'compile-tests-ts', 'remove-tests-src-ts', cb);
+    runSequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', 'compile-tests-ts', 'clean-temp', cb);
 });
