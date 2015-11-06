@@ -18,7 +18,12 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
     /**
      * The node of the ui component.
      */
-    private node:Node;
+    private node: Node;
+
+    /**
+     * The parent of ui component.
+     */
+    private parent: IContainer = null;
 
     constructor(params?: Object) {
         super();
@@ -30,7 +35,7 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
      * To listener events.
      */
     protected listenerEvents() {
-        var node:Node = this.getNode();
+        var node: Node = this.getNode();
         // the event emit
         node.addEventListener('focus', this.emit.bind(this, EventType.FOCUS));
         node.addEventListener('blur', this.emit.bind(this, EventType.BLUR));
@@ -75,7 +80,9 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
      * @override
      */
     public destroy(): void {
-        
+        this.removeAllListeners();
+        var node: Node = this.getNode();
+        node.parentNode.removeChild(node);
     }
 
     /**
@@ -88,10 +95,18 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
     }
 
     /**
+     * Set the parent container of this ui component.
+     * @param {IContainer} parent
+     */
+    public setParent(parent: IContainer): void {
+        this.parent = parent;
+    }
+
+    /**
      * @override
      */
     public getParent(): IContainer {
-        return null;
+        return this.parent;
     }
 
     /**

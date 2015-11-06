@@ -88,4 +88,16 @@ export class EventDispatcher implements IEventDispatcher {
         this.eventEmitter.off(eventType + '', fn, once);
         return this;
     }
+
+    /**
+     * Remove all listeners or only the listeners for the specified event.
+     *
+     * @param {string} event The event want to remove all listeners for.
+     */
+    public removeAllListeners(eventType?: string): IEventDispatcher;
+    public removeAllListeners(eventType?: EventType): IEventDispatcher;
+    public removeAllListeners(eventType?: any): IEventDispatcher {
+        this.eventEmitter.removeAllListeners(eventType);
+        return this;
+    }
 }

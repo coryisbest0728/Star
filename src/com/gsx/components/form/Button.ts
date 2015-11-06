@@ -14,7 +14,7 @@ export class Button extends FormComponent {
     private params: {label?: string; disabled?: boolean; specSkinClass?: string;};
 
     constructor(params?: {label?: string; disabled?: boolean; specSkinClass?: string;}) {
-        this.params = params;
+        this.params = params || {};
         super();
     }
 

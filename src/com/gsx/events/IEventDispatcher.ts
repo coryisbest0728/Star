@@ -23,7 +23,6 @@ export interface IEventDispatcher {
      *
      * @param {string} eventType The events that should be listed.
      * @return {Array}
-     * @api public
      */
     listeners(eventType: string): Function[];
     listeners(eventType: EventType): Function[];
@@ -33,7 +32,6 @@ export interface IEventDispatcher {
      *
      * @param {string} eventType The name of the event.
      * @return {boolean} Indication if we've emitted an event.
-     * @api public
      */
     emit(eventType: string, ...args: any[]): boolean;
     emit(eventType: EventType, ...args: any[]): boolean;
@@ -44,7 +42,6 @@ export interface IEventDispatcher {
      * @param {string} eventType Name of the event.
      * @param {Function} fn Callback function.
      * @param {Mixed} context The context of the function.
-     * @api public
      */
     once(eventType: string, fn: Function, context?: any): IEventDispatcher;
     once(eventType: EventType, fn: Function, context?: any): IEventDispatcher;
@@ -55,8 +52,15 @@ export interface IEventDispatcher {
      * @param {string} eventType The event we want to remove.
      * @param {Function} fn The listener that we need to find.
      * @param {boolean} once Only remove once listeners.
-     * @api public
      */
     off(eventType: string, fn: Function, once?: boolean): IEventDispatcher;
     off(eventType: EventType, fn: Function, once?: boolean): IEventDispatcher;
+
+    /**
+     * Remove all listeners or only the listeners for the specified event.
+     *
+     * @param {string} event The event want to remove all listeners for.
+     */
+    removeAllListeners(eventType?: string): IEventDispatcher;
+    removeAllListeners(eventType?: EventType): IEventDispatcher;
 }

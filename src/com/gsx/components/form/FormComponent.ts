@@ -11,16 +11,16 @@ export class FormComponent extends SkinableComponent {
     /**
      * The name of the form component.
      */
-    private name:string = '';
+    private name: string = '';
 
     /**
      * The value of the form component.
      */
-    private value:Object;
+    private value: Object;
 
     constructor() {
         super();
-        var node:Node = this.getNode();
+        var node: Node = this.getNode();
         node.addEventListener('change', this.emit.bind(this, 'change'));
     }
 
