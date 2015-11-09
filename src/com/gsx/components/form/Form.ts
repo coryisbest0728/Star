@@ -7,6 +7,7 @@
 
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
 import {IContainer} from 'com/gsx/components/IContainer';
+import {IDestroyable} from 'com/gsx/components/IDestroyable';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 
 export class Form extends FormComponent implements IContainer {
@@ -95,10 +96,9 @@ export class Form extends FormComponent implements IContainer {
             index = param || 0;
         }
         if (index >= 0) {
-            var deletingChildren = this.getChildren().splice(index, 1);
+            var deletingChildren: Array<IDestroyable> = this.children.splice(index, 1);
             if (deletingChildren && deletingChildren.length) {
-                var child: UIComponent = deletingChildren[0];
-                this.getContainerNode().removeChild(child.getNode());
+                deletingChildren[0].destroy();
             }
         }
     }
@@ -204,10 +204,11 @@ export class Form extends FormComponent implements IContainer {
      * @override
      */
     public destroy(): void {
-        var children: Array<UIComponent> = this.getChildren();
-        for (var i: number = children.length; i > 0; --i) {
-            children.pop().destroy();
-        }
+//        var children: Array<UIComponent> = this.getChildren();
+//        for (var i: number = children.length; i > 0; --i) {
+//            children.pop().destroy();
+//        }
+        this.removeAllChildren();
         delete this.children;
         super.destroy();
     }
