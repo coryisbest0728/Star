@@ -6,7 +6,7 @@
 
 import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
 
-export class FormComponent extends SkinableComponent {
+export abstract class FormComponent extends SkinableComponent {
 
     /**
      * The name of the form component.
@@ -25,11 +25,17 @@ export class FormComponent extends SkinableComponent {
     }
 
     /**
+     * @abstract
+     * Get the node of the form control.
+     */
+    abstract getFormControlNode(): Node;
+
+    /**
      * Get the status of disabled.
      * @return {boolean} Whether disabled or not。
      */
     public getDisabled(): boolean {
-        return (<Element>this.getNode()).hasAttribute('disabled');
+        return (<Element>this.getFormControlNode()).hasAttribute('disabled');
     }
 
     /**
@@ -37,7 +43,7 @@ export class FormComponent extends SkinableComponent {
      * @return {string} The name of the form component.
      */
     public getName(): string {
-        return this.name;
+        return (<Element>this.getFormControlNode()).getAttribute('name');
     }
 
     /**
@@ -45,7 +51,7 @@ export class FormComponent extends SkinableComponent {
      * @return {string} The value of the form component.
      */
     public getValue(): Object {
-        return this.value;
+        return (<Element>this.getFormControlNode()).getAttribute('value');
     }
 
     /**
@@ -56,9 +62,9 @@ export class FormComponent extends SkinableComponent {
      */
     public setDisabled(disabled: boolean): void {
         if (disabled) {
-            (<Element>this.getNode()).setAttribute('disabled', 'disabled');
+            (<Element>this.getFormControlNode()).setAttribute('disabled', 'disabled');
         } else {
-            (<Element>this.getNode()).removeAttribute('disabled');
+            (<Element>this.getFormControlNode()).removeAttribute('disabled');
         }
     }
 
@@ -67,7 +73,7 @@ export class FormComponent extends SkinableComponent {
      * @param {string} name The name of the form component.
      */
     public setName(name: string): void {
-        this.name = name;
+        (<Element>this.getFormControlNode()).setAttribute('name', name);
     }
 
     /**
@@ -75,6 +81,6 @@ export class FormComponent extends SkinableComponent {
      * @param {string} value The value of the form component.
      */
     public setValue(value: Object): void {
-        this.value = value;
+        (<Element>this.getFormControlNode()).setAttribute('value', value.toString());
     }
 }

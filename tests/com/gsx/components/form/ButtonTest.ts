@@ -69,10 +69,10 @@ describe('The unit test for the Button', function () {
             expect(this).toBe(button, 'The context is the button self.');
             done();
         });
+        expect(this.button.emit(EventType.CLICK)).toBeTruthy('The click event has been listened');
         var mouseEvent: Event = document.createEvent("MouseEvents");
         mouseEvent.initEvent("click", true, true);
         button.getNode().dispatchEvent(mouseEvent);
-        expect(this.button.emit(EventType.CLICK)).toBeTruthy('The click event has been listened');
     });
 
     it('The box of the button', function () {

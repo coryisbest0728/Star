@@ -72,8 +72,10 @@ export class UIComponent extends EventDispatcher implements IBox, ITemplated, IC
      */
     public buildRendering(): void {
         var tempElement: HTMLElement = <HTMLElement>document.createElement('div');
+        var tempFrag: DocumentFragment = document.createDocumentFragment();
+        tempFrag.appendChild(tempElement);
         tempElement.innerHTML = this.getTemplateString();
-        this.node = tempElement.firstChild;
+        this.node = tempFrag.firstChild.firstChild;
     }
 
     /**

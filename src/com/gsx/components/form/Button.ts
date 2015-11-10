@@ -28,6 +28,13 @@ export class Button extends FormComponent {
     /**
      * @override
      */
+    public getFormControlNode(): Node {
+        return this.getNode();
+    }
+
+    /**
+     * @override
+     */
     public buildRendering(): void {
         super.buildRendering();
         this.setLabel(this.params.label);
@@ -39,7 +46,7 @@ export class Button extends FormComponent {
      * @return {string} The label of the button.
      */
     public getLabel(): string {
-        return (<HTMLElement>this.getNode()).innerHTML;
+        return (<HTMLElement>this.getFormControlNode()).innerHTML;
     }
 
     /**
@@ -54,7 +61,7 @@ export class Button extends FormComponent {
      * @param {string} label The button label.
      */
     public setLabel(label: string): void {
-        (<HTMLElement>this.getNode()).innerHTML = label;
+        (<HTMLElement>this.getFormControlNode()).innerHTML = label;
     }
 
     /**

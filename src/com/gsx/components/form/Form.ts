@@ -111,6 +111,13 @@ export class Form extends FormComponent implements IContainer {
     }
 
     /**
+     * @override
+     */
+    public getFormControlNode(): Node {
+        return this.getNode();
+    }
+
+    /**
      * Set the charset of the server application
      * @param {string} acceptCharset
      * @see http://www.w3school.com.cn/tags/att_form_accept-charset.asp
