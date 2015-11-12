@@ -4,7 +4,9 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {CorrectValidator} from 'com/gsx/components/form/validator/CorrectValidator';
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
+import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
 
 export class Button extends FormComponent {
 
@@ -30,6 +32,13 @@ export class Button extends FormComponent {
      */
     public getFormControlNode(): Node {
         return this.getNode();
+    }
+
+    /**
+     * @override
+     */
+    public getValidators(): Array<IValidatior> {
+        return [new CorrectValidator()];
     }
 
     /**

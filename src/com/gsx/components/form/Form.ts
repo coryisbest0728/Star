@@ -8,6 +8,7 @@
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
 import {IContainer} from 'com/gsx/components/IContainer';
 import {IDestroyable} from 'com/gsx/components/IDestroyable';
+import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 
 export class Form extends FormComponent implements IContainer {
@@ -107,7 +108,7 @@ export class Form extends FormComponent implements IContainer {
      * @override
      */
     public removeAllChildren(): void {
-        
+        // TODO: 
     }
 
     /**
@@ -115,6 +116,13 @@ export class Form extends FormComponent implements IContainer {
      */
     public getFormControlNode(): Node {
         return this.getNode();
+    }
+
+    /**
+     * @override
+     */
+    public getValidators(): Array<IValidatior> {
+        return [];
     }
 
     /**
@@ -211,10 +219,6 @@ export class Form extends FormComponent implements IContainer {
      * @override
      */
     public destroy(): void {
-//        var children: Array<UIComponent> = this.getChildren();
-//        for (var i: number = children.length; i > 0; --i) {
-//            children.pop().destroy();
-//        }
         this.removeAllChildren();
         delete this.children;
         super.destroy();

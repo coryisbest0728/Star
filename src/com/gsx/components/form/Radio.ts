@@ -4,6 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {CorrectValidator} from 'com/gsx/components/form/validator/CorrectValidator';
+import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
 import {LabelledFormComponent} from 'com/gsx/components/form/LabelledFormComponent';
 
 export class Radio extends LabelledFormComponent {
@@ -38,5 +40,12 @@ export class Radio extends LabelledFormComponent {
      */
     public getLabelledNode(): Node {
         return this.getNode();
+    }
+
+    /**
+     * @override
+     */
+    public getValidators(): Array<IValidatior> {
+        return [new CorrectValidator()];
     }
 }

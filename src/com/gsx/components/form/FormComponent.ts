@@ -4,8 +4,9 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
 import {EventType} from 'com/gsx/events/EventType';
+import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
+import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
 
 export abstract class FormComponent extends SkinableComponent {
 
@@ -32,6 +33,12 @@ export abstract class FormComponent extends SkinableComponent {
      * Get the node of the form control.
      */
     abstract getFormControlNode(): Node;
+
+    /**
+     * Get the validator of this input box.
+     * @return {IValidatior}
+     */
+    abstract getValidators(): Array<IValidatior>;
 
     /**
      * Get the status of disabled.

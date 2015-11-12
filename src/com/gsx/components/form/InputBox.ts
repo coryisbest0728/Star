@@ -5,7 +5,6 @@
  */
 
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
-import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
 
 export abstract class InputBox extends FormComponent {
 
@@ -31,12 +30,6 @@ export abstract class InputBox extends FormComponent {
      * @return {string}
      */
     abstract getType(): string;
-
-    /**
-     * Get the validator of this input box.
-     * @return {IValidatior}
-     */
-    abstract getValidator(): IValidatior;
 
     /**
      * @override
