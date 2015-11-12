@@ -5,8 +5,9 @@
  */
 
 export interface IValidatior {
+
     /**
-     * 
+     * Validating the spec ui component.
      * @return {boolean}
      */
     validate(): boolean;
