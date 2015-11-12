@@ -11,6 +11,7 @@ export enum EventType {
     BLUR,
     CONTEXT_MENU,
     RESIZE,
+    CHANGE,
 
     // The key event type
     KEY_DOWN,

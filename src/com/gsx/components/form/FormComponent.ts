@@ -5,6 +5,7 @@
  */
 
 import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
+import {EventType} from 'com/gsx/events/EventType';
 
 export abstract class FormComponent extends SkinableComponent {
 
@@ -18,10 +19,12 @@ export abstract class FormComponent extends SkinableComponent {
      */
     private value: Object;
 
-    constructor() {
-        super();
-        var node: Node = this.getNode();
-        node.addEventListener('change', this.emit.bind(this, 'change'));
+    protected listenerEvents() {
+        super.listenerEvents();
+        var node: Node = this.getFormControlNode();
+        node.addEventListener('change', this.emit.bind(this, EventType.CHANGE));
+        node.addEventListener('focus', this.emit.bind(this, EventType.FOCUS));
+        node.addEventListener('blur', this.emit.bind(this, EventType.BLUR));
     }
 
     /**
