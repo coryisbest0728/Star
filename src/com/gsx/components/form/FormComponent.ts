@@ -36,7 +36,7 @@ export abstract class FormComponent extends SkinableComponent {
 
     /**
      * Get the validator of this input box.
-     * @return {IValidatior}
+     * @return {Array<IValidatior>}
      */
     abstract getValidators(): Array<IValidatior>;
 
