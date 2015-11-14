@@ -6,26 +6,21 @@
 
 /// <reference path="../../../../../../lib/typings/es6-promise/es6-promise.d.ts" />
 
-import {FormComponent} from 'com/gsx/components/form/FormComponent';
 import {Promise} from 'es6-promise';
 
 export interface IValidator {
 
     /**
      * Validating the spec ui component.
+     * @param {any} validatedValue
      * @return {boolean}
      */
-    validate(): boolean;
+    validate(validatedValue: any): boolean;
 
     /**
      * Async validating the spec ui component.
+     * @param {any} validatedValue
      * @return {Promise<boolean>}
      */
-    validateAsync(): Promise<boolean>;
-
-    /**
-     * Get the form component of validation
-     * @return {FormComponent}
-     */
-    getFormComponent(): FormComponent;
+    validateAsync(validatedValue: any): Promise<boolean>;
 }

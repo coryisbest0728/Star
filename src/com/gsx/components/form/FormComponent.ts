@@ -7,7 +7,6 @@
 import {EventType} from 'com/gsx/events/EventType';
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
 import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
-import {Validator} from 'com/gsx/components/form/validator/Validator';
 
 export abstract class FormComponent extends SkinableComponent {
 
@@ -15,16 +14,6 @@ export abstract class FormComponent extends SkinableComponent {
      * The name of the form component.
      */
     private name: string = '';
-
-    /**
-     * @override
-     */
-    public create(params?: Object): void {
-        this.getValidators().forEach(function (validator: Validator): void {
-            validator.setFormComponent(this);
-        }.bind(this));
-        super.create(params);
-    }
 
     /**
      * @override

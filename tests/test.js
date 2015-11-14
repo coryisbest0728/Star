@@ -16,12 +16,16 @@ requirejs.config({
     baseUrl: '/base/tests-release',
 
     paths: {
-        'eventemitter3': '../lib/eventemitter3/index'
+        'eventemitter3': '../lib/eventemitter3/index',
+        'es6-promise': '../lib/es6-promise/promise.min'
     },
 
     shim: {
         'eventemitter3': {
             exports: 'EventEmitter'
+        },
+        'es6-promise': {
+            exports: 'es6-promise'
         }
     },
 
