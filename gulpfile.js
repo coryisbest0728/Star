@@ -53,7 +53,8 @@ gulp.task('ts-lint', function () {
 gulp.task('copy-lib-to-release', function () {
     return gulp.src([
         path.normalize(config.lib + '/**/index.js'),
-        path.normalize(config.lib + '/**/require.js')
+        path.normalize(config.lib + '/**/require.js'),
+        path.normalize(config.lib + '/**/promise.min.js')
     ]).pipe(gulp.dest(path.normalize(config.dest + '/lib/')));
 });
 
@@ -120,6 +121,9 @@ gulp.task('requirejs-optimize-release', function () {
                 'eventemitter3': {
                     exports: 'EventEmitter'
                 }
+            },
+            'es6-promise': {
+                exports: 'es6-promise'
             }
         }))
         .pipe(gulp.dest(config.dest));
