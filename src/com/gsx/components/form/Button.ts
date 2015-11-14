@@ -4,20 +4,19 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {CorrectValidator} from 'com/gsx/components/form/validator/CorrectValidator';
-import {FormComponent} from 'com/gsx/components/form/FormComponent';
-import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
+import {IValidator} from 'com/gsx/components/form/validator/IValidator';
+import {LabelledFormComponent} from 'com/gsx/components/form/LabelledFormComponent';
 
-export class Button extends FormComponent {
+export class Button extends LabelledFormComponent {
 
     /**
      * The params of inital.
      */
-    private params: {label?: string; disabled?: boolean; specSkinClass?: string;};
+    private params: ButtonParams;
 
-    constructor(params?: {label?: string; disabled?: boolean; specSkinClass?: string;}) {
+    constructor(params?: ButtonParams) {
         this.params = params || {};
-        super();
+        super(this.params);
     }
 
     /**
@@ -37,8 +36,8 @@ export class Button extends FormComponent {
     /**
      * @override
      */
-    public getValidators(): Array<IValidatior> {
-        return [new CorrectValidator()];
+    public getValidators(): Array<IValidator> {
+        return [];
     }
 
     /**
@@ -46,16 +45,15 @@ export class Button extends FormComponent {
      */
     public buildRendering(): void {
         super.buildRendering();
-        this.setLabel(this.params.label);
+        this.setLabel(this.params.label || '');
         this.setDisabled(this.params.disabled);
     }
 
     /**
-     * Get the label of the button.
-     * @return {string} The label of the button.
+     * @override
      */
-    public getLabel(): string {
-        return (<HTMLElement>this.getFormControlNode()).innerHTML;
+    public getLabelledNode(): Node {
+        return this.getFormControlNode();
     }
 
     /**
@@ -63,14 +61,6 @@ export class Button extends FormComponent {
      */
     protected getOriginSpecSkinClass(): string {
         return this.params.specSkinClass || 'btn-primary';
-    }
-
-    /**
-     * Set the button label to display.
-     * @param {string} label The button label.
-     */
-    public setLabel(label: string): void {
-        (<HTMLElement>this.getFormControlNode()).innerHTML = label;
     }
 
     /**
@@ -87,4 +77,21 @@ export class Button extends FormComponent {
         super.destroy();
         delete this.params;
     }
+}
+
+interface ButtonParams {
+    /**
+     * The label of the button
+     */
+    label?: string;
+
+    /**
+     * @see http://www.w3school.com.cn/tags/att_button_disabled.asp
+     */
+    disabled?: boolean;
+
+    /**
+     * The spec button skin class.
+     */
+    specSkinClass?: string;
 }

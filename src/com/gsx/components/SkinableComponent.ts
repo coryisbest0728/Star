@@ -7,7 +7,7 @@
 import {ISkinable} from 'com/gsx/components/ISkinable';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 
-export class SkinableComponent extends UIComponent implements ISkinable {
+export abstract class SkinableComponent extends UIComponent implements ISkinable {
 
     private specSkinClass: string = '';
 

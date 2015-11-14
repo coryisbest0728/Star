@@ -4,8 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {CorrectValidator} from 'com/gsx/components/form/validator/CorrectValidator';
-import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
+import {IValidator} from 'com/gsx/components/form/validator/IValidator';
 import {LabelledFormComponent} from 'com/gsx/components/form/LabelledFormComponent';
 
 export class CheckBox extends LabelledFormComponent {
@@ -45,7 +44,7 @@ export class CheckBox extends LabelledFormComponent {
     /**
      * @override
      */
-    public getValidators(): Array<IValidatior> {
-        return [new CorrectValidator()];
+    public getValidators(): Array<IValidator> {
+        return [];
     }
 }

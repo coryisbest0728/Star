@@ -11,11 +11,11 @@ export abstract class InputBox extends FormComponent {
     /**
      * The params of inital.
      */
-    private params: {disabled?: boolean; specSkinClass?: string;};
+    private params: {disabled?: boolean; readonly?: boolean; specSkinClass?: string;};
 
-    constructor(params?: {disabled?: boolean; specSkinClass?: string;}) {
+    constructor(params?: {disabled?: boolean; readonly?: boolean; specSkinClass?: string;}) {
         this.params = params || {};
-        super();
+        super(this.params);
     }
 
     /**
@@ -58,6 +58,44 @@ export abstract class InputBox extends FormComponent {
      */
     public getBaseSkinClass(): string {
         return 'form-control';
+    }
+
+    /**
+     * Set placeholder for this input box.
+     * @param {string} placeholder
+     */
+    public setPlaceholder(placeholder: string): void {
+        (<Element>this.getFormControlNode()).setAttribute('placeholder', placeholder);
+    }
+
+    /**
+     * Get placeholder of this input box.
+     * @return {string}
+     */
+    public getPlaceholder(): string {
+        return (<Element>this.getFormControlNode()).getAttribute('placeholder');
+    }
+
+    /**
+     * Get the status of readonly.
+     * @return {boolean} Whether readonly or not。
+     */
+    public getReadOnly(): boolean {
+        return (<Element>this.getFormControlNode()).hasAttribute('readonly');
+    }
+
+    /**
+     * Set the status of button. readonly or not.
+     * True is readonly.
+     * False is readonly.
+     * @param {boolean} readonly The status of readonly.
+     */
+    public setReadOnly(readonly: boolean): void {
+        if (readonly) {
+            (<Element>this.getFormControlNode()).setAttribute('readonly', 'readonly');
+        } else {
+            (<Element>this.getFormControlNode()).removeAttribute('readonly');
+        }
     }
 
     /**

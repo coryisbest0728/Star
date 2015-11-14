@@ -4,9 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {CorrectValidator} from 'com/gsx/components/form/validator/CorrectValidator';
 import {InputBox} from 'com/gsx/components/form/InputBox';
-import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
+import {IValidator} from 'com/gsx/components/form/validator/IValidator';
 
 export class TextBox extends InputBox {
 
@@ -20,8 +19,8 @@ export class TextBox extends InputBox {
     /**
      * @override
      */
-    public getValidators(): Array<IValidatior> {
-        return [new CorrectValidator()];
+    public getValidators(): Array<IValidator> {
+        return [];
     }
 
 }

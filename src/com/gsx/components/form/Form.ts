@@ -8,16 +8,25 @@
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
 import {IContainer} from 'com/gsx/components/IContainer';
 import {IDestroyable} from 'com/gsx/components/IDestroyable';
-import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
+import {IValidator} from 'com/gsx/components/form/validator/IValidator';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 
 export class Form extends FormComponent implements IContainer {
 
+    private params: FormParams;
     private children: Array<UIComponent>;
 
-    constructor() {
-        super();
+    constructor(params?: FormParams) {
+        this.params = params || {};
+        super(this.params);
+    }
+
+    /**
+     * @override
+     */
+    public create(params?: Object) {
         this.children = new Array<UIComponent>();
+        super.create(params);
     }
 
     /**
@@ -121,7 +130,7 @@ export class Form extends FormComponent implements IContainer {
     /**
      * @override
      */
-    public getValidators(): Array<IValidatior> {
+    public getValidators(): Array<IValidator> {
         return [];
     }
 
@@ -222,5 +231,36 @@ export class Form extends FormComponent implements IContainer {
         this.removeAllChildren();
         delete this.children;
         super.destroy();
+        delete this.params;
     }
+}
+
+/**
+ * The initial params of the form
+ */
+interface FormParams {
+    /**
+     * @see http://www.w3school.com.cn/tags/att_form_accept-charset.asp
+     */
+    acceptCharset?: string;
+
+    /**
+     * @see http://www.w3school.com.cn/tags/att_form_action.asp
+     */
+    action?: string;
+
+    /**
+     * @see http://www.w3school.com.cn/tags/att_form_autocomplete.asp
+     */
+    autocomplete?: boolean;
+
+    /**
+     * http://www.w3school.com.cn/tags/att_form_enctype.asp
+     */
+    enctype?: string;
+
+    /**
+     * @see http://www.w3school.com.cn/tags/att_form_method.asp
+     */
+    method?: string;
 }

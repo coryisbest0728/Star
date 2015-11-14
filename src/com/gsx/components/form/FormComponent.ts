@@ -5,8 +5,9 @@
  */
 
 import {EventType} from 'com/gsx/events/EventType';
-import {IValidatior} from 'com/gsx/components/form/validator/IValidatior';
+import {IValidator} from 'com/gsx/components/form/validator/IValidator';
 import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
+import {Validator} from 'com/gsx/components/form/validator/Validator';
 
 export abstract class FormComponent extends SkinableComponent {
 
@@ -16,10 +17,18 @@ export abstract class FormComponent extends SkinableComponent {
     private name: string = '';
 
     /**
-     * The value of the form component.
+     * @override
      */
-    private value: Object;
+    public create(params?: Object): void {
+        this.getValidators().forEach(function (validator: Validator): void {
+            validator.setFormComponent(this);
+        }.bind(this));
+        super.create(params);
+    }
 
+    /**
+     * @override
+     */
     protected listenerEvents() {
         super.listenerEvents();
         var node: Node = this.getFormControlNode();
@@ -35,10 +44,10 @@ export abstract class FormComponent extends SkinableComponent {
     abstract getFormControlNode(): Node;
 
     /**
-     * Get the validator of this input box.
-     * @return {Array<IValidatior>}
+     * Get the set validators of this form component.
+     * @return {Array<IValidator>}
      */
-    abstract getValidators(): Array<IValidatior>;
+    abstract getValidators(): Array<IValidator>;
 
     /**
      * Get the status of disabled.
@@ -60,7 +69,7 @@ export abstract class FormComponent extends SkinableComponent {
      * Get the value of the form component.
      * @return {string} The value of the form component.
      */
-    public getValue(): Object {
+    public getValue(): any {
         return (<Element>this.getFormControlNode()).getAttribute('value');
     }
 
@@ -90,7 +99,7 @@ export abstract class FormComponent extends SkinableComponent {
      * Set the value of the form component.
      * @param {string} value The value of the form component.
      */
-    public setValue(value: Object): void {
-        (<Element>this.getFormControlNode()).setAttribute('value', value.toString());
+    public setValue(value: any): void {
+        (<Element>this.getFormControlNode()).setAttribute('value', value);
     }
 }
