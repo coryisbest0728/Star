@@ -5,28 +5,16 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {FormComponent} from 'com/gsx/components/form/FormComponent';
-import {IContainer} from 'com/gsx/components/IContainer';
-import {IDestroyable} from 'com/gsx/components/IDestroyable';
+import {FormContainerComponent} from 'com/gsx/components/form/FormContainerComponent';
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {UIComponent} from 'com/gsx/components/UIComponent';
 
-export class Form extends FormComponent implements IContainer {
+export class Form extends FormContainerComponent {
 
     private params: FormParams;
-    private children: Array<UIComponent>;
 
     constructor(params?: FormParams) {
         this.params = params || {};
         super(this.params);
-    }
-
-    /**
-     * @override
-     */
-    public create(params?: Object) {
-        this.children = new Array<UIComponent>();
-        super.create(params);
     }
 
     /**
@@ -39,85 +27,8 @@ export class Form extends FormComponent implements IContainer {
     /**
      * @override
      */
-    public getChildren(): Array<UIComponent> {
-        return this.children;
-    }
-
-    /**
-     * @override
-     */
-    public contains(uiComponent: UIComponent): boolean {
-        return this.children.filter(function (child: UIComponent): boolean {
-            return uiComponent === child;
-        }).length === 1;
-    }
-
-    /**
-     * @override
-     */
     public getContainerNode(): Node {
         return this.getNode();
-    }
-
-    /**
-     * @override
-     */
-    public addChild(uiComponent: UIComponent, index?: number): void {
-        if (!this.contains(uiComponent)) {
-            var containerNode: Node = this.getContainerNode();
-            var children: Array<UIComponent> = this.getChildren();
-            if (typeof(index) === 'number') {
-                index = index || 0;
-                this.getContainerNode().insertBefore(uiComponent.getNode(), children[index].getNode());
-                children.splice(index, 0, uiComponent);
-            } else {
-                containerNode.appendChild(uiComponent.getNode());
-                children.push(uiComponent);
-            }
-            uiComponent.setParent(this);
-        }
-    }
-
-    /**
-     * @override
-     */
-    public getChild(index: number): UIComponent {
-        return this.getChildren()[index];
-    }
-
-    /**
-     * @override
-     */
-    public removeChild(uiComponent: UIComponent): void;
-    public removeChild(index: number): void;
-    public removeChild(param: any): void {
-        var index = -1;
-        if (param instanceof UIComponent) { // remove the uiComponent
-            if (this.contains(param)) {
-                var children: Array<UIComponent> = this.getChildren();
-                for (var i: number = 0, len: number = children.length; i < len; ++i) {
-                    if (children[i] === param) {
-                        index = i;
-                        break;
-                    }
-                }
-            }
-        } else if (typeof(param) === 'number') { // remove from the index
-            index = param || 0;
-        }
-        if (index >= 0) {
-            var deletingChildren: Array<IDestroyable> = this.children.splice(index, 1);
-            if (deletingChildren && deletingChildren.length) {
-                deletingChildren[0].destroy();
-            }
-        }
-    }
-
-    /**
-     * @override
-     */
-    public removeAllChildren(): void {
-        // TODO: 
     }
 
     /**
@@ -140,7 +51,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_accept-charset.asp
      */
     public setAcceptCharset(acceptCharset: string): void {
-        (<Element>this.getNode()).setAttribute('accept-charset', acceptCharset);
+        (<Element>this.getFormControlNode()).setAttribute('accept-charset', acceptCharset);
     }
 
     /**
@@ -149,7 +60,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_accept-charset.asp
      */
     public getAcceptCharset(): string {
-        return (<Element>this.getNode()).getAttribute('accept-charset');
+        return (<Element>this.getFormControlNode()).getAttribute('accept-charset');
     }
 
     /**
@@ -158,7 +69,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_action.asp
      */
     public setAction(action: string): void {
-        (<Element>this.getNode()).setAttribute('action', action);
+        (<Element>this.getFormControlNode()).setAttribute('action', action);
     }
 
     /**
@@ -167,7 +78,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_action.asp
      */
     public getAction(): string {
-        return (<Element>this.getNode()).getAttribute('action');
+        return (<Element>this.getFormControlNode()).getAttribute('action');
     }
 
     /**
@@ -176,7 +87,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_autocomplete.asp
      */
     public setAutocomplete(autocomplete: boolean): void {
-        (<Element>this.getNode()).setAttribute('autocomplete', autocomplete ? 'on' : 'off');
+        (<Element>this.getFormControlNode()).setAttribute('autocomplete', autocomplete ? 'on' : 'off');
     }
 
     /**
@@ -185,7 +96,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_autocomplete.asp
      */
     public getAutocomplete(): boolean {
-        return (<Element>this.getNode()).getAttribute('autocomplete') === 'on';
+        return (<Element>this.getFormControlNode()).getAttribute('autocomplete') === 'on';
     }
 
     /**
@@ -194,7 +105,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_enctype.asp
      */
     public setEnctype(enctype: string): void {
-        (<Element>this.getNode()).setAttribute('enctype', enctype || 'application/x-www-form-urlencoded');
+        (<Element>this.getFormControlNode()).setAttribute('enctype', enctype || 'application/x-www-form-urlencoded');
     }
 
     /**
@@ -203,7 +114,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_enctype.asp
      */
     public getEnctype(): string {
-        return (<Element>this.getNode()).getAttribute('enctype') || 'application/x-www-form-urlencoded';
+        return (<Element>this.getFormControlNode()).getAttribute('enctype') || 'application/x-www-form-urlencoded';
     }
 
     /**
@@ -212,7 +123,7 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_method.asp
      */
     public setMethod(method: string): void {
-        (<Element>this.getNode()).setAttribute('method', method);
+        (<Element>this.getFormControlNode()).setAttribute('method', method);
     }
 
     /**
@@ -221,15 +132,13 @@ export class Form extends FormComponent implements IContainer {
      * @see http://www.w3school.com.cn/tags/att_form_method.asp
      */
     public getMethod(): string {
-        return (<Element>this.getNode()).getAttribute('method');
+        return (<Element>this.getFormControlNode()).getAttribute('method');
     }
 
     /**
      * @override
      */
     public destroy(): void {
-        this.removeAllChildren();
-        delete this.children;
         super.destroy();
         delete this.params;
     }

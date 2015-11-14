@@ -109,6 +109,6 @@ export abstract class FormComponent extends SkinableComponent {
      * @param {boolean}
      */
     public getAutofocus(): boolean {
-        (<Element>this.getFormControlNode()).hasAttribute('autofocus');
+        return (<Element>this.getFormControlNode()).hasAttribute('autofocus');
     }
 }
