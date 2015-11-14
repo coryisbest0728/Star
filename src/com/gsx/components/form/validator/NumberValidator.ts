@@ -14,7 +14,7 @@ export class NumberValidator implements IValidator {
      * @override
      */
     public validate(validatedValue: any): boolean {
-        return /^\d+$/.test(validatedValue);
+        return /^\s*\d+\s*$/.test(validatedValue);
     }
 
     /**
