@@ -91,4 +91,24 @@ export abstract class FormComponent extends SkinableComponent {
     public setValue(value: any): void {
         (<Element>this.getFormControlNode()).setAttribute('value', value);
     }
+
+    /**
+     * Set auto focused or not.
+     * @param {boolean} autofocus
+     */
+    public setAutofocus(autofocus: boolean): void {
+        if (autofocus) {
+            (<Element>this.getFormControlNode()).setAttribute('autofocus', 'autofocus');
+        } else {
+            (<Element>this.getFormControlNode()).removeAttribute('autofocus');
+        }
+    }
+
+    /**
+     * Get auto focused or not.
+     * @param {boolean}
+     */
+    public getAutofocus(): boolean {
+        (<Element>this.getFormControlNode()).hasAttribute('autofocus');
+    }
 }
