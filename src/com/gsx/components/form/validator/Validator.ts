@@ -8,7 +8,7 @@
 
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import Promise = require('es6-promise');
+import {Promise} from 'es6-promise';
 
 export abstract class Validator implements IValidator {
 

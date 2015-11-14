@@ -7,7 +7,7 @@
 /// <reference path="../../../../../../lib/typings/es6-promise/es6-promise.d.ts" />
 
 import {FormComponent} from 'com/gsx/components/form/FormComponent';
-import Promise = require('es6-promise');
+import {Promise} from 'es6-promise';
 
 export interface IValidator {
 
