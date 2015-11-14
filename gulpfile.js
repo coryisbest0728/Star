@@ -113,7 +113,8 @@ gulp.task('requirejs-optimize-release', function () {
             baseUrl: config.dest,
             optimize: 'none',
             paths: {
-                'eventemitter3': './lib/eventemitter3/index'
+                'eventemitter3': './lib/eventemitter3/index',
+                'es6-promise': './lib/es6-promise/promise.min'
             },
             shim: {
                 'eventemitter3': {
