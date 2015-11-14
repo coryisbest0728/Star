@@ -13,6 +13,9 @@
     },
     "jasmine/jasmine.d.ts": {
       "commit": "b70895565dd5bd5de71c31e573d781409554bbf1"
+    },
+    "es6-promise/es6-promise.d.ts": {
+      "commit": "4f7b7e01d3a9622bfab0bef469e169529e60c66b"
     }
   }
 }
