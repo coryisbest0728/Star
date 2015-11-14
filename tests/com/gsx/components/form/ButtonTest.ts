@@ -25,7 +25,7 @@ describe('The unit test for the Button', function () {
             .toBeNull('This button has not any parent component, and not in the any container.');
     });
 
-    it('The label of ths button', function () {
+    it('The label of the button', function () {
         expect(this.button.getLabel()).toBe('Test');
 
         this.button.setLabel('Test2');
