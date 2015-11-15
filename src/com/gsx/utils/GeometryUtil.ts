@@ -6,7 +6,7 @@
 
 import {IBox} from 'com/gsx/components/IBox';
 
-export class GeometryUtil {
+export abstract class GeometryUtil {
     /**
      * Get the box node, include x, y, width, height.
      * @param {Element} element
