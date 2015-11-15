@@ -9,7 +9,14 @@ import {UIComponent} from 'com/gsx/components/UIComponent';
 
 export class JXMLParser implements IParser {
 
+    /**
+     * XML document
+     */
     private xmlDoc: any;
+
+    /**
+     * dom parser
+     */
     private domParser: DOMParser;
 
     constructor() {
@@ -28,6 +35,10 @@ export class JXMLParser implements IParser {
         return null;
     }
 
+    /**
+     * Parse jxml content to the xml document.
+     * @param {string} jxml
+     */
     public parseJXML2XMLDocument(jxml: string): XMLDocument {
         if (this.domParser) {
             this.xmlDoc = this.domParser.parseFromString(jxml, "text/xml");
@@ -38,7 +49,9 @@ export class JXMLParser implements IParser {
     }
 
     /**
-     * @param {Element}
+     * Parse the element using its namespace.
+     * @param {Element} element
+     * @return {UIComponent}
      */
     public parseElementNS(element: Element): UIComponent {
         var simpleClassName: string = this.getSimpleClassName(element);
@@ -81,6 +94,10 @@ export class JXMLParser implements IParser {
         return element.tagName.replace(new RegExp('^' + element.prefix + '\:'), '');
     }
 
+    /**
+     * Format the attr name.Split - and put the initial char to upper case.
+     * @param {string} attrName
+     */
     private formatAttrName(attrName: string): string {
         return attrName.split('-').map(function (nameFrag: string): string {
             return nameFrag.replace(/^\w/, function(v: string): string {
