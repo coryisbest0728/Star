@@ -51,7 +51,7 @@ export abstract class SkinableComponent extends UIComponent implements ISkinable
      * @return {string} The specific skin class name.
      */
     private getSpecSkinClassFromNode(): string {
-        var classNames = (<HTMLElement>this.getNode()).className.trim().split(' ');
+        var classNames = (<Element>this.getNode()).className.trim().split(' ');
         var baseSkinClasses = this.getBaseSkinClass().trim().split(' ');
         return classNames.filter(function (className) {
             className = className.trim();
