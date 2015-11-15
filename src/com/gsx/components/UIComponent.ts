@@ -143,4 +143,20 @@ export abstract class UIComponent extends EventDispatcher implements IBox, ITemp
     public getY(): number {
         return GeometryUtil.getBox(<HTMLElement>this.getNode()).getY();
     }
+
+    /**
+     * @override
+     */
+    public toString(): string {
+        return '[object UIComponent-' + this.getSimpleClassName() + ']';
+    }
+
+    /**
+     * Get the simple class name.
+     * @return {string}
+     */
+    private getSimpleClassName(): string {
+        var results = /function (.{1,})\(/.exec(this.constructor.toString());
+        return (results && results.length > 1) ? results[1] : "";
+    }
 }
