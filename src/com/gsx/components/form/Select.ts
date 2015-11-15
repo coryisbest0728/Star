@@ -55,6 +55,7 @@ export class Select extends FormContainerComponent {
      */
     public buildRendering(): void {
         super.buildRendering();
+        this.addOptions(this.params.options || []);
         this.setDisabled(this.params.disabled);
     }
 
