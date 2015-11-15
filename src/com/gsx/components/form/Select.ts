@@ -22,16 +22,6 @@ export class Select extends FormContainerComponent {
         super(this.params);
     }
 
-//    /**
-//     * @override
-//     */
-//    protected listenerEvents() {
-//        super.listenerEvents();
-//        this.on(EventType.CHANGE, function () {
-//            this.getSelectedOption();
-//        });
-//    }
-
     /**
      * @override
      */
