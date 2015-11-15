@@ -18,7 +18,7 @@ describe('The unit test for the JXMLParser', function () {
     it('Parsing JXML template to the xml document', function () {
         var template: string = 
             '<f:Button label="test1" spec-skin-class="btn-success" xmlns:f="com/gsx/components/form"></f:Button>';
-        var buttonNodeList: NodeList = this.parser.parseJXML2XMLDocument(template).getElementsByTagName('Button');
+        var buttonNodeList: NodeList = this.parser.parseXML2XMLDocument(template).getElementsByTagName('Button');
         expect(buttonNodeList.length).toBe(1);
         var buttonElement: Element = <Element>buttonNodeList[0];
         expect(buttonElement.getAttribute('label')).toBe('test1');
@@ -29,7 +29,7 @@ describe('The unit test for the JXMLParser', function () {
     it('Parsing the jxml element to the ui component', function () {
         var template: string = 
             '<f:Button label="test1" spec-skin-class="btn-success" xmlns:f="com/gsx/components/form"></f:Button>';
-        var buttonNodeList: NodeList = this.parser.parseJXML2XMLDocument(template).getElementsByTagName('Button');
+        var buttonNodeList: NodeList = this.parser.parseXML2XMLDocument(template).getElementsByTagName('Button');
         var buttonElement: Element = <Element>buttonNodeList[0];
         var button: Button = <Button>this.parser.parseElementNS(buttonElement);
         expect(button).not.toBeNull('The button has been parsed.');

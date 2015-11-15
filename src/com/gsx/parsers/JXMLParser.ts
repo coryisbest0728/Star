@@ -4,48 +4,16 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IParser} from 'com/gsx/parsers/IParser';
+import {XMLParser} from 'com/gsx/parsers/XMLParser';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 
-export class JXMLParser implements IParser {
-
-    /**
-     * XML document
-     */
-    private xmlDoc: any;
-
-    /**
-     * dom parser
-     */
-    private domParser: DOMParser;
-
-    constructor() {
-        if (DOMParser) {
-            this.domParser = new DOMParser();
-        } else { // Internet Explorer
-            this.xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-            this.xmlDoc.async = "false";
-        }
-    }
+export class JXMLParser extends XMLParser {
 
     /**
      * @override
      */
     public parse(content: string): UIComponent {
         return null;
-    }
-
-    /**
-     * Parse jxml content to the xml document.
-     * @param {string} jxml
-     */
-    public parseJXML2XMLDocument(jxml: string): XMLDocument {
-        if (this.domParser) {
-            this.xmlDoc = this.domParser.parseFromString(jxml, "text/xml");
-        } else { // Internet Explorer
-            this.xmlDoc.loadXML(jxml);
-        }
-        return <XMLDocument>this.xmlDoc;
     }
 
     /**
