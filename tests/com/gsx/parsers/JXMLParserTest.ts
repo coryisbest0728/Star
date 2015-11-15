@@ -16,7 +16,7 @@ describe('The unit test for the JXMLParser', function () {
     });
 
     it('Parsing JXML template to the xml document', function () {
-        var template = 
+        var template: string = 
             '<f:Button label="test1" spec-skin-class="btn-success" xmlns:f="com/gsx/components/form"></f:Button>';
         var buttonNodeList: NodeList = this.parser.parseJXML2XMLDocument(template).getElementsByTagName('Button');
         expect(buttonNodeList.length).toBe(1);
@@ -27,7 +27,7 @@ describe('The unit test for the JXMLParser', function () {
     });
 
     it('Parsing the jxml element to the ui component', function () {
-        var template = 
+        var template: string = 
             '<f:Button label="test1" spec-skin-class="btn-success" xmlns:f="com/gsx/components/form"></f:Button>';
         var buttonNodeList: NodeList = this.parser.parseJXML2XMLDocument(template).getElementsByTagName('Button');
         var buttonElement: Element = <Element>buttonNodeList[0];
