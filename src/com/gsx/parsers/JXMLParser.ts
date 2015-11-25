@@ -16,11 +16,15 @@ export class JXMLParser extends XMLParser {
      */
     public parse(content: string): UIComponent {
         var xmlDoc: XMLDocument = this.parseXML2XMLDocument(content);
-        return this.traverseELement(<Element>xmlDoc.firstChild);
+        return this.convert2UIComponent(<Element>xmlDoc.firstChild);
     }
 
-    private traverseELement(rootElement: Element): UIComponent {
-        var rootComponent: UIComponent = null;//this.parseElementNS(rootElement);
+    /**
+     * Convert element to the UI Component.
+     * @param {Element} rootElement
+     */
+    private convert2UIComponent(rootElement: Element): UIComponent {
+        var rootComponent: UIComponent = null;
         var componentMap: Object = {};
         new DFTXMLTraversal().traverse(rootElement, function (itemElement: Element): void {
             var component: UIComponent = this.parseElementNS(itemElement);
