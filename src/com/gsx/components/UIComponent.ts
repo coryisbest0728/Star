@@ -12,6 +12,7 @@ import {IContained} from 'com/gsx/components/IContained';
 import {IContainer} from 'com/gsx/components/IContainer';
 import {IDestroyable} from 'com/gsx/components/IDestroyable';
 import {ITemplated} from 'com/gsx/components/ITemplated';
+import {NumberUtil} from 'com/gsx/utils/NumberUtil';
 
 export abstract class UIComponent extends EventDispatcher implements IBox, ITemplated, IContained, IDestroyable {
 
@@ -76,6 +77,8 @@ export abstract class UIComponent extends EventDispatcher implements IBox, ITemp
         tempFrag.appendChild(tempElement);
         tempElement.innerHTML = this.getTemplateString();
         this.node = tempFrag.firstChild.firstChild;
+        (<Element>this.node).setAttribute('data-component-id',
+            this.getSimpleClassName().toLowerCase() + '-' + NumberUtil.getRandom());
     }
 
     /**
@@ -147,9 +150,9 @@ export abstract class UIComponent extends EventDispatcher implements IBox, ITemp
     /**
      * @override
      */
-    public toString(): string {
-        return '[object UIComponent-' + this.getSimpleClassName() + ']';
-    }
+//    public toString(): string {
+//        return '[object UIComponent-' + this.getSimpleClassName() + ']';
+//    }
 
     /**
      * Get the simple class name.
