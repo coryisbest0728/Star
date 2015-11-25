@@ -5,10 +5,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {FormContainerComponent} from 'com/gsx/components/form/FormContainerComponent';
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
+import {UIComponentContainer} from 'com/gsx/components/UIComponentContainer';
 
-export class Form extends FormContainerComponent {
+export class Form extends UIComponentContainer {
 
     private params: FormParams;
 
@@ -32,26 +32,12 @@ export class Form extends FormContainerComponent {
     }
 
     /**
-     * @override
-     */
-    public getFormControlNode(): Node {
-        return this.getNode();
-    }
-
-    /**
-     * @override
-     */
-    public getValidators(): Array<IValidator> {
-        return [];
-    }
-
-    /**
      * Set the charset of the server application
      * @param {string} acceptCharset
      * @see http://www.w3school.com.cn/tags/att_form_accept-charset.asp
      */
     public setAcceptCharset(acceptCharset: string): void {
-        (<Element>this.getFormControlNode()).setAttribute('accept-charset', acceptCharset);
+        (<Element>this.getNode()).setAttribute('accept-charset', acceptCharset);
     }
 
     /**
@@ -60,7 +46,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_accept-charset.asp
      */
     public getAcceptCharset(): string {
-        return (<Element>this.getFormControlNode()).getAttribute('accept-charset');
+        return (<Element>this.getNode()).getAttribute('accept-charset');
     }
 
     /**
@@ -69,7 +55,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_action.asp
      */
     public setAction(action: string): void {
-        (<Element>this.getFormControlNode()).setAttribute('action', action);
+        (<Element>this.getNode()).setAttribute('action', action);
     }
 
     /**
@@ -78,7 +64,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_action.asp
      */
     public getAction(): string {
-        return (<Element>this.getFormControlNode()).getAttribute('action');
+        return (<Element>this.getNode()).getAttribute('action');
     }
 
     /**
@@ -87,7 +73,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_autocomplete.asp
      */
     public setAutocomplete(autocomplete: boolean): void {
-        (<Element>this.getFormControlNode()).setAttribute('autocomplete', autocomplete ? 'on' : 'off');
+        (<Element>this.getNode()).setAttribute('autocomplete', autocomplete ? 'on' : 'off');
     }
 
     /**
@@ -96,7 +82,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_autocomplete.asp
      */
     public getAutocomplete(): boolean {
-        return (<Element>this.getFormControlNode()).getAttribute('autocomplete') === 'on';
+        return (<Element>this.getNode()).getAttribute('autocomplete') === 'on';
     }
 
     /**
@@ -105,7 +91,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_enctype.asp
      */
     public setEnctype(enctype: string): void {
-        (<Element>this.getFormControlNode()).setAttribute('enctype', enctype || 'application/x-www-form-urlencoded');
+        (<Element>this.getNode()).setAttribute('enctype', enctype || 'application/x-www-form-urlencoded');
     }
 
     /**
@@ -114,7 +100,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_enctype.asp
      */
     public getEnctype(): string {
-        return (<Element>this.getFormControlNode()).getAttribute('enctype') || 'application/x-www-form-urlencoded';
+        return (<Element>this.getNode()).getAttribute('enctype') || 'application/x-www-form-urlencoded';
     }
 
     /**
@@ -123,7 +109,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_method.asp
      */
     public setMethod(method: string): void {
-        (<Element>this.getFormControlNode()).setAttribute('method', method);
+        (<Element>this.getNode()).setAttribute('method', method);
     }
 
     /**
@@ -132,7 +118,7 @@ export class Form extends FormContainerComponent {
      * @see http://www.w3school.com.cn/tags/att_form_method.asp
      */
     public getMethod(): string {
-        return (<Element>this.getFormControlNode()).getAttribute('method');
+        return (<Element>this.getNode()).getAttribute('method');
     }
 
     /**
