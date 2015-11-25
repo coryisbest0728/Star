@@ -5,6 +5,7 @@
  */
 
 import {IXMLTraversal} from 'com/gsx/xml/traversal/IXMLTraversal';
+import {NumberUtil} from 'com/gsx/utils/NumberUtil';
 
 export class DFTXMLTraversal implements IXMLTraversal {
 
@@ -17,6 +18,10 @@ export class DFTXMLTraversal implements IXMLTraversal {
         var hasPoped: boolean = false;
         while (currentElement) {
             if (!hasPoped && currentElement && currentElement.nodeType === 1 && iteratorfn) {
+                if (!currentElement.hasAttribute('id')) {
+                    currentElement.setAttribute('id',
+                        currentElement.tagName.toLowerCase() + '-' + NumberUtil.getRandom());
+                }
                 iteratorfn(currentElement);
             }
             if (!hasPoped && currentElement.nodeType === 1 && currentElement.childNodes.length) {
