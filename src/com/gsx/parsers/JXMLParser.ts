@@ -4,8 +4,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {XMLParser} from 'com/gsx/parsers/XMLParser';
+import {DFTXMLTraversal} from 'com/gsx/xml/traversal/DFTXMLTraversal';
+import {IContainer} from 'com/gsx/components/IContainer';
 import {UIComponent} from 'com/gsx/components/UIComponent';
+import {XMLParser} from 'com/gsx/parsers/XMLParser';
 
 export class JXMLParser extends XMLParser {
 
@@ -13,7 +15,24 @@ export class JXMLParser extends XMLParser {
      * @override
      */
     public parse(content: string): UIComponent {
-        return null;
+        var xmlDoc: XMLDocument = this.parseXML2XMLDocument(content);
+        return this.traverseELement(<Element>xmlDoc.firstChild);
+    }
+
+    private traverseELement(rootElement: Element): UIComponent {
+        var rootComponent: UIComponent = null;//this.parseElementNS(rootElement);
+        var componentMap: Object = {};
+        new DFTXMLTraversal().traverse(rootElement, function (itemElement: Element): void {
+            var component: UIComponent = this.parseElementNS(itemElement);
+            var parentElement: Element = <Element>itemElement.parentElement;
+            if (parentElement && componentMap[parentElement.id]) {
+                (<IContainer>componentMap[parentElement.id]).addChild(component);
+            } else if (!parentElement) {
+                rootComponent = component;
+            }
+            componentMap[itemElement.id] = component;
+        }.bind(this));
+        return rootComponent;
     }
 
     /**
@@ -25,18 +44,17 @@ export class JXMLParser extends XMLParser {
         var simpleClassName: string = this.getSimpleClassName(element);
         var classSet = window['require'](this.getClassPath(element) + simpleClassName);
         var Clazz: any = classSet[simpleClassName];
-        if (/^\[object UIComponent\-/.test(Clazz.prototype.toString())) { // UIComponent
-            var uiComponent: UIComponent = new Clazz();
-            var attributes: NamedNodeMap = element.attributes;
-            for (var i: number = 0, len: number = attributes.length; i < len; ++i) {
-                var attr: Attr = attributes.item(i);
-                if (!/^xmlns\:/.test(attr.name)) {
-                    uiComponent['set' + this.formatAttrName(attr.name)](attr.value);
-                }
-            };
-            return uiComponent;
-        }
-        return null;
+        // instance UIComponent
+        var uiComponent: UIComponent = new Clazz();
+        var attributes: NamedNodeMap = element.attributes;
+        for (var i: number = 0, len: number = attributes.length; i < len; ++i) {
+            var attr: Attr = attributes.item(i);
+            if (!/^xmlns\:/.test(attr.name)) {
+                var setter: Function = <Function>uiComponent['set' + this.formatAttrName(attr.name)];
+                setter && setter.call(uiComponent, attr.value);
+            }
+        };
+        return uiComponent;
     }
 
     /**
