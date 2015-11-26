@@ -11,8 +11,8 @@ export abstract class LabelledFormComponent extends FormComponent {
     private labelTextNode: Text;
 
     /**
-     * Get the label of the radio.
-     * @return {string} The label of the radio.
+     * Get the label of the component.
+     * @return {string} The label of the component.
      */
     public getLabel(): string {
         if (this.labelTextNode) {
@@ -22,8 +22,8 @@ export abstract class LabelledFormComponent extends FormComponent {
     }
 
     /**
-     * Set the radio label.
-     * @param {string} label The radio label.
+     * Set the component label.
+     * @param {string} label The component label.
      */
     public setLabel(label: string): void {
         if (this.labelTextNode) {

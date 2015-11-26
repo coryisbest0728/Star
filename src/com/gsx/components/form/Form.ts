@@ -6,9 +6,9 @@
  */
 
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {UIComponentContainer} from 'com/gsx/components/UIComponentContainer';
+import {SkinableComponentContainer} from 'com/gsx/components/SkinableComponentContainer';
 
-export class Form extends UIComponentContainer {
+export class Form extends SkinableComponentContainer {
 
     private params: FormParams;
 

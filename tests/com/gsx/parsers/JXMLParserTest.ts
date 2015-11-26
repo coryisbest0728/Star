@@ -49,16 +49,16 @@ describe('The unit test for the JXMLParser', function () {
 
     it('Parsing the complicated jxml template to the ui component', function () {
         var template: string = ''
-            + '<f:Form xmlns:f="com/gsx/components/form" action="">'
+            + '<f:Form xmlns:f="com/gsx/components/form" action="" spec-skin-class="form-horizontal">'
             +     '<f:TextBox placeholder="Input" name="input" />'
             +     '<f:Select name="select">'
-            +         '<f:Option value="1">Test1</f:Option>'
-            +         '<f:Option value="2">Test2</f:Option>'
-            +         '<f:Option value="3">Test3</f:Option>'
-            +         '<f:Option value="4">Test4</f:Option>'
+            +         '<f:Option value="1" label="Test1"/>'
+            +         '<f:Option value="2" label="Test2"/>'
+            +         '<f:Option value="3" label="Test3"/>'
+            +         '<f:Option value="4" label="Test4"/>'
             +     '</f:Select>'
             +     '<f:Button label="click me" />'
-            +     '<f:Button>Reset</f:Button>'
+            +     '<f:Button label="Reset"/>'
             + '</f:Form>';
         var uicomponent: UIComponent = this.parser.parse(template);
         expect(uicomponent).not.toBeNull('The form has been parsed.');

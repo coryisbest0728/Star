@@ -5,9 +5,9 @@
  */
 
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {FormComponent} from 'com/gsx/components/form/FormComponent';
+import {LabelledFormComponent} from 'com/gsx/components/form/LabelledFormComponent';
 
-export class Option extends FormComponent {
+export class Option extends LabelledFormComponent {
 
     /**
      * The params of inital.
@@ -46,6 +46,13 @@ export class Option extends FormComponent {
     /**
      * @override
      */
+    public getLabelledNode(): Node {
+        return this.getNode();
+    }
+
+    /**
+     * @override
+     */
     public getValidators(): Array<IValidator> {
         return [];
     }
@@ -62,27 +69,6 @@ export class Option extends FormComponent {
      */
     public getBaseSkinClass(): string {
         return '';
-    }
-
-    /**
-     * Set the label of the option.
-     * @param {string} label
-     */
-    public setLabel(label: string): void {
-        (<HTMLElement>this.getFormControlNode()).innerHTML = label;
-    }
-
-    /**
-     * Get the label of the option.
-     * @return {string}
-     */
-    public getLabel(): string {
-        var formControlNode = this.getFormControlNode();
-        if (formControlNode) {
-            return (<HTMLElement>formControlNode).innerHTML;
-        } else {
-            return this.params.label || '';
-        }
     }
 
     /**
