@@ -4,17 +4,16 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
 import {EventType} from 'com/gsx/events/EventType';
 import {GeometryUtil} from 'com/gsx/utils/GeometryUtil';
 import {IBox} from 'com/gsx/components/IBox';
 import {IContained} from 'com/gsx/components/IContained';
 import {IContainer} from 'com/gsx/components/IContainer';
-import {IDestroyable} from 'com/gsx/components/IDestroyable';
 import {ITemplated} from 'com/gsx/components/ITemplated';
 import {NumberUtil} from 'com/gsx/utils/NumberUtil';
+import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
 
-export abstract class UIComponent extends EventDispatcher implements IBox, ITemplated, IContained, IDestroyable {
+export abstract class UIComponent extends SkinableComponent implements IBox, ITemplated, IContained {
 
     /**
      * The node of the ui component.
@@ -88,6 +87,7 @@ export abstract class UIComponent extends EventDispatcher implements IBox, ITemp
         this.removeAllListeners();
         var node: Node = this.getNode();
         node.parentNode.removeChild(node);
+        super.destroy();
     }
 
     /**
@@ -112,8 +112,7 @@ export abstract class UIComponent extends EventDispatcher implements IBox, ITemp
     }
 
     /**
-     * 得到该组件的node节点。
-     * @return {Node} 得到该组件的node节点。
+     * @override
      */
     public getNode(): Node {
         return this.node;

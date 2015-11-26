@@ -4,12 +4,19 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
+import {IDestroyable} from 'com/gsx/components/IDestroyable';
 import {ISkinable} from 'com/gsx/components/ISkinable';
-import {UIComponent} from 'com/gsx/components/UIComponent';
 
-export abstract class SkinableComponent extends UIComponent implements ISkinable {
+export abstract class SkinableComponent extends EventDispatcher implements ISkinable, IDestroyable {
 
     private specSkinClass: string = '';
+
+    /**
+     * Get the skinable node.
+     * @return {Node}
+     */
+    abstract getNode(): Node;
 
     /**
      * @override
@@ -30,7 +37,7 @@ export abstract class SkinableComponent extends UIComponent implements ISkinable
      * @override
      */
     public getSpecSkinClass(): string {
-        var node = this.getNode();
+        var node: Node = this.getNode();
         if (node) {
             return this.getSpecSkinClassFromNode();
         } else {
@@ -103,7 +110,6 @@ export abstract class SkinableComponent extends UIComponent implements ISkinable
      * @override
      */
     public destroy(): void {
-        super.destroy();
         delete this.specSkinClass;
     }
 }

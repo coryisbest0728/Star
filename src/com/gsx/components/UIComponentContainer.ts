@@ -6,10 +6,9 @@
 
 import {IContainer} from 'com/gsx/components/IContainer';
 import {IDestroyable} from 'com/gsx/components/IDestroyable';
-import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 
-export abstract class SkinableComponentContainer extends SkinableComponent implements IContainer {
+export abstract class UIComponentContainer extends UIComponent implements IContainer {
 
     private children: Array<UIComponent>;
 

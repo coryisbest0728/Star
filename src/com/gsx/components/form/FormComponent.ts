@@ -6,9 +6,9 @@
 
 import {EventType} from 'com/gsx/events/EventType';
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
+import {UIComponent} from 'com/gsx/components/UIComponent';
 
-export abstract class FormComponent extends SkinableComponent {
+export abstract class FormComponent extends UIComponent {
 
     /**
      * The name of the form component.
