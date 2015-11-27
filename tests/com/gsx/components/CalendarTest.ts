@@ -12,6 +12,7 @@ import {Calendar} from 'com/gsx/components/Calendar';
 describe('The unit test for the Calendar', function () {
     beforeEach(function () {
         this.calendar = new Calendar({});
+        document.body.className = 'plain';
         document.body.appendChild(this.calendar.getNode());
     });
 
@@ -24,6 +25,6 @@ describe('The unit test for the Calendar', function () {
     });
 
     afterEach(function () {
-        this.calendar.destroy();
+//        this.calendar.destroy();
     });
 });

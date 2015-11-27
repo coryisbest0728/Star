@@ -42,4 +42,8 @@ requirejs.config({
     callback: window.__karma__.start
 });
 
-require(['css!../lib/bootstrap/dist/css/bootstrap.min.css', 'css!../lib/bootstrap/dist/css/bootstrap-theme.min.css']);
+require([
+    'css!../lib/bootstrap/dist/css/bootstrap.min.css',
+    'css!../lib/bootstrap/dist/css/bootstrap-theme.min.css',
+    'css!./skins/plain/plain.css'
+]);
