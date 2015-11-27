@@ -22,6 +22,7 @@ module.exports = function(config) {
         {pattern: 'lib/**/*.woff', included: false},
         {pattern: 'lib/**/*.woff2', included: false},
         {pattern: 'tests-release/**/*.js', included: false},
+        {pattern: 'tests-release/**/*.css', included: false},
 
         'tests-release/test.js'
     ],

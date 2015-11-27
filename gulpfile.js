@@ -14,8 +14,9 @@ var projectConfig = tsc.createProject('./tsconfig.json');
 var projectTestConfig = tsc.createProject('./tsconfig-test.json');
 var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
-var runSequence = require('run-sequence');
+var sequence = require('gulp-sequence');
 var requirejsOptimize = require('gulp-requirejs-optimize');
+var scss = require("gulp-scss");
 
 var fs = require('fs');
 var path = require('path');
@@ -52,10 +53,10 @@ gulp.task('ts-lint', function () {
  */
 gulp.task('copy-lib-to-release', function () {
     return gulp.src([
-        path.normalize(config.lib + '/**/index.js'),
-        path.normalize(config.lib + '/**/require.js'),
-        path.normalize(config.lib + '/**/promise.min.js')
-    ]).pipe(gulp.dest(path.normalize(config.dest + '/lib/')));
+        path.join(config.lib, '/**/index.js'),
+        path.join(config.lib, '/**/require.js'),
+        path.join(config.lib, '/**/promise.min.js')
+    ]).pipe(gulp.dest(path.join(config.dest, '/lib/')));
 });
 
 /**
@@ -91,7 +92,7 @@ gulp.task('copy-ts-to-temp', function () {
  * Compile tests TypeScript and include references to library and app .d.ts files.
  */
 gulp.task('compile-tests-ts', function (cb) {
-    gulp.src(path.normalize(config.tests + '/test.js')).pipe(gulp.dest(config.testsDest));
+    gulp.src(path.join(config.tests, '/test.js')).pipe(gulp.dest(config.testsDest));
     var tsResult = gulp.src([config.tempTS, config.libTS])
         .pipe(tsc(projectTestConfig));
     tsResult.dts.pipe(gulp.dest(config.testsDest));
@@ -130,6 +131,17 @@ gulp.task('requirejs-optimize-release', function () {
 });
 
 /**
+ * compile scss for tests
+ */
+gulp.task('compile-tests-scss', function () {
+    return gulp.src(path.join(config.src, '/skins/**/*.scss'))
+        .pipe(scss({
+            bundleExec: true
+        }))
+        .pipe(gulp.dest(path.join(config.testsDest, '/skins')));
+});
+
+/**
  * Remove all generated JavaScript files from TypeScript compilation.
  */
 gulp.task('clean-release', function () {
@@ -144,12 +156,12 @@ gulp.task('clean-tests', function () {
  * The task for releasing the project
  */
 gulp.task('release', function (cb) {
-    runSequence('ts-lint', 'clean-release', 'copy-lib-to-release', 'compile-ts', 'requirejs-optimize-release', cb);
+    sequence('ts-lint', 'clean-release', 'copy-lib-to-release', 'compile-ts', 'requirejs-optimize-release', cb);
 });
 
 /**
  * The task for executing tests of the project
  */
 gulp.task('tests', function (cb) {
-    runSequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', 'compile-tests-ts', 'clean-temp', cb);
+    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['compile-tests-ts', 'compile-tests-scss'], 'clean-temp', cb);
 });
