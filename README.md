@@ -12,7 +12,7 @@ $ bower install --save      # Bower
 1. [Sass installation][]
 [Sass installation]: http://sass-lang.com/install
 2. Build
-```
+```bash
 $ gulp tests    # running unit tests
 $ gulp release  # release
 ```
