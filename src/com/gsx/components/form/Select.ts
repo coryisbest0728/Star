@@ -25,7 +25,7 @@ export class Select extends FormContainerComponent {
     /**
      * @override
      */
-    public getTemplateString(): string {
+    public getTemplate(): string {
         return '<select class="' + this.getSkinClass() + '"></select>';
     }
 

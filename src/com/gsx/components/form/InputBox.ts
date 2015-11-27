@@ -21,7 +21,7 @@ export abstract class InputBox extends FormComponent {
     /**
      * @override
      */
-    public getTemplateString(): string {
+    public getTemplate(): string {
         return '<input class="' + this.getSkinClass() + '" type="' + this.getType() + '"></button>';
     }
 

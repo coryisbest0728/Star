@@ -22,7 +22,7 @@ export class Button extends LabelledFormComponent {
     /**
      * @override
      */
-    public getTemplateString(): string {
+    public getTemplate(): string {
         return '<button class="' + this.getSkinClass() + '" type="button"></button>';
     }
 

@@ -22,7 +22,7 @@ export class Option extends LabelledFormComponent {
     /**
      * @override
      */
-    public getTemplateString(): string {
+    public getTemplate(): string {
         return '<option class="' + this.getSkinClass() + '"></option>';
     }
 

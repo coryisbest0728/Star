@@ -12,7 +12,7 @@ export class CheckBox extends LabelledFormComponent {
     /**
      * @override
      */
-    public getTemplateString(): string {
+    public getTemplate(): string {
         return ''
             + '<label class="'+ this.getSkinClass() +'">'
             +     '<input type="checkbox">'

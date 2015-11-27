@@ -8,7 +8,7 @@ export interface ITemplated {
     /**
      * 获取待渲染的模板字符串。
      */
-    getTemplateString(): string;
+    getTemplate(): string;
 
     /**
      * 根据给定的模板进行渲染。

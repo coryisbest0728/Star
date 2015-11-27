@@ -20,7 +20,7 @@ export class Form extends UIComponentContainer {
     /**
      * @override
      */
-    public getTemplateString(): string {
+    public getTemplate(): string {
         return '<form></form>';
     }
 

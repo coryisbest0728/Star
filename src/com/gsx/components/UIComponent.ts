@@ -74,7 +74,7 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
         var tempElement: HTMLElement = <HTMLElement>document.createElement('div');
         var tempFrag: DocumentFragment = document.createDocumentFragment();
         tempFrag.appendChild(tempElement);
-        tempElement.innerHTML = this.getTemplateString();
+        tempElement.innerHTML = this.getTemplate();
         this.node = tempFrag.firstChild.firstChild;
         (<Element>this.node).setAttribute('data-component-id',
             this.getSimpleClassName().toLowerCase() + '-' + NumberUtil.getRandom());
@@ -94,7 +94,7 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
      * @override
      * The subclass must implement this method.
      */
-    abstract getTemplateString(): string;
+    abstract getTemplate(): string;
 
     /**
      * Set the parent container of this ui component.
