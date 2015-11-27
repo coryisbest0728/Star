@@ -3,5 +3,10 @@
 /tests-release/
 /.settings/
 /lib/
+/.temp/
+/.sass-cache/
+**/.sass-cache/
+/.gulp-scss-cache/
 .DS_Store
 .project
+.gitignore.swp

@@ -35,8 +35,8 @@ var config = {
     destJS: './release/**/*.js',
     testsDest: './tests-release/',
     testsDestJS: './tests-release/**/*.js',
-    temp: './temp/',
-    tempTS: './temp/**/*.ts'
+    temp: './.temp/',
+    tempTS: './.temp/**/*.ts'
 };
 
 /**
@@ -100,10 +100,10 @@ gulp.task('compile-tests-ts', function (cb) {
 });
 
 /**
- * Remove the temp folder.
+ * Remove the temp folder and cache folder.
  */
-gulp.task('clean-temp', function () {
-    return del(config.temp);
+gulp.task('clean-temp-cache', function () {
+    return del([config.temp, './.gulp-scss-cache/', './.sass-cache/', './src/**/.sass-cache/']);
 });
 
 /**
@@ -136,7 +136,7 @@ gulp.task('requirejs-optimize-release', function () {
 gulp.task('compile-tests-scss', function () {
     return gulp.src(path.join(config.src, '/skins/**/*.scss'))
         .pipe(scss({
-            bundleExec: true
+            bundleExec: false
         }))
         .pipe(gulp.dest(path.join(config.testsDest, '/skins')));
 });
@@ -163,5 +163,5 @@ gulp.task('release', function (cb) {
  * The task for executing tests of the project
  */
 gulp.task('tests', function (cb) {
-    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['compile-tests-ts', 'compile-tests-scss'], 'clean-temp', cb);
+    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['compile-tests-ts', 'compile-tests-scss'], 'clean-temp-cache', cb);
 });
