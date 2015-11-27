@@ -8,7 +8,7 @@ $ tsd install --save        # tsd
 $ bower install --save      # Bower
 ```
 
-## Release or Tests
+## Testing & Release
 1. [Sass installation][]
 [Sass installation]: http://sass-lang.com/install
 2. Build
