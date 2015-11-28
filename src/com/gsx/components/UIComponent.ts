@@ -25,8 +25,14 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
      */
     private parent: IContainer = null;
 
+    /**
+     * The map object of templated elements.
+     */
+    private templatedElementMap: Object;
+
     constructor(params?: Object) {
         super();
+        this.templatedElementMap = {};
         this.create(params);
         this.listenerEvents();
     }
@@ -79,6 +85,16 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
         this.node = tempFrag.firstChild.firstChild;
         (<Element>this.node).setAttribute('data-component-id',
             this.getSimpleClassName().toLowerCase() + '-' + NumberUtil.getRandom());
+        var elements: NodeList = (<Element>this.node).querySelectorAll('[data-element-id]');
+        for (var i: number = 0; i < elements.length; ++i) {
+            var element: Element = <Element>elements.item(i);
+            var elementId: string = element.getAttribute('data-element-id');
+            if (this.templatedElementMap[elementId]) {
+                throw new Error(
+                    'The value of data-element-id="' + elementId + '" has been duplicated. Please check again.');
+            }
+            this.templatedElementMap[elementId] = element;
+        }
     }
 
     /**
@@ -94,10 +110,18 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
     /**
      * @override
      */
+    public getTemplatedElementById(elementId: string): Element {
+        return this.templatedElementMap[elementId];
+    }
+
+    /**
+     * @override
+     */
     public destroy(): void {
         this.removeAllListeners();
         var node: Node = this.getNode();
         node.parentNode.removeChild(node);
+        delete this.templatedElementMap;
         super.destroy();
     }
 

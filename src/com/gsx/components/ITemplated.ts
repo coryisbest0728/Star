@@ -6,12 +6,21 @@
 
 export interface ITemplated {
     /**
-     * 获取待渲染的模板字符串。
+     * Get renderred template string.
+     * @return {string}
      */
     getTemplate(): string;
 
     /**
-     * 根据给定的模板进行渲染。
+     * Build render from template.
      */
     buildRendering(): void;
+
+    /**
+     * Get element by the value of "data-element-id" attr in the template.
+     * This method must excute after buildRendering().
+     * @param {string} elementId
+     * @return {Element}
+     */
+    getTemplatedElementById(elementId: string): Element
 }
