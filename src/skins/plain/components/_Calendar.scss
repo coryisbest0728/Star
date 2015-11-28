@@ -1,7 +1,39 @@
 .plain {
     .calendar {
-        .date-panel-border {
-            border: 1px solid gray;
+        background-color: #FFF;
+        &-grid {
+            height: 180px;
+            &-body {}
+            &-row {
+                
+            }
+            &-col {
+                cursor: pointer;
+                border-radius: 2px;
+                text-align: center;
+                height: 20px;
+                padding: 5px 7px;
+                &:hover {
+                    background-color: #EEE;
+                }
+                &.non-current {
+                    color: #D9D9D9;
+                }
+                &.today {
+                    color: #03A9F4;
+                    background-color: #EEE;
+                }
+                @mixin selected() {
+                    color: #FFF;
+                    background-color: #0398DB;
+                }
+                &.selected {
+                    @include selected();
+                    &:hover {
+                        @include selected();
+                    }
+                }
+            }
         }
     }
 }
