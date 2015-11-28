@@ -13,6 +13,8 @@ export abstract class FormContainerComponent extends FormComponent implements IC
 
     private children: Array<UIComponent>;
 
+    private started: boolean;
+
     /**
      * @override
      */
@@ -35,6 +37,19 @@ export abstract class FormContainerComponent extends FormComponent implements IC
         return this.children.filter(function (child: UIComponent): boolean {
             return uiComponent === child;
         }).length === 1;
+    }
+
+    /**
+     * @override
+     */
+    public startup(): void {
+        if (this.started) {
+            return;
+        }
+        this.getChildren().forEach(function (child: UIComponent): void {
+            child.startup();
+        });
+        this.started = true;
     }
 
     /**

@@ -65,6 +65,7 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
      */
     public create(params?: Object): void {
         this.buildRendering();
+        this.postCreate();
     }
 
     /**
@@ -79,6 +80,16 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
         (<Element>this.node).setAttribute('data-component-id',
             this.getSimpleClassName().toLowerCase() + '-' + NumberUtil.getRandom());
     }
+
+    /**
+     * Processing after the DOM fragment is created
+     */
+    public postCreate(): void {}
+
+    /**
+     * Processing after the DOM fragment is added to the document
+     */
+    public startup(): void {}
 
     /**
      * @override
