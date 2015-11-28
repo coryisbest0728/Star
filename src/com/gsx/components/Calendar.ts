@@ -16,7 +16,15 @@ export class Calendar extends UIComponent {
      */
     private params: CalendarParams;
 
+    /**
+     * The target date of moment.
+     * This is the current moment in the calendar grid. Only has year and month.
+     */
     private targetMoment: moment.Moment;
+
+    /**
+     * The selected date of moment
+     */
     private selectedMoment: moment.Moment;
 
     constructor(params?: CalendarParams) {
