@@ -116,15 +116,19 @@ gulp.task('requirejs-optimize-release', function () {
             optimize: 'none',
             paths: {
                 'eventemitter3': './lib/eventemitter3/index',
-                'es6-promise': './lib/es6-promise/promise.min'
+                'es6-promise': './lib/es6-promise/promise.min',
+                'moment': './lib/moment/min/moment.min'
             },
             shim: {
                 'eventemitter3': {
                     exports: 'EventEmitter'
+                },
+                'es6-promise': {
+                    exports: 'es6-promise'
+                },
+                'moment': {
+                    exports: 'moment'
                 }
-            },
-            'es6-promise': {
-                exports: 'es6-promise'
             }
         }))
         .pipe(gulp.dest(config.dest));
