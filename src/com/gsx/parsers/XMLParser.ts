@@ -36,8 +36,9 @@ export abstract class XMLParser implements IParser {
     /**
      * Parse xml content to the xml document.
      * @param {string} xml
+     * @return {XMLDocument}
      */
-    public parseXML2XMLDocument(xml: string) {
+    public parseXML2XMLDocument(xml: string): XMLDocument {
         if (this.domParser) {
             this.xmlDoc = this.domParser.parseFromString(xml, "text/xml");
         } else { // Internet Explorer
