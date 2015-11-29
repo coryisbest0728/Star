@@ -53,8 +53,8 @@ export class Select extends FormContainerComponent {
     /**
      * @override
      */
-    public buildRendering(): void {
-        super.buildRendering();
+    public postCreate(): void {
+        super.postCreate();
         this.addOptions(this.params.options || []);
         this.setDisabled(this.params.disabled);
     }

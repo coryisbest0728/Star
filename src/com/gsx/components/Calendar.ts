@@ -36,6 +36,7 @@ export class Calendar extends UIComponent {
      * @override
      */
     public postCreate(): void {
+        super.postCreate();
         this.getTemplatedElementById('prev-month').addEventListener('click', this.prevMonth.bind(this));
         this.getTemplatedElementById('next-month').addEventListener('click', this.nextMonth.bind(this));
         this.getTemplatedElementById('calendar-grid').addEventListener('click', this.clickGrid.bind(this));

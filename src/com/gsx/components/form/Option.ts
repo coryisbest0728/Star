@@ -29,8 +29,8 @@ export class Option extends LabelledFormComponent {
     /**
      * @override
      */
-    public buildRendering(): void {
-        super.buildRendering();
+    public postCreate(): void {
+        super.postCreate();
         this.setLabel(this.params.label);
         this.setValue(this.params.value);
         this.setSelected(this.params.selected);

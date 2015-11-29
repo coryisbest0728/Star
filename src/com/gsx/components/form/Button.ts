@@ -43,8 +43,8 @@ export class Button extends LabelledFormComponent {
     /**
      * @override
      */
-    public buildRendering(): void {
-        super.buildRendering();
+    public postCreate(): void {
+        super.postCreate();
         this.setLabel(this.params.label || '');
         this.setDisabled(this.params.disabled);
     }

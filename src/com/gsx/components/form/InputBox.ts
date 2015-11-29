@@ -41,8 +41,8 @@ export abstract class InputBox extends FormComponent {
     /**
      * @override
      */
-    public buildRendering(): void {
-        super.buildRendering();
+    public postCreate(): void {
+        super.postCreate();
         this.setDisabled(this.params.disabled);
     }
 

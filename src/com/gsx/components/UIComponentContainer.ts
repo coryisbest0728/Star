@@ -41,6 +41,13 @@ export abstract class UIComponentContainer extends UIComponent implements IConta
     /**
      * @override
      */
+    public getTemplate(): string {
+        return '<div class="' + this.getSkinClass() + '"></div>';
+    }
+
+    /**
+     * @override
+     */
     public startup(): void {
         if (this.started) {
             return;
