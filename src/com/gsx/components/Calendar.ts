@@ -119,19 +119,19 @@ export class Calendar extends UIComponent {
      * @overload
      * @param {number} toIndex could be negative or positive number;
      */
-    private toMonth(toIndex: number): void;
+    protected toMonth(toIndex: number): void;
 
     /**
      * Go to the spec month.
      * @overload
      * @param {moment.Moment} toMoment Direct to the spec moment
      */
-    private toMonth(toMoment: moment.Moment): void;
+    protected toMonth(toMoment: moment.Moment): void;
 
     /**
      * @overload
      */
-    private toMonth(param: any): void {
+    protected toMonth(param: any): void {
         var toMoment: moment.Moment;
         if (typeof param === 'number') {
             toMoment = this.targetMoment.add(param, 'months');
@@ -149,14 +149,14 @@ export class Calendar extends UIComponent {
     /**
      * prev month
      */
-    protected prevMonth(): void {
+    public prevMonth(): void {
         this.toMonth(-1);
     }
 
     /**
      * next month
      */
-    protected nextMonth(): void {
+    public nextMonth(): void {
         this.toMonth(1);
     }
 
