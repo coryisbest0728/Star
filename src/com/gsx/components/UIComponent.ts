@@ -115,6 +115,14 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
     }
 
     /**
+     * Get the component id
+     * @return {string}
+     */
+    public getId(): string {
+        return (<HTMLElement>this.getNode()).dataset['componentId'];
+    }
+
+    /**
      * @override
      */
     public destroy(): void {
