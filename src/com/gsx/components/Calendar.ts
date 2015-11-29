@@ -116,10 +116,30 @@ export class Calendar extends UIComponent {
 
     /**
      * Go to the spec month.
+     * @overload
      * @param {number} toIndex could be negative or positive number;
      */
-    private toMonth(toIndex: number): void {
-        var toMoment: moment.Moment = this.targetMoment.add(toIndex, 'months');
+    private toMonth(toIndex: number): void;
+
+    /**
+     * Go to the spec month.
+     * @overload
+     * @param {moment.Moment} toMoment Direct to the spec moment
+     */
+    private toMonth(toMoment: moment.Moment): void;
+
+    /**
+     * @overload
+     */
+    private toMonth(param: any): void {
+        var toMoment: moment.Moment;
+        if (typeof param === 'number') {
+            toMoment = this.targetMoment.add(param, 'months');
+        } else {
+            toMoment = param.clone();
+            toMoment.date(1);
+            this.targetMoment = toMoment;
+        }
         (<HTMLElement>this.getTemplatedElementById('year-month-panel')).innerHTML =
             toMoment.year() + '年' + (toMoment.month() + 1) + '月';
         (<HTMLElement>this.getTemplatedElementById('calendar-grid')).innerHTML =
@@ -145,14 +165,41 @@ export class Calendar extends UIComponent {
      * @param {MouseEvent} event
      */
     protected clickGrid(event: MouseEvent): void {
-        var selectedCells: NodeList = (<Element>event.currentTarget).querySelectorAll('.calendar-grid-col.selected');
+        var target: HTMLElement = <HTMLElement>event.target;
+        var calendarGridElement: HTMLElement = <HTMLElement>this.getTemplatedElementById('calendar-grid');
+        if (calendarGridElement !== target && calendarGridElement.contains(target)) {
+            var selectedData: DOMStringMap = target.dataset;
+            this.setSelectedDate(new Date(+selectedData['year'], +selectedData['month'], +selectedData['date']));
+        }
+    }
+
+    /**
+     * Get the selected date.
+     * @return {Date}
+     */
+    public getSelectedDate(): Date {
+        return this.selectedMoment.toDate();
+    }
+
+    /**
+     * Set the selected date.
+     * @param {Date}
+     */
+    public setSelectedDate(selectedDate: Date): void {
+        var selectedMoment: moment.Moment = moment(selectedDate);
+        if (!selectedMoment.isSame(this.targetMoment, 'month')) {
+            // the selected date is not the same year or not the same month to the current date.
+            this.toMonth(selectedMoment);
+        }
+        var selectedCells: NodeList = (<Element>this.getNode()).querySelectorAll('.calendar-grid-col.selected');
         for (var i: number = 0; i < selectedCells.length; ++i) {
             (<Element>selectedCells.item(i)).classList.remove('selected');
         }
-        var selectedCell: HTMLElement = (<HTMLElement>event.target);
-        selectedCell.classList.add('selected');
-        var selectedData: DOMStringMap = selectedCell.dataset;
-        this.selectedMoment = moment([+selectedData['year'], +selectedData['month'], +selectedData['date']]);
+        (<Element>this.getNode()).querySelector('.calendar-grid-col'
+            + '[data-year="' + selectedMoment.year() + '"]'
+            + '[data-month="' + selectedMoment.month() + '"]'
+            + '[data-date="' + selectedMoment.date() + '"]').classList.add('selected');
+        this.selectedMoment = selectedMoment;
     }
 
     /**
@@ -174,5 +221,8 @@ export class Calendar extends UIComponent {
 }
 
 interface CalendarParams {
-    
+    /**
+     * The selected date
+     */
+    selectedDate?: Date
 }

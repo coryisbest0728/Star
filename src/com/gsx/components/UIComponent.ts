@@ -27,6 +27,8 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
 
     /**
      * The map object of templated elements.
+     * The key is element id
+     * The value is element
      */
     private templatedElementMap: Object;
 
