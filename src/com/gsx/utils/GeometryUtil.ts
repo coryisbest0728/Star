@@ -14,8 +14,8 @@ export abstract class GeometryUtil {
     static getBox(element: HTMLElement): IBox {
         var computedStyle: CSSStyleDeclaration = element.ownerDocument.defaultView.getComputedStyle(element, null);
         var marginExtents: IBoxExtents = GeometryUtil.getMarginExtents(element);
-        var x: number = element.offsetLeft - marginExtents.left;
-        var y: number = element.offsetTop - marginExtents.top;
+        var x: number = element.offsetLeft;
+        var y: number = element.offsetTop;
         var styleLeft: number = parseFloat(computedStyle.left);
         var styleTop: number = parseFloat(computedStyle.top);
         if (!isNaN(styleLeft) && !isNaN(styleTop)) {
@@ -35,8 +35,8 @@ export abstract class GeometryUtil {
         
         return new Box(
             x, y,
-            element.offsetWidth + marginExtents.width,
-            element.offsetHeight + marginExtents.height
+            element.offsetWidth,
+            element.offsetHeight
         );
     }
 

@@ -5,13 +5,15 @@
  */
 
 export enum PositionType {
-    TOP, // top position
-    RIGHT, // right position
-    BOTTOM, // bottom position
-    LEFT, // left position
+    CENTER = 1,
 
-    TOP_LEFT, // top left postion
-    TOP_RIGHT, // top right postion
-    BOTTOM_LEFT, // bottom left potion
-    BOTTOM_RIGHT // bottom right position
+    TOP = 2,
+    RIGHT = 4,
+    BOTTOM = 8,
+    LEFT = 16,
+
+    TOP_LEFT = 32,
+    TOP_RIGHT = 64,
+    BOTTOM_LEFT = 128,
+    BOTTOM_RIGHT = 256
 }

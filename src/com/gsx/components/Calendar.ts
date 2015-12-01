@@ -51,11 +51,11 @@ export class Calendar extends UIComponent {
         return ''
             + '<div class="' + this.getSkinClass() + '">'
             +     '<div>'
-            +         '<a href="javascript:;" data-element-id="prev-month">&lt;&lt;</a>'
+            +         '<a class="link-btn" data-element-id="prev-month">&lt;&lt;</a>'
             +         '<span data-element-id="year-month-panel">'
             +             this.targetMoment.year() + '年' + (this.targetMoment.month() + 1) + '月'
             +         '</span>'
-            +         '<a href="javascript:;" data-element-id="next-month">&gt;&gt;</a>'
+            +         '<a class="link-btn" data-element-id="next-month">&gt;&gt;</a>'
             +     '</div>'
             +     '<div data-element-id="calendar-grid" class="calendar-grid">'
             +         this.getGridBodyTemplate(this.targetMoment.clone())

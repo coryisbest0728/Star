@@ -1,5 +1,12 @@
 @import "components/Calendar";
+@import "components/popup/PopUp";
 
 body {
     color: #383838;
+}
+
+a {
+    &.link-btn {
+        cursor: pointer;
+    }
 }

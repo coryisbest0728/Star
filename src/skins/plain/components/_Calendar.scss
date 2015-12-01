@@ -1,6 +1,7 @@
 .plain {
     .calendar {
         background-color: #FFF;
+        display: inline-block;
         &-grid {
             height: 180px;
             &-body {}
