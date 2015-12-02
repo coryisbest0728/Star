@@ -142,16 +142,23 @@ export class PopUp extends UIComponentContainer {
             parentY = parent.getY();
             parentWidth = parent.getWidth();
             parentHeight = parent.getHeight();
+        } else {
+            parentWidth = document.documentElement.clientWidth;
+            parentHeight = document.documentElement.clientHeight;
         }
         var leftSpace: number = aroundComponent.getX() - parentX;
         var rightSpace: number = parentWidth + parentX - aroundComponent.getWidth() - aroundComponent.getX();
         if (leftSpace >= rightSpace) { // left
             this.setX(aroundComponent.getX() - this.getWidth());
         } else { // right
-            this.setX(aroundComponent.getX() + this.getWidth());
+            this.setX(aroundComponent.getX() + aroundComponent.getWidth());
         }
-        this.setY(aroundComponent.getY());
-//        aroundComponent.getY() - parentY
+        if (positionTypes.concat(PositionType.TOP_LEFT) || positionTypes.concat(PositionType.TOP_RIGHT)) {
+            this.setY(aroundComponent.getY() + aroundComponent.getHeight() - this.getHeight());
+        }
+        if (positionTypes.concat(PositionType.BOTTOM_LEFT) || positionTypes.concat(PositionType.BOTTOM_RIGHT)) {
+            this.setY(aroundComponent.getY());
+        }
     }
 
     /**

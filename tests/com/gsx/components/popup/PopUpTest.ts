@@ -34,12 +34,14 @@ describe('The unit test for the PopUp', function () {
 
     it('Insert one component into the pop up', function () {
         var textBox: TextBox = new TextBox();
+        (<HTMLElement>textBox.getNode()).style.marginLeft = '210px';
+        (<HTMLElement>textBox.getNode()).style.width = '100px';
         document.body.appendChild(textBox.getNode());
         this.popUp.addChild(new Calendar());
-        this.popUp.setPosition(null, textBox, PositionType.LEFT | PositionType.RIGHT);
+        this.popUp.setPosition(null, textBox, PositionType.TOP_LEFT | PositionType.BOTTOM_RIGHT);
     });
 
     afterEach(function () {
-//        this.popUp.destroy();
+        this.popUp.destroy();
     });
 });
