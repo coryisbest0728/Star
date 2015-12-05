@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventType} from 'com/gsx/events/EventType';
+import {EventType} from './EventType';
 
 export interface IEventDispatcher {
     /**

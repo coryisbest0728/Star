@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IXMLTraversal} from 'com/gsx/xml/traversal/IXMLTraversal';
+import {IXMLTraversal} from './IXMLTraversal';
 
 export class BFTXMLTraversal implements IXMLTraversal {
 

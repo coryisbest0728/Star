@@ -4,14 +4,14 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventType} from 'com/gsx/events/EventType';
-import {GeometryUtil} from 'com/gsx/utils/GeometryUtil';
-import {IBox} from 'com/gsx/components/IBox';
-import {IContained} from 'com/gsx/components/IContained';
-import {IContainer} from 'com/gsx/components/IContainer';
-import {ITemplated} from 'com/gsx/components/ITemplated';
-import {NumberUtil} from 'com/gsx/utils/NumberUtil';
-import {SkinableComponent} from 'com/gsx/components/SkinableComponent';
+import {EventType} from '../events/EventType';
+import {GeometryUtil} from '../utils/GeometryUtil';
+import {IBox} from './IBox';
+import {IContained} from './IContained';
+import {IContainer} from './IContainer';
+import {ITemplated} from './ITemplated';
+import {NumberUtil} from '../utils/NumberUtil';
+import {SkinableComponent} from './SkinableComponent';
 
 export abstract class UIComponent extends SkinableComponent implements IBox, ITemplated, IContained {
 

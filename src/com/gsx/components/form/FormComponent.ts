@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventType} from 'com/gsx/events/EventType';
+import {EventType} from '../../events/EventType';
 import {IValidator} from 'com/gsx/components/form/validator/IValidator';
 import {UIComponent} from 'com/gsx/components/UIComponent';
 

@@ -4,10 +4,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {DFTXMLTraversal} from 'com/gsx/xml/traversal/DFTXMLTraversal';
-import {IContainer} from 'com/gsx/components/IContainer';
-import {UIComponent} from 'com/gsx/components/UIComponent';
-import {XMLParser} from 'com/gsx/parsers/XMLParser';
+import {DFTXMLTraversal} from '../xml/traversal/DFTXMLTraversal';
+import {IContainer} from '../components/IContainer';
+import {UIComponent} from '../components/UIComponent';
+import {XMLParser} from './XMLParser';
 
 export class JXMLParser extends XMLParser {
 

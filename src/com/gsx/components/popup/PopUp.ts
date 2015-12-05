@@ -4,10 +4,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IContainer} from 'com/gsx/components/IContainer';
-import {PositionType} from 'com/gsx/components/PositionType';
-import {UIComponent} from 'com/gsx/components/UIComponent';
-import {UIComponentContainer} from 'com/gsx/components/UIComponentContainer';
+import {IContainer} from '../IContainer';
+import {PositionType} from '../PositionType';
+import {UIComponent} from '../UIComponent';
+import {UIComponentContainer} from '../UIComponentContainer';
 
 export class PopUp extends UIComponentContainer {
 

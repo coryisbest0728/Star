@@ -4,9 +4,9 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IContainer} from 'com/gsx/components/IContainer';
-import {IDestroyable} from 'com/gsx/components/IDestroyable';
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {IContainer} from './IContainer';
+import {IDestroyable} from './IDestroyable';
+import {UIComponent} from './UIComponent';
 
 export abstract class UIComponentContainer extends UIComponent implements IContainer {
 
@@ -114,7 +114,7 @@ export abstract class UIComponentContainer extends UIComponent implements IConta
      * @override
      */
     public removeAllChildren(): void {
-        // TODO: 
+        // TODO:
     }
 
     /**

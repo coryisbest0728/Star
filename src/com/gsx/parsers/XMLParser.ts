@@ -4,8 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IParser} from 'com/gsx/parsers/IParser';
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {IParser} from './IParser';
+import {UIComponent} from '../components/UIComponent';
 
 export abstract class XMLParser implements IParser {
 

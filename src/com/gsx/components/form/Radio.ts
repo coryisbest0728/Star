@@ -4,8 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {LabelledFormComponent} from 'com/gsx/components/form/LabelledFormComponent';
+import {IValidator} from './validator/IValidator';
+import {LabelledFormComponent} from './LabelledFormComponent';
 
 export class Radio extends LabelledFormComponent {
 
@@ -19,7 +19,7 @@ export class Radio extends LabelledFormComponent {
             +     '<span class="c-indicator"></span>'
             + '</label>';
     }
-    
+
     /**
      * @override
      */

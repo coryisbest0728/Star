@@ -6,7 +6,7 @@
 
 /// <reference path="../../../../lib/typings/moment/moment.d.ts" />
 
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {UIComponent} from './UIComponent';
 import moment = require('moment');
 
 export class Calendar extends UIComponent {

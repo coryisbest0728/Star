@@ -4,11 +4,11 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventType} from 'com/gsx/events/EventType';
-import {FormContainerComponent} from 'com/gsx/components/form/FormContainerComponent';
-import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {Option, OptionParams} from 'com/gsx/components/form/Option';
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {EventType} from '../../events/EventType';
+import {FormContainerComponent} from './FormContainerComponent';
+import {IValidator} from './validator/IValidator';
+import {Option, OptionParams} from './Option';
+import {UIComponent} from '../UIComponent';
 
 export class Select extends FormContainerComponent {
 

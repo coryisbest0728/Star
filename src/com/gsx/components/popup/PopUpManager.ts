@@ -1,13 +1,13 @@
 /**
- * @file 
+ * @file
  *
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IContainer} from 'com/gsx/components/IContainer';
-import {PopUp} from 'com/gsx/components/popup/PopUp';
-import {UIComponent} from 'com/gsx/components/UIComponent';
-import {UIComponentContainer} from 'com/gsx/components/UIComponentContainer';
+import {IContainer} from '../IContainer';
+import {PopUp} from './PopUp';
+import {UIComponent} from '../UIComponent';
+import {UIComponentContainer} from '../UIComponentContainer';
 
 export abstract class PopUpManager {
 
@@ -34,7 +34,7 @@ export abstract class PopUpManager {
      * @param {UIComponent} popupComponent
      */
     static bringToFront(popupComponent: UIComponent): void {
-        
+
     }
 
     /**

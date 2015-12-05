@@ -6,7 +6,7 @@
 
 /// <reference path="../../../../../../lib/typings/es6-promise/es6-promise.d.ts" />
 
-import {IValidator} from 'com/gsx/components/form/validator/IValidator';
+import {IValidator} from './IValidator';
 import {Promise} from 'es6-promise';
 
 export class RequiredValidator implements IValidator {

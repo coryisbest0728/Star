@@ -6,8 +6,8 @@
 
 /// <reference path="../../../../lib/typings/eventemitter3/eventemitter3.d.ts" />
 
-import {IEventDispatcher} from 'com/gsx/events/IEventDispatcher';
-import {EventType} from 'com/gsx/events/EventType';
+import {IEventDispatcher} from './IEventDispatcher';
+import {EventType} from './EventType';
 import EventEmitter = require('eventemitter3');
 
 export class EventDispatcher implements IEventDispatcher {

@@ -5,8 +5,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {UIComponentContainer} from 'com/gsx/components/UIComponentContainer';
+import {IValidator} from './validator/IValidator';
+import {UIComponentContainer} from '../UIComponentContainer';
 
 export class Form extends UIComponentContainer {
 

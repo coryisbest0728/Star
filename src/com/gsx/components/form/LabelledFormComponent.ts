@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {FormComponent} from 'com/gsx/components/form/FormComponent';
+import {FormComponent} from './FormComponent';
 
 export abstract class LabelledFormComponent extends FormComponent {
 

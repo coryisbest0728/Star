@@ -4,8 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {InputBox} from 'com/gsx/components/form/InputBox';
-import {IValidator} from 'com/gsx/components/form/validator/IValidator';
+import {InputBox} from './InputBox';
+import {IValidator} from './validator/IValidator';
 
 export class TextBox extends InputBox {
 

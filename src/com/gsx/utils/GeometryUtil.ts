@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IBox} from 'com/gsx/components/IBox';
+import {IBox} from '../components/IBox';
 
 export abstract class GeometryUtil {
     /**
@@ -24,7 +24,7 @@ export abstract class GeometryUtil {
         } else {
             var parentElement: HTMLElement = <HTMLElement>element.parentNode;
             if (parentElement && parentElement.style) {
-                var parentComputedStyle: CSSStyleDeclaration = 
+                var parentComputedStyle: CSSStyleDeclaration =
                     parentElement.ownerDocument.defaultView.getComputedStyle(parentElement, null);
                 if (parentComputedStyle.overflow !== 'visible') {
                     x += parseFloat(parentComputedStyle.borderLeftWidth) || 0;
@@ -32,7 +32,7 @@ export abstract class GeometryUtil {
                 }
             }
         }
-        
+
         return new Box(
             x, y,
             element.offsetWidth,

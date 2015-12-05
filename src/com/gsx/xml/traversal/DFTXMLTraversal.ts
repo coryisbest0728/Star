@@ -4,8 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IXMLTraversal} from 'com/gsx/xml/traversal/IXMLTraversal';
-import {NumberUtil} from 'com/gsx/utils/NumberUtil';
+import {IXMLTraversal} from './IXMLTraversal';
+import {NumberUtil} from '../../utils/NumberUtil';
 
 export class DFTXMLTraversal implements IXMLTraversal {
 

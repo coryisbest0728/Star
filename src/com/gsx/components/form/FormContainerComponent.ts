@@ -4,10 +4,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {FormComponent} from 'com/gsx/components/form/FormComponent';
-import {IContainer} from 'com/gsx/components/IContainer';
-import {IDestroyable} from 'com/gsx/components/IDestroyable';
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {FormComponent} from './FormComponent';
+import {IContainer} from '../IContainer';
+import {IDestroyable} from '../IDestroyable';
+import {UIComponent} from '../UIComponent';
 
 export abstract class FormContainerComponent extends FormComponent implements IContainer {
 
@@ -115,7 +115,7 @@ export abstract class FormContainerComponent extends FormComponent implements IC
      * @override
      */
     public removeAllChildren(): void {
-        // TODO: 
+        // TODO:
     }
 
     /**

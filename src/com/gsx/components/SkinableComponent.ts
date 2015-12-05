@@ -4,9 +4,9 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
-import {IDestroyable} from 'com/gsx/components/IDestroyable';
-import {ISkinable} from 'com/gsx/components/ISkinable';
+import {EventDispatcher} from '../events/EventDispatcher';
+import {IDestroyable} from './IDestroyable';
+import {ISkinable} from './ISkinable';
 
 export abstract class SkinableComponent extends EventDispatcher implements ISkinable, IDestroyable {
 
@@ -74,7 +74,7 @@ export abstract class SkinableComponent extends EventDispatcher implements ISkin
 
     /**
      * Set the spec skin class to change the skin style of the button.
-     * @param {string} specSkinClass 
+     * @param {string} specSkinClass
      */
     public setSpecSkinClass(specSkinClass: string): void {
         var node = this.getNode();
