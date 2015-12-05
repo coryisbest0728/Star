@@ -38,10 +38,10 @@ describe('The unit test for the PopUp', function () {
         (<HTMLElement>textBox.getNode()).style.width = '100px';
         document.body.appendChild(textBox.getNode());
         this.popUp.addChild(new Calendar());
-        this.popUp.setPosition(null, textBox, PositionType.TOP_LEFT | PositionType.BOTTOM_RIGHT);
+        this.popUp.setPosition(null, textBox, PositionType.LEFT | PositionType.RIGHT);
     });
 
     afterEach(function () {
-        this.popUp.destroy();
+        // this.popUp.destroy();
     });
 });

@@ -4,6 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {ArrayUtil} from '../../utils/ArrayUtil';
 import {IContainer} from '../IContainer';
 import {PositionType} from '../PositionType';
 import {UIComponent} from '../UIComponent';
@@ -153,10 +154,16 @@ export class PopUp extends UIComponentContainer {
         } else { // right
             this.setX(aroundComponent.getX() + aroundComponent.getWidth());
         }
-        if (positionTypes.concat(PositionType.TOP_LEFT) || positionTypes.concat(PositionType.TOP_RIGHT)) {
+        if (ArrayUtil.contain(positionTypes, PositionType.LEFT)
+            || ArrayUtil.contain(positionTypes, PositionType.RIGHT)) {
+            this.setY(aroundComponent.getY() - (this.getHeight() - aroundComponent.getHeight()) / 2);
+        }
+        if (ArrayUtil.contain(positionTypes, PositionType.TOP_LEFT)
+            || ArrayUtil.contain(positionTypes, PositionType.TOP_RIGHT)) {
             this.setY(aroundComponent.getY() + aroundComponent.getHeight() - this.getHeight());
         }
-        if (positionTypes.concat(PositionType.BOTTOM_LEFT) || positionTypes.concat(PositionType.BOTTOM_RIGHT)) {
+        if (ArrayUtil.contain(positionTypes, PositionType.BOTTOM_LEFT)
+            || ArrayUtil.contain(positionTypes, PositionType.BOTTOM_RIGHT)) {
             this.setY(aroundComponent.getY());
         }
     }
