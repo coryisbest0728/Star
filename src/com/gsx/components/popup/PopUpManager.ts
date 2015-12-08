@@ -36,7 +36,7 @@ export abstract class PopUpManager {
      * @param {UIComponent} popupComponent
      */
     static bringToFront(popupComponent: UIComponent): void {
-        (<PopUp>PopUpManager.popUpMap[popupComponent.getId()]).setZIndex(zIndex++);
+        (<PopUp>PopUpManager.popUpMap[popupComponent.getId()]).setZIndex(PopUpManager.zIndex++);
     }
 
     /**
@@ -50,7 +50,7 @@ export abstract class PopUpManager {
             popupComponent: popupComponent,
             parent: parent,
             modal: modal,
-            zIndex: zIndex++
+            zIndex: PopUpManager.zIndex++
         });
     }
 

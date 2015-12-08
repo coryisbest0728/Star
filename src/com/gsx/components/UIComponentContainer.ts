@@ -12,8 +12,6 @@ export abstract class UIComponentContainer extends UIComponent implements IConta
 
     private children: Array<UIComponent>;
 
-    private started: boolean;
-
     /**
      * @override
      */
@@ -36,19 +34,6 @@ export abstract class UIComponentContainer extends UIComponent implements IConta
         return this.children.filter(function (child: UIComponent): boolean {
             return uiComponent === child;
         }).length === 1;
-    }
-
-    /**
-     * @override
-     */
-    public startup(): void {
-        if (this.started) {
-            return;
-        }
-        this.getChildren().forEach(function (child: UIComponent): void {
-            child.startup();
-        });
-        this.started = true;
     }
 
     /**

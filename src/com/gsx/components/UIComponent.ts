@@ -105,11 +105,6 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
     public postCreate(): void {}
 
     /**
-     * Processing after the DOM fragment is added to the document
-     */
-    public startup(): void {}
-
-    /**
      * @override
      */
     public getTemplatedElementById(elementId: string): Element {
