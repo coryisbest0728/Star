@@ -18,6 +18,8 @@ export abstract class PopUpManager {
      */
     static popUpMap: Object = {};
 
+    static zIndex: number = 10;
+
     /**
      * Pops up a top-level component.
      * @param {UIComponent} popupComponent
@@ -25,7 +27,7 @@ export abstract class PopUpManager {
      * @param {boolean} modal
      */
     static addPopUp(popupComponent: UIComponent, parent: IContainer, modal: boolean = false): void {
-        var popUp: UIComponent = PopUpManager.createPopUp(popupComponent, parent, modal);
+        PopUpManager.popUpMap[popupComponent.getId()] = PopUpManager.createPopUp(popupComponent, parent, modal);
     }
 
     /**
@@ -34,7 +36,7 @@ export abstract class PopUpManager {
      * @param {UIComponent} popupComponent
      */
     static bringToFront(popupComponent: UIComponent): void {
-
+        (<PopUp>PopUpManager.popUpMap[popupComponent.getId()]).setZIndex(zIndex++);
     }
 
     /**
@@ -44,13 +46,12 @@ export abstract class PopUpManager {
      * @param {boolean} modal
      */
     static createPopUp(popupComponent: UIComponent, parent: IContainer, modal: boolean = false): UIComponent {
-        var popUp: UIComponentContainer = new PopUp({
+        return new PopUp({
             popupComponent: popupComponent,
             parent: parent,
-            modal: modal
+            modal: modal,
+            zIndex: zIndex++
         });
-        PopUpManager.popUpMap[popupComponent.getId()] = popUp;
-        return popUp;
     }
 
     /**

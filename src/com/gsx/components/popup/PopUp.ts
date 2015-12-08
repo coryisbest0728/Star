@@ -55,6 +55,9 @@ export class PopUp extends UIComponentContainer {
         if (this.params.positionType !== undefined && this.params.positionType !== null) {
             this.setPosition(this.params.parent, this.params.aroundComponent, this.params.positionType);
         }
+        if (this.params.zIndex) {
+            this.setZIndex(this.params.zIndex);
+        }
     }
 
     /**
@@ -183,6 +186,14 @@ export class PopUp extends UIComponentContainer {
             }
         });
         return positionTypes;
+    }
+
+    /**
+     * Set the z-order index.
+     * @param {number} zIndex
+     */
+    public setZIndex(zIndex: number): void {
+        (<HTMLElement>this.getNode()).style.zIndex = zIndex + '';
     }
 
     /**

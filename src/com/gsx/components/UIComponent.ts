@@ -192,13 +192,6 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
     }
 
     /**
-     * @override
-     */
-//    public toString(): string {
-//        return '[object UIComponent-' + this.getSimpleClassName() + ']';
-//    }
-
-    /**
      * Get the simple class name.
      * @return {string}
      */
