@@ -80,14 +80,27 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
      * @override
      */
     public buildRendering(): void {
-        var tempElement: HTMLElement = <HTMLElement>document.createElement('div');
-        var tempFrag: DocumentFragment = document.createDocumentFragment();
-        tempFrag.appendChild(tempElement);
-        tempElement.innerHTML = this.getTemplate();
-        this.node = tempFrag.firstChild.firstChild;
-        (<Element>this.node).setAttribute('data-component-id',
+        var virtualElement: HTMLElement = <HTMLElement>this.getVirtualNode();
+        virtualElement.innerHTML = this.getTemplate();
+        this.node = virtualElement.firstChild;
+        this.renderAttr();
+    }
+
+    protected getVirtualNode(): Node {
+        var virtualElement: HTMLElement = <HTMLElement>document.createElement('div');
+        var virtualFrag: DocumentFragment = document.createDocumentFragment();
+        virtualFrag.appendChild(virtualElement);
+        return virtualElement;
+    }
+
+    /**
+     * To render attributes of the node.
+     */
+    protected renderAttr(): void {
+        var node: Node = this.getNode();
+        (<Element>node).setAttribute('data-component-id',
             this.getSimpleClassName().toLowerCase() + '-' + NumberUtil.getRandom());
-        var elements: NodeList = (<Element>this.node).querySelectorAll('[data-element-id]');
+        var elements: NodeList = (<Element>node).querySelectorAll('[data-element-id]');
         for (var i: number = 0; i < elements.length; ++i) {
             var element: Element = <Element>elements.item(i);
             var elementId: string = element.getAttribute('data-element-id');

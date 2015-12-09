@@ -18,7 +18,8 @@ requirejs.config({
     paths: {
         'eventemitter3': '../lib/eventemitter3/index',
         'es6-promise': '../lib/es6-promise/promise.min',
-        'moment': '../lib/moment/min/moment.min'
+        'moment': '../lib/moment/min/moment.min',
+        'text': '../lib/text/text'
     },
 
     shim: {

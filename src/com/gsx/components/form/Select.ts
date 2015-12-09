@@ -15,9 +15,9 @@ export class Select extends FormContainerComponent {
     /**
      * The params of inital.
      */
-    private params: SelectParams;
+    private params: ISelectParams;
 
-    constructor(params?: SelectParams) {
+    constructor(params?: ISelectParams) {
         this.params = params || {};
         super(this.params);
     }
@@ -141,7 +141,7 @@ export class Select extends FormContainerComponent {
     }
 }
 
-interface SelectParams {
+interface ISelectParams {
     /**
      * @see http://www.w3school.com.cn/tags/att_button_disabled.asp
      */

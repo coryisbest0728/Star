@@ -63,5 +63,6 @@ describe('The unit test for the JXMLParser', function () {
         var uicomponent: UIComponent = this.parser.parse(template);
         expect(uicomponent).not.toBeNull('The form has been parsed.');
         document.body.appendChild(uicomponent.getNode());
+        uicomponent.destroy();
     });
 });

@@ -39,9 +39,10 @@ describe('The unit test for the PopUp', function () {
         document.body.appendChild(textBox.getNode());
         this.popUp.addChild(new Calendar());
         this.popUp.setPosition(null, textBox, PositionType.LEFT | PositionType.RIGHT);
+        textBox.destroy();
     });
 
     afterEach(function () {
-        // this.popUp.destroy();
+        this.popUp.destroy();
     });
 });
