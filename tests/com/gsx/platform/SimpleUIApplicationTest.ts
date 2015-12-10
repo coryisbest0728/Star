@@ -12,6 +12,7 @@ describe('The unit test for the ui application', function () {
 
     beforeEach(function () {
         this.application = new SimpleUIApplication({});
+        this.application.startup();
     });
 
     it('Creation of the the ui application', function () {

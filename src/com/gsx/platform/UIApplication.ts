@@ -28,20 +28,9 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
     /**
      * @override
      */
-    public buildRendering(): void {
-        this.appNode = document.body;
-        this.renderAttr();
+    public startup(): void {
         this.setTheme(this.params.theme);
-        var classList: DOMTokenList = (<HTMLElement>this.appNode).classList;
-        this.getSkinClass().trim().split(/\s+/).forEach(function (skin: string): void {
-            skin && !classList.contains(skin) && classList.add(skin);
-        });
-        var template: string = this.getTemplate();
-        if (template) {
-            var virtualElement: HTMLElement = <HTMLElement>this.getVirtualNode();
-            virtualElement.innerHTML = template;
-            this.getContainerNode().appendChild(virtualElement.firstChild);
-        }
+        document.body.appendChild(this.getNode());
     }
 
     /**
@@ -63,7 +52,7 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
      * @override
      */
     public getTemplate(): string {
-        return '';
+        return '<div class="' + this.getSkinClass() + '"></div>';
     }
 
     /**
@@ -78,13 +67,6 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
      */
     public getBaseSkinClass(): string {
         return 'application';
-    }
-
-    /**
-     * @override
-     */
-    public getNode(): Node {
-        return this.appNode;
     }
 
     /**
