@@ -4,12 +4,23 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IDestroyable} from '../components/IDestroyable';
+import {IApplication} from './IApplication';
 
-export interface IPlugin extends IDestroyable {
+export interface IPlugin {
 
     /**
-     * Startup this plugin.
+     * Installation of the plugin.
      */
-    startup(): void;
+    install(): void;
+
+    /**
+     * Uninstallation of the plugin.
+     */
+    uninstall(): void;
+
+    /**
+     * Get application of the plugin.
+     * @return {IApplication}
+     */
+    getApplication(): IApplication;
 }

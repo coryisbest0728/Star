@@ -39,6 +39,20 @@ export abstract class FormComponent extends UIComponent {
     abstract getValidators(): Array<IValidator>;
 
     /**
+     * focus
+     */
+    public focus(): void {
+        (<HTMLElement>this.getNode()).focus();
+    }
+
+    /**
+     * blur
+     */
+    public blur(): void {
+        (<HTMLElement>this.getNode()).blur();
+    }
+
+    /**
      * Get the status of disabled.
      * @return {boolean} Whether disabled or not。
      */

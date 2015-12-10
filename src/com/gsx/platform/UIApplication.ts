@@ -14,11 +14,6 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
     private params: IUIApplicationParams;
     private theme: string;
 
-    /**
-     * The node of the ui application.
-     */
-    private appNode: Node;
-
     constructor(params?: IUIApplicationParams) {
         this.theme = 'plain';
         this.params = params || {};
@@ -38,7 +33,7 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
      * @param {string} theme
      */
     public setTheme(theme: string): void {
-        var classList: DOMTokenList = document.body.classList;
+        var classList: DOMTokenList = (<Element>this.getNode()).classList;
         if (theme && theme !== this.theme) {
             classList.remove(this.theme);
             this.theme = theme;
@@ -88,8 +83,9 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
      */
     public run(): void {
         this.getPlugins().forEach(function (plugin: IPlugin): void {
-            plugin.startup();
+            plugin.install();
         });
+        this.startup();
     }
 
     /**
@@ -97,10 +93,12 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
      */
     public destroy(): void {
         this.getPlugins().forEach(function (plugin: IPlugin): void {
-            plugin.destroy();
+            plugin.uninstall();
         });
-        delete this.params;
         super.destroy();
+        document.body.classList.remove(this.theme);
+        delete this.params;
+        delete this.theme;
     }
 }
 

@@ -49,5 +49,6 @@ describe('The unit test for the Calendar', function () {
 
     afterEach(function () {
         this.calendar.destroy();
+        document.body.classList.remove('plain');
     });
 });

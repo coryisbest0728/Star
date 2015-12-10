@@ -44,5 +44,6 @@ describe('The unit test for the PopUp', function () {
 
     afterEach(function () {
         this.popUp.destroy();
+        document.body.classList.remove('plain');
     });
 });

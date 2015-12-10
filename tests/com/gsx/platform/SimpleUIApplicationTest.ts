@@ -11,8 +11,8 @@ import {SimpleUIApplication} from 'com/gsx/platform/SimpleUIApplication';
 describe('The unit test for the ui application', function () {
 
     beforeEach(function () {
-        this.application = new SimpleUIApplication({});
-        this.application.startup();
+        this.application = new SimpleUIApplication();
+        this.application.run();
     });
 
     it('Creation of the the ui application', function () {
@@ -21,5 +21,9 @@ describe('The unit test for the ui application', function () {
             .toBeTruthy('The ui application has been excisted in the document');
         expect(this.application.getParent())
             .toBeNull('This ui application has not any parent component.');
+    });
+
+    afterEach(function () {
+//        this.application.destroy();
     });
 });
