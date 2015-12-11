@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-export interface IValidationComponent {
+export interface IValidation {
     /**
      * Validate this component
      * @return {boolean}

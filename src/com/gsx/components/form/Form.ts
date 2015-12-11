@@ -6,10 +6,10 @@
  */
 
 import {IValidator} from './validator/IValidator';
-import {IValidationComponent} from '../IValidationComponent';
+import {IValidation} from '../IValidation';
 import {UIComponentContainer} from '../UIComponentContainer';
 
-export class Form extends UIComponentContainer implements IValidationComponent {
+export class Form extends UIComponentContainer implements IValidation {
 
     private params: FormParams;
 

@@ -6,10 +6,10 @@
 
 import {EventType} from '../../events/EventType';
 import {IValidator} from './validator/IValidator';
-import {IValidationComponent} from '../IValidationComponent';
+import {IValidation} from '../IValidation';
 import {UIComponent} from '../UIComponent';
 
-export abstract class FormComponent extends UIComponent implements IValidationComponent {
+export abstract class FormComponent extends UIComponent implements IValidation {
 
     /**
      * The name of the form component.

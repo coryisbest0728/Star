@@ -6,11 +6,11 @@
 
 import {EventType} from '../../events/EventType';
 import {IValidator} from './validator/IValidator';
-import {IValidationComponent} from '../IValidationComponent';
+import {IValidation} from '../IValidation';
 import {UIComponent} from '../UIComponent';
 import {UIComponentContainer} from '../UIComponentContainer';
 
-export class FormItem extends UIComponentContainer implements IValidationComponent {
+export class FormItem extends UIComponentContainer implements IValidation {
 
     /**
      * The params of inital.
@@ -52,7 +52,19 @@ export class FormItem extends UIComponentContainer implements IValidationCompone
      * @param {string} label
      */
     public setLabel(label: string): void {
-        (<HTMLElement>this.getElementById('labelNode')).innerHTML = label || '&nbsp;';
+        var labelNode: HTMLElement = <HTMLElement>this.getElementById('labelNode');
+        var labelNodeClassList: DOMTokenList = labelNode.classList;
+        labelNode.innerHTML = label || '';
+        var containerNodeClassList: DOMTokenList = (<Element>this.getContainerNode()).classList;
+        if (label) {
+            if (containerNodeClassList.contains('col-sm-offset-2')) {
+                containerNodeClassList.remove('col-sm-offset-2');
+            }
+            labelNodeClassList.contains('hidden') && labelNodeClassList.remove('hidden');
+        } else {
+            containerNodeClassList.add('col-sm-offset-2');
+            !labelNodeClassList.contains('hidden') && labelNodeClassList.add('hidden');
+        }
     }
 
     /**
