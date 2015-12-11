@@ -22,5 +22,5 @@ export interface ITemplated {
      * @param {string} elementId
      * @return {Element}
      */
-    getTemplatedElementById(elementId: string): Element
+    getElementById(elementId: string): Element
 }

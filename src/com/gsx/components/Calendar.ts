@@ -37,9 +37,9 @@ export class Calendar extends UIComponent {
      */
     public postCreate(): void {
         super.postCreate();
-        this.getTemplatedElementById('prev-month').addEventListener('click', this.prevMonth.bind(this));
-        this.getTemplatedElementById('next-month').addEventListener('click', this.nextMonth.bind(this));
-        this.getTemplatedElementById('calendar-grid').addEventListener('click', this.clickGrid.bind(this));
+        this.getElementById('prev-month').addEventListener('click', this.prevMonth.bind(this));
+        this.getElementById('next-month').addEventListener('click', this.nextMonth.bind(this));
+        this.getElementById('calendar-grid').addEventListener('click', this.clickGrid.bind(this));
     }
 
     /**
@@ -140,9 +140,9 @@ export class Calendar extends UIComponent {
             toMoment.date(1);
             this.targetMoment = toMoment;
         }
-        (<HTMLElement>this.getTemplatedElementById('year-month-panel')).innerHTML =
+        (<HTMLElement>this.getElementById('year-month-panel')).innerHTML =
             toMoment.year() + '年' + (toMoment.month() + 1) + '月';
-        (<HTMLElement>this.getTemplatedElementById('calendar-grid')).innerHTML =
+        (<HTMLElement>this.getElementById('calendar-grid')).innerHTML =
             this.getGridBodyTemplate(toMoment.clone());
     }
 
@@ -166,7 +166,7 @@ export class Calendar extends UIComponent {
      */
     protected clickGrid(event: MouseEvent): void {
         var target: HTMLElement = <HTMLElement>event.target;
-        var calendarGridElement: HTMLElement = <HTMLElement>this.getTemplatedElementById('calendar-grid');
+        var calendarGridElement: HTMLElement = <HTMLElement>this.getElementById('calendar-grid');
         if (calendarGridElement !== target && calendarGridElement.contains(target)) {
             var selectedData: DOMStringMap = target.dataset;
             this.setSelectedDate(new Date(+selectedData['year'], +selectedData['month'], +selectedData['date']));

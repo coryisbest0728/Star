@@ -6,9 +6,10 @@
  */
 
 import {IValidator} from './validator/IValidator';
+import {IValidationComponent} from '../IValidationComponent';
 import {UIComponentContainer} from '../UIComponentContainer';
 
-export class Form extends UIComponentContainer {
+export class Form extends UIComponentContainer implements IValidationComponent {
 
     private params: FormParams;
 
@@ -29,6 +30,14 @@ export class Form extends UIComponentContainer {
      */
     public getContainerNode(): Node {
         return this.getNode();
+    }
+
+    /**
+     * @override
+     */
+    public validate(): boolean {
+        // TODO:
+        return true;
     }
 
     /**

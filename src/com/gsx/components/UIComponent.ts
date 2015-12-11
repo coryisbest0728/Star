@@ -120,7 +120,7 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
     /**
      * @override
      */
-    public getTemplatedElementById(elementId: string): Element {
+    public getElementById(elementId: string): Element {
         return this.templatedElementMap[elementId];
     }
 

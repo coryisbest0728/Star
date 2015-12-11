@@ -89,21 +89,25 @@ export abstract class SkinableComponent extends EventDispatcher implements ISkin
      * @override
      */
     public addSpecSkinClass(skinClass: string): void {
-        this.setSpecSkinClass(this.getSpecSkinClass() + ' ' + skinClass);
+        if (!this.hasSkinClass(skinClass)) {
+            (<Element>this.getNode()).classList.add(skinClass);
+        }
     }
 
     /**
      * @override
      */
     public removeSpecSkinClass(skinClass: string): void {
-        this.setSpecSkinClass(this.getSpecSkinClass().replace(new RegExp(skinClass, 'g'), '').trim());
+        if (this.hasSkinClass(skinClass)) {
+            (<Element>this.getNode()).classList.remove(skinClass);
+        }
     }
 
     /**
      * @override
      */
     public hasSkinClass(skinClass: string): boolean {
-        return new RegExp(skinClass, 'g').test(this.getSkinClass());
+        return (<Element>this.getNode()).classList.contains(skinClass);
     }
 
     /**

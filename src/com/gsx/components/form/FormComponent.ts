@@ -5,10 +5,11 @@
  */
 
 import {EventType} from '../../events/EventType';
-import {IValidator} from 'com/gsx/components/form/validator/IValidator';
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {IValidator} from './validator/IValidator';
+import {IValidationComponent} from '../IValidationComponent';
+import {UIComponent} from '../UIComponent';
 
-export abstract class FormComponent extends UIComponent {
+export abstract class FormComponent extends UIComponent implements IValidationComponent {
 
     /**
      * The name of the form component.
@@ -33,10 +34,18 @@ export abstract class FormComponent extends UIComponent {
     abstract getFormControlNode(): Node;
 
     /**
-     * Get the set validators of this form component.
+     * Get the validator list.
      * @return {Array<IValidator>}
      */
-    abstract getValidators(): Array<IValidator>;
+    abstract getValidators(): IValidator[];
+
+    /**
+     * @Override
+     */
+    public validate(): boolean {
+        // TODO:
+        return true;
+    }
 
     /**
      * focus
