@@ -88,6 +88,13 @@ gulp.task('copy-ts-to-temp', function () {
     return gulp.src([config.srcTS, config.testsTS]).pipe(gulp.dest(config.temp));
 });
 
+gulp.task('copy-jxml', function () {
+    return gulp.src([
+        path.join(config.src, '/**/*.jxml'),
+        path.join(config.tests, '/**/*.jxml')
+    ]).pipe(gulp.dest(config.testsDest));
+});
+
 /**
  * Compile tests TypeScript and include references to library and app .d.ts files.
  */
@@ -168,5 +175,5 @@ gulp.task('release', function (cb) {
  * The task for executing tests of the project
  */
 gulp.task('tests', function (cb) {
-    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['compile-tests-ts', 'compile-tests-scss'], 'clean-temp-cache', cb);
+    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['copy-jxml', 'compile-tests-ts', 'compile-tests-scss'], 'clean-temp-cache', cb);
 });
