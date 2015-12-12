@@ -1,0 +1,9 @@
+{
+    "name": "",
+    "description": "",
+    "version": "0.0.1",
+    "pluginClassNames": [
+        "com/gsx/platform/plugins/calendar/CalendarFormPlugin",
+        "com/gsx/platform/plugins/submit/SubmitFormPlugin"
+    ]
+}

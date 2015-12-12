@@ -88,10 +88,10 @@ gulp.task('copy-ts-to-temp', function () {
     return gulp.src([config.srcTS, config.testsTS]).pipe(gulp.dest(config.temp));
 });
 
-gulp.task('copy-jxml', function () {
+gulp.task('copy-text-file', function () {
     return gulp.src([
-        path.join(config.src, '/**/*.jxml'),
-        path.join(config.tests, '/**/*.jxml')
+        path.join(config.src, '/**/*.{jxml,json}'),
+        path.join(config.tests, '/**/*.{jxml,json}')
     ]).pipe(gulp.dest(config.testsDest));
 });
 
@@ -175,5 +175,5 @@ gulp.task('release', function (cb) {
  * The task for executing tests of the project
  */
 gulp.task('tests', function (cb) {
-    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['copy-jxml', 'compile-tests-ts', 'compile-tests-scss'], 'clean-temp-cache', cb);
+    sequence('ts-lint-tests', 'clean-tests', 'copy-ts-to-temp', ['copy-text-file', 'compile-tests-ts', 'compile-tests-scss'], 'clean-temp-cache', cb);
 });

@@ -8,7 +8,7 @@ import {Calendar} from 'com/gsx/components/Calendar';
 import {TextBox} from 'com/gsx/components/form/TextBox';
 import {UIPlugin} from 'com/gsx/platform/UIPlugin';
 
-export class Simple1Plugin extends UIPlugin {
+export class CalendarFormPlugin extends UIPlugin {
 
     /**
      * @override

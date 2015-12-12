@@ -1,0 +1,6 @@
+{
+    "name": "calendar",
+    "description": "",
+    "main": "com/gsx/platform/plugins/calendar/CalendarFormPlugin",
+    "on": true
+}

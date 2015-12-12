@@ -5,15 +5,22 @@
  */
 
 import {IPlugin} from 'com/gsx/platform/IPlugin';
-import {Simple1Plugin} from 'com/gsx/platform/Simple1Plugin';
+import {CalendarFormPlugin} from 'com/gsx/platform/plugins/calendar/CalendarFormPlugin';
+import {SubmitFormPlugin} from 'com/gsx/platform/plugins/submit/SubmitFormPlugin';
 import {UIApplication} from 'com/gsx/platform/UIApplication';
 
 export class SimpleUIApplication extends UIApplication {
 
+    public a() {
+        console.log(CalendarFormPlugin);
+        console.log(SubmitFormPlugin);
+    }
     /**
      * @override
      */
-    public getPlugins(): IPlugin[] {
-        return [new Simple1Plugin(this)];
-    }
+//    public getPlugins(): IPlugin[] {
+//        return [
+//            new CalendarFormPlugin(this), new SubmitFormPlugin(this)
+//        ];
+//    }
 }

@@ -4,11 +4,15 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+/// <amd-dependency path="text!./application.json" />
+
 import {ApplicationContext} from './context/ApplicationContext';
 import {IApplication} from './IApplication';
 import {IPlugin} from './IPlugin';
+import {UIApplicationContext} from './context/UIApplicationContext';
 import {UIComponentContainer} from '../components/UIComponentContainer';
 
+declare var require: (moduleId: string) => string;
 export abstract class UIApplication extends UIComponentContainer implements IApplication {
 
     private params: IUIApplicationParams;
@@ -68,14 +72,19 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
      * @override
      */
     public getPlugins(): IPlugin[] {
-        return [];
+        var plugins: IPlugin[] = [];
+        this.getApplicationContext().getPluginClassNames().forEach(function (plugnClassName: string): void {
+            var simpleName: string = plugnClassName.substr(plugnClassName.lastIndexOf('/') + 1);
+            plugins.push(new (window['require'](plugnClassName)[simpleName])(this));
+        }, this);
+        return plugins;
     }
 
     /**
      * @override
      */
     public getApplicationContext(): ApplicationContext {
-        return null;
+        return new UIApplicationContext(require('text!./application.json'));
     }
 
     /**
