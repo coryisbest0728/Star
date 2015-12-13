@@ -11,12 +11,11 @@ import {IContained} from './IContained';
 import {IContainer} from './IContainer';
 import {ITemplated} from './ITemplated';
 import {IModel} from './mvvm/IModel';
-import {IViewModel} from './mvvm/IViewModel';
 import {NumberUtil} from '../utils/NumberUtil';
 import {SkinableComponent} from './SkinableComponent';
 import {StringUtil} from '../utils/StringUtil';
 
-export abstract class UIComponent extends SkinableComponent implements IBox, ITemplated, IContained, IViewModel {
+export abstract class UIComponent extends SkinableComponent implements IBox, ITemplated, IContained {
 
     /**
      * The node of the ui component.
