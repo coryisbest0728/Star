@@ -25,6 +25,38 @@ export class SubmitFormPlugin extends UIPlugin {
         this.addComponent(this.getUIComponentByTemplate(require('text!./SubmitForm.jxml')));
     }
 
+//    /**
+//     * Set username
+//     * @param {string} username
+//     */
+//    public setUsername(username: string): void {
+//        
+//    }
+//
+//    /**
+//     * Get username
+//     * @param {string} username
+//     */
+//    public getUsername(): string {
+//        
+//    }
+//
+//    /**
+//     * Set password
+//     * @param {string} password
+//     */
+//    public setPassword(password: string): void {
+//        
+//    }
+//
+//    /**
+//     * Get password
+//     * @param {string} password
+//     */
+//    public getPassword(): string {
+//        
+//    }
+
     /**
      * @override
      */

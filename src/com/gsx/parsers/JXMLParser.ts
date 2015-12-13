@@ -6,10 +6,12 @@
 
 import {DFTXMLTraversal} from '../xml/traversal/DFTXMLTraversal';
 import {IContainer} from '../components/IContainer';
+import {IMVVMParser} from './IMVVMParser';
+import {IViewModel} from '../mvvm/IViewModel';
 import {UIComponent} from '../components/UIComponent';
 import {XMLParser} from './XMLParser';
 
-export class JXMLParser extends XMLParser {
+export class JXMLParser extends XMLParser implements IMVVMParser {
 
     /**
      * @override
@@ -45,6 +47,13 @@ export class JXMLParser extends XMLParser {
      * @return {UIComponent}
      */
     public parseElementNS(element: Element): UIComponent {
+        return <UIComponent>this.paserElement2MVVM(element);
+    }
+
+    /**
+     * @override
+     */
+    public paserElement2MVVM(element: Element): IViewModel {
         var simpleClassName: string = this.getSimpleClassName(element);
         var classSet = window['require'](this.getClassPath(element) + simpleClassName);
         var Clazz: any = classSet[simpleClassName];

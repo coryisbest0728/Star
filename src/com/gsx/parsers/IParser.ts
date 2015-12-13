@@ -4,7 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {UIComponent} from 'com/gsx/components/UIComponent';
+import {UIComponent} from '../components/UIComponent';
 
 export interface IParser {
 

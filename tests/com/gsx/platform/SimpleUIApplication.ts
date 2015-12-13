@@ -15,12 +15,4 @@ export class SimpleUIApplication extends UIApplication {
         console.log(CalendarFormPlugin);
         console.log(SubmitFormPlugin);
     }
-    /**
-     * @override
-     */
-//    public getPlugins(): IPlugin[] {
-//        return [
-//            new CalendarFormPlugin(this), new SubmitFormPlugin(this)
-//        ];
-//    }
 }
