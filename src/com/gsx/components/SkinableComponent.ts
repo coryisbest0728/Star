@@ -4,11 +4,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventDispatcher} from '../events/EventDispatcher';
-import {IDestroyable} from './IDestroyable';
+import {ViewModel} from '../mvvm/ViewModel';
 import {ISkinable} from './ISkinable';
 
-export abstract class SkinableComponent extends EventDispatcher implements ISkinable, IDestroyable {
+export abstract class SkinableComponent extends ViewModel implements ISkinable {
 
     private specSkinClass: string = '';
 

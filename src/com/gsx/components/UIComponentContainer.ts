@@ -5,7 +5,7 @@
  */
 
 import {IContainer} from './IContainer';
-import {IDestroyable} from './IDestroyable';
+import {IDestroyable} from '../IDestroyable';
 import {UIComponent} from './UIComponent';
 
 export abstract class UIComponentContainer extends UIComponent implements IContainer {

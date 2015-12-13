@@ -6,7 +6,7 @@
 
 import {FormComponent} from './FormComponent';
 import {IContainer} from '../IContainer';
-import {IDestroyable} from '../IDestroyable';
+import {IDestroyable} from '../../IDestroyable';
 import {UIComponent} from '../UIComponent';
 
 export abstract class FormContainerComponent extends FormComponent implements IContainer {
