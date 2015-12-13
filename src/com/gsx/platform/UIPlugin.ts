@@ -6,6 +6,7 @@
 
 import {IApplication} from './IApplication';
 import {IPlugin} from './IPlugin';
+import {ParserFactory} from '../parsers/ParserFactory';
 import {UIApplication} from './UIApplication';
 import {UIComponent} from '../components/UIComponent';
 
@@ -47,6 +48,14 @@ export abstract class UIPlugin implements IPlugin {
      */
     public getApplication(): IApplication {
         return this.application;
+    }
+
+    /**
+     * 
+     * @param {string} templateStr
+     */
+    public getUIComponentByTemplate(templateStr: string): UIComponent {
+        return ParserFactory.createParser().parse(templateStr);
     }
 
     /**
