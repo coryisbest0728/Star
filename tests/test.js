@@ -19,7 +19,8 @@ requirejs.config({
         'eventemitter3': '../lib/eventemitter3/index',
         'es6-promise': '../lib/es6-promise/promise.min',
         'moment': '../lib/moment/min/moment.min',
-        'text': '../lib/text/text'
+        'text': '../lib/text/text',
+        'vue': '../lib/vue/dist/vue.min'
     },
 
     shim: {

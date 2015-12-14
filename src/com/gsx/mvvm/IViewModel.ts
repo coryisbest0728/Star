@@ -25,7 +25,7 @@ export interface IViewModel {
     /**
      * Watch the changes of the attr value.
      * @param {string} attr
-     * @param {Function} watchHandler(param: IModel)
+     * @param {Function} watchHandler(model: IModel)
      */
-    watch(attr: string, watchHandler: (param: IModel) => void): void;
+    watch(attr: string, watchHandler: (model: IModel) => void): void;
 }

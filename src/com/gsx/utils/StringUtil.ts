@@ -5,5 +5,13 @@
  */
 
 export abstract class StringUtil {
-    // TODO: 
+    /**
+     * To upper case the initial.
+     * @param {string} str
+     */
+    static toUpperCaseInitial(str: string): string {
+        return str.trim().replace(/^(.)/, function (initial: string): string {
+            return initial.toUpperCase();
+        });
+    }
 }

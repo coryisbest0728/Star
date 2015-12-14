@@ -11,11 +11,12 @@ import {IContained} from './IContained';
 import {IContainer} from './IContainer';
 import {ITemplated} from './ITemplated';
 import {IModel} from './mvvm/IModel';
+import {IViewModel} from './mvvm/IViewModel';
 import {NumberUtil} from '../utils/NumberUtil';
 import {SkinableComponent} from './SkinableComponent';
 import {StringUtil} from '../utils/StringUtil';
 
-export abstract class UIComponent extends SkinableComponent implements IBox, ITemplated, IContained {
+export abstract class UIComponent extends SkinableComponent implements IBox, ITemplated, IContained, IViewModel {
 
     /**
      * The node of the ui component.
@@ -138,6 +139,7 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
      * @override
      */
     public destroy(): void {
+        this.removeAllListeners();
         var node: Node = this.getNode();
         node.parentNode.removeChild(node);
         delete this.templatedElementMap;
@@ -149,6 +151,27 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
      * The subclass must implement this method.
      */
     abstract getTemplate(): string;
+
+    /**
+     * @override
+     */
+    public get(attr: string): IViewModel {
+        return null;
+    }
+
+    /**
+     * @override
+     */
+    public set(attr: string, value: any): void {
+        
+    }
+
+    /**
+     * @override
+     */
+    public watch(attr: string, watchHandler: (param: IModel) => void): void {
+        
+    }
 
     /**
      * Set the parent container of this ui component.

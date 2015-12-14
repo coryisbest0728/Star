@@ -22,6 +22,9 @@
     },
     "moment/moment-node.d.ts": {
       "commit": "fb2b3b1e068c9ff7d8f9b0851c08d37d96c95c38"
+    },
+    "vue/vue.d.ts": {
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     }
   }
 }
