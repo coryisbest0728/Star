@@ -17,14 +17,14 @@ export class DFTXMLTraversal implements IXMLTraversal {
         var stack: Element[] = [];
         var hasPoped: boolean = false;
         while (currentElement) {
-            if (!hasPoped && currentElement && currentElement.nodeType === 1 && iteratorfn) {
-                if (!currentElement.hasAttribute('id')) {
+            if (!hasPoped && currentElement && iteratorfn) {
+                if (currentElement.nodeType === 1 && !currentElement.hasAttribute('id')) {
                     currentElement.setAttribute('id',
                         currentElement.tagName.toLowerCase() + '-' + NumberUtil.getRandom());
                 }
                 iteratorfn(currentElement);
             }
-            if (!hasPoped && currentElement.nodeType === 1 && currentElement.childNodes.length) {
+            if (!hasPoped && currentElement.childNodes.length) {
                 stack.push(currentElement);
                 currentElement = <Element>currentElement.firstChild;
                 hasPoped = false;

@@ -14,7 +14,6 @@ export class CalendarFormPlugin extends UIPlugin {
      * @override
      */
     public install(): void {
-        console.log('install');
         this.addComponent(new Calendar());
         this.addComponent(new TextBox());
     }
@@ -24,6 +23,5 @@ export class CalendarFormPlugin extends UIPlugin {
      */
     public uninstall(): void {
         super.uninstall();
-        console.log('uninstall');
     }
 }

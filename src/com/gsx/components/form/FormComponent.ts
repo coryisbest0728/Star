@@ -74,7 +74,7 @@ export abstract class FormComponent extends UIComponent implements IValidation {
      * @return {string} The name of the form component.
      */
     public getName(): string {
-        return (<Element>this.getFormControlNode()).getAttribute('name');
+        return (<Element>this.getFormControlNode())['name'];
     }
 
     /**
@@ -82,7 +82,7 @@ export abstract class FormComponent extends UIComponent implements IValidation {
      * @return {string} The value of the form component.
      */
     public getValue(): any {
-        return (<Element>this.getFormControlNode()).getAttribute('value');
+        return (<Element>this.getFormControlNode())['value'];
     }
 
     /**
@@ -104,7 +104,9 @@ export abstract class FormComponent extends UIComponent implements IValidation {
      * @param {string} name The name of the form component.
      */
     public setName(name: string): void {
-        (<Element>this.getFormControlNode()).setAttribute('name', name);
+        var controlElement: Element = (<Element>this.getFormControlNode());
+        controlElement['name'] = name;
+        controlElement.setAttribute('name', name);
     }
 
     /**
@@ -112,7 +114,9 @@ export abstract class FormComponent extends UIComponent implements IValidation {
      * @param {string} value The value of the form component.
      */
     public setValue(value: any): void {
-        (<Element>this.getFormControlNode()).setAttribute('value', value);
+        var controlElement: Element = (<Element>this.getFormControlNode());
+        controlElement['value'] = value;
+        controlElement.setAttribute('value', value);
     }
 
     /**

@@ -24,6 +24,6 @@ describe('The unit test for the ui application', function () {
     });
 
     afterEach(function () {
-//        this.application.destroy();
+        this.application.destroy();
     });
 });

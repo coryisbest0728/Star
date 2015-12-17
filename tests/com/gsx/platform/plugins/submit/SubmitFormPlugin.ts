@@ -62,6 +62,5 @@ export class SubmitFormPlugin extends UIPlugin {
      */
     public uninstall(): void {
         super.uninstall();
-        console.log('uninstall');
     }
 }

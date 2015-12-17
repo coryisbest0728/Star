@@ -153,27 +153,6 @@ export abstract class UIComponent extends SkinableComponent implements IBox, ITe
     abstract getTemplate(): string;
 
     /**
-     * @override
-     */
-    public get(attr: string): IViewModel {
-        return null;
-    }
-
-    /**
-     * @override
-     */
-    public set(attr: string, value: any): void {
-        
-    }
-
-    /**
-     * @override
-     */
-    public watch(attr: string, watchHandler: (param: IModel) => void): void {
-        
-    }
-
-    /**
      * Set the parent container of this ui component.
      * @param {IContainer} parent
      */

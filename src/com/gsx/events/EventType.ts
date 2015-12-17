@@ -13,6 +13,9 @@ export enum EventType {
     RESIZE,
     CHANGE,
 
+    // input box events
+    INPUT,
+
     // The key event type
     KEY_DOWN,
     KEY_PRESS,

@@ -4,6 +4,7 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {EventType} from '../../events/EventType';
 import {FormComponent} from './FormComponent';
 
 export abstract class InputBox extends FormComponent {
@@ -16,6 +17,16 @@ export abstract class InputBox extends FormComponent {
     constructor(params?: {disabled?: boolean; readonly?: boolean; specSkinClass?: string;}) {
         this.params = params || {};
         super(this.params);
+    }
+
+    /**
+     * @override
+     */
+    protected listenerEvents() {
+        super.listenerEvents();
+        var node: Node = this.getFormControlNode();
+        node.addEventListener('input', this.emit.bind(this, EventType.INPUT));
+        node.addEventListener('propertychange', this.emit.bind(this, EventType.INPUT));
     }
 
     /**

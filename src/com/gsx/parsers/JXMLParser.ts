@@ -6,12 +6,12 @@
 
 import {DFTXMLTraversal} from '../xml/traversal/DFTXMLTraversal';
 import {IContainer} from '../components/IContainer';
-import {IMVVMParser} from './IMVVMParser';
-import {IViewModel} from '../mvvm/IViewModel';
+import {MVVMConverter} from '../mvvm/MVVMConverter';
 import {UIComponent} from '../components/UIComponent';
+import {StringUtil} from '../utils/StringUtil';
 import {XMLParser} from './XMLParser';
 
-export class JXMLParser extends XMLParser implements IMVVMParser {
+export class JXMLParser extends XMLParser {
 
     /**
      * @override
@@ -29,14 +29,17 @@ export class JXMLParser extends XMLParser implements IMVVMParser {
         var rootComponent: UIComponent = null;
         var componentMap: Object = {};
         new DFTXMLTraversal().traverse(rootElement, function (itemElement: Element): void {
-            var component: UIComponent = this.parseElementNS(itemElement);
-            var parentElement: Element = <Element>itemElement.parentElement;
-            if (parentElement && componentMap[parentElement.id]) {
-                (<IContainer>componentMap[parentElement.id]).addChild(component);
-            } else if (!parentElement) {
-                rootComponent = component;
+            if (itemElement.nodeType === 1) { // node
+                var component: UIComponent = this.parseElementNS(itemElement);
+                var parentElement: Element = <Element>itemElement.parentElement;
+                if (parentElement && componentMap[parentElement.id]) {
+                    (<IContainer>componentMap[parentElement.id]).addChild(component);
+                } else if (!parentElement) {
+                    rootComponent = component;
+                }
+                componentMap[itemElement.id] = component;
+                new MVVMConverter().convert(itemElement, component, rootComponent);
             }
-            componentMap[itemElement.id] = component;
         }.bind(this));
         return rootComponent;
     }
@@ -47,24 +50,21 @@ export class JXMLParser extends XMLParser implements IMVVMParser {
      * @return {UIComponent}
      */
     public parseElementNS(element: Element): UIComponent {
-        return <UIComponent>this.paserElement2MVVM(element);
-    }
-
-    /**
-     * @override
-     */
-    public paserElement2MVVM(element: Element): IViewModel {
         var simpleClassName: string = this.getSimpleClassName(element);
         var classSet = window['require'](this.getClassPath(element) + simpleClassName);
         var Clazz: any = classSet[simpleClassName];
-        // instance UIComponent
+        // init UIComponent
         var uiComponent: UIComponent = new Clazz();
         var attributes: NamedNodeMap = element.attributes;
         for (var i: number = 0, len: number = attributes.length; i < len; ++i) {
             var attr: Attr = attributes.item(i);
             if (!/^xmlns\:/.test(attr.name)) {
-                var setter: Function = <Function>uiComponent['set' + this.formatAttrName(attr.name)];
-                setter && setter.call(uiComponent, attr.value);
+                var setter: Function = <Function>uiComponent['set' + StringUtil.pressStr2UpperCaseInitial(attr.name)];
+                var value: any = attr.value;
+                if (/^\$\{([\w|\d|\.]*)\}$/.test(value)) {
+                    value = '';
+                }
+                setter && setter.call(uiComponent, value);
             }
         };
         return uiComponent;
@@ -91,17 +91,5 @@ export class JXMLParser extends XMLParser implements IMVVMParser {
      */
     private getSimpleClassName(element: Element): string {
         return element.tagName.replace(new RegExp('^' + element.prefix + '\:'), '');
-    }
-
-    /**
-     * Format the attr name.Split - and put the initial char to upper case.
-     * @param {string} attrName
-     */
-    private formatAttrName(attrName: string): string {
-        return attrName.split('-').map(function (nameFrag: string): string {
-            return nameFrag.replace(/^\w/, function(v: string): string {
-                return v.toUpperCase();
-            });
-        }).join('');
     }
 }

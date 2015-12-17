@@ -1,0 +1,21 @@
+<f:Form xmlns:f="com/gsx/components/form">
+    <f:FormItem label="用户名567">
+        <f:TextBox spec-skin-class="form-control" placeholder="username" name="username" value="${username}" />
+    </f:FormItem>
+    <f:FormItem label="密码">
+        <f:PasswordBox spec-skin-class="form-control" name="password" value="${password}" />
+    </f:FormItem>
+    <f:FormItem label="options">
+        <f:Select spec-skin-class="form-control" value="${options}">
+            <f:Option value="1" label="The first" />
+            <f:Option value="2" label="The second" />
+            <f:Option value="3" label="The third" />
+        </f:Select>
+    </f:FormItem>
+    <f:FormItem>
+        <f:TextBox spec-skin-class="form-control" value="${options}" />
+    </f:FormItem>
+    <f:FormItem>
+        <f:Button label="${password}" />
+    </f:FormItem>
+</f:Form>

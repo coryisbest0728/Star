@@ -1,9 +1,9 @@
 <f:Form xmlns:f="com/gsx/components/form">
     <f:FormItem label="用户名">
-        <f:TextBox spec-skin-class="form-control" placeholder="username" name="username" value="${username}" />
+        <f:TextBox spec-skin-class="form-control" placeholder="username" name="username" value="username" />
     </f:FormItem>
     <f:FormItem label="密码">
-        <f:PasswordBox spec-skin-class="form-control" name="password" value="${password}" />
+        <f:PasswordBox spec-skin-class="form-control" name="password" value="password" />
     </f:FormItem>
     <f:FormItem>
         <f:Button label="提交" />
