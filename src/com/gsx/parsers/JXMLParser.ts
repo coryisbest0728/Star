@@ -6,7 +6,7 @@
 
 import {DFTXMLTraversal} from '../xml/traversal/DFTXMLTraversal';
 import {IContainer} from '../components/IContainer';
-import {MVVMConverter} from '../mvvm/MVVMConverter';
+import {MVVMConverter} from '../mvvm/converter/MVVMConverter';
 import {UIComponent} from '../components/UIComponent';
 import {StringUtil} from '../utils/StringUtil';
 import {XMLParser} from './XMLParser';

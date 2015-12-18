@@ -4,13 +4,13 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {EventType} from '../events/EventType';
-import {FormComponent} from '../components/form/FormComponent';
+import {EventType} from '../../events/EventType';
+import {FormComponent} from '../../components/form/FormComponent';
 import {IBinding} from './IBinding';
-import {IModel} from './IModel';
-import {InputBox} from '../components/form/InputBox';
-import {IViewModel} from './IViewModel';
-import {StringUtil} from '../utils/StringUtil';
+import {IModel} from '../IModel';
+import {InputBox} from '../../components/form/InputBox';
+import {IViewModel} from '../IViewModel';
+import {StringUtil} from '../../utils/StringUtil';
 
 export class Binding implements IBinding {
 

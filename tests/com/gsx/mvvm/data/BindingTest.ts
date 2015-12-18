@@ -4,10 +4,10 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-/// <reference path="../../../../lib/typings/tsd.d.ts" />
+/// <reference path="../../../../../lib/typings/tsd.d.ts" />
 /// <amd-dependency path="text!./Binding.jxml" />
 
-import {Binding} from 'com/gsx/mvvm/Binding';
+import {Binding} from 'com/gsx/mvvm/data/Binding';
 import {EventDispatcher} from 'com/gsx/events/EventDispatcher';
 import {IViewModel} from 'com/gsx/mvvm/IViewModel';
 import {IModel} from 'com/gsx/mvvm/IModel';

@@ -4,23 +4,20 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-/// <reference path="../../../../lib/typings/tsd.d.ts" />
+/// <reference path="../../../../../lib/typings/tsd.d.ts" />
 
-import {Binding} from './Binding';
-import {IModel} from './IModel';
-import {IViewModel} from './IViewModel';
-import {StringUtil} from '../utils/StringUtil';
-import {UIComponent} from '../components/UIComponent';
-import {ViewModel} from './ViewModel';
+import {Binding} from '../data/Binding';
+import {IConverter} from './IConverter';
+import {IModel} from '../IModel';
+import {IViewModel} from '../IViewModel';
 
-export class MVVMConverter {
+export class MVVMConverter implements IConverter {
 
     /**
-     * @param {Element} element The target element.
-     * @param {UIComponent} component
-     * @param {IViewModel} cxt.
+     * @override
+     * convert ${} into the model
      */
-    public convert(element: Element, component: UIComponent, cxt: IViewModel): void {
+    public convert(element: Element, component: IViewModel, cxt: IViewModel): void {
         var textNodes: Text[] = [];
         if (element.nodeType === 1) { // node
             var attrs: NamedNodeMap = element.attributes;
@@ -64,14 +61,11 @@ export class MVVMConverter {
      * @param {Node} node Attr/Text
      * @param {IViewModel} cxt
      */
-    private bindByexpression(expression: string, node: Node, component: UIComponent, cxt: IViewModel): void {
-//        console.log(expression, '======>', node);
+    private bindByexpression(expression: string, node: Node, component: IViewModel, cxt: IViewModel): void {
         if (node instanceof Attr) {
             new Binding().bind(expression, node.name, component, cxt);
         } else if (node instanceof Text) {
-//            cxt.watch(expression, function (model: IModel) {
-//                node.data = model.newValue;
-//            });
+            // TODO
         }
     }
 }

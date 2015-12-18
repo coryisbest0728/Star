@@ -4,8 +4,8 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
-import {IViewModel} from './IViewModel';
-import {UIComponent} from '../components/UIComponent';
+import {IViewModel} from '../IViewModel';
+import {UIComponent} from '../../components/UIComponent';
 
 export interface IBinding {
 
