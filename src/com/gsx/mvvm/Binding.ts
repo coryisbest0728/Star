@@ -66,12 +66,12 @@ export class Binding implements IBinding {
     private bindComponent(expression: string, attr: string, component: IViewModel, cxt: IViewModel): void {
         if (component instanceof FormComponent) { // form component
             component.on(EventType.CHANGE, function (): void {
-                cxt[expression] = this.getValue();
+                cxt[expression] = this['get' + StringUtil.pressStr2UpperCaseInitial(attr)]();
             }, component);
         }
         if (component instanceof InputBox) { // input box component
             component.on(EventType.KEY_UP, function (): void {
-                cxt[expression] = this.getValue();
+                cxt[expression] = this['get' + StringUtil.pressStr2UpperCaseInitial(attr)]();
             }, component);
         }
     }

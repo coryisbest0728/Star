@@ -5,9 +5,9 @@
  */
 
 import {IValidator} from './validator/IValidator';
-import {LabelledFormComponent} from './LabelledFormComponent';
+import {CheckableFormComponent} from './CheckableFormComponent';
 
-export class Radio extends LabelledFormComponent {
+export class Radio extends CheckableFormComponent {
 
     /**
      * @override

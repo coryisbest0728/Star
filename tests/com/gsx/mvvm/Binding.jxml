@@ -6,14 +6,18 @@
         <f:PasswordBox spec-skin-class="form-control" name="password" value="${password}" />
     </f:FormItem>
     <f:FormItem label="options">
-        <f:Select spec-skin-class="form-control" value="${options}">
+        <f:Select spec-skin-class="form-control" value="${option}">
             <f:Option value="1" label="The first" />
             <f:Option value="2" label="The second" />
             <f:Option value="3" label="The third" />
         </f:Select>
     </f:FormItem>
     <f:FormItem>
-        <f:TextBox spec-skin-class="form-control" value="${options}" />
+        <f:TextBox spec-skin-class="form-control" value="${option}" />
+    </f:FormItem>
+    <f:FormItem>
+        <f:CheckBox checked="${disabled}" label="禁用" value="2"/>
+        <f:Button disabled="${disabled}" label="测试Disabled状态" />
     </f:FormItem>
     <f:FormItem>
         <f:Button label="${password}" />

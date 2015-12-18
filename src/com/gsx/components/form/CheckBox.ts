@@ -5,9 +5,9 @@
  */
 
 import {IValidator} from './validator/IValidator';
-import {LabelledFormComponent} from './LabelledFormComponent';
+import {CheckableFormComponent} from './CheckableFormComponent';
 
-export class CheckBox extends LabelledFormComponent {
+export class CheckBox extends CheckableFormComponent {
 
     /**
      * @override
@@ -39,6 +39,22 @@ export class CheckBox extends LabelledFormComponent {
      */
     public getLabelledNode(): Node {
         return this.getNode();
+    }
+
+    /**
+     * Set the checked status.
+     * @param {boolean} value
+     */
+    public setChecked(checked: boolean): void {
+        (<HTMLInputElement>this.getFormControlNode()).checked = checked;
+    }
+
+    /**
+     * Get the checked.
+     * @return {boolean}
+     */
+    public getChecked(): boolean {
+        return (<HTMLInputElement>this.getFormControlNode()).checked;
     }
 
     /**
