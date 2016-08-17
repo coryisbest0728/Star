@@ -5,6 +5,7 @@
  */
 
 import {IParser} from './IParser';
+import {IParserVisitor} from './IParserVisitor';
 import {UIComponent} from '../components/UIComponent';
 
 export abstract class XMLParser implements IParser {
@@ -32,6 +33,11 @@ export abstract class XMLParser implements IParser {
      * @abstract
      */
     abstract parse(content: string): UIComponent;
+
+    /**
+     * @abstract
+     */
+    abstract parse(content: string, visitor: IParserVisitor): UIComponent;
 
     /**
      * Parse xml content to the xml document.

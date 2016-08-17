@@ -15,8 +15,9 @@ export class Button extends LabelledFormComponent {
     private params: ButtonParams;
 
     constructor(params?: ButtonParams) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**

@@ -1,31 +1,32 @@
 /**
- * @file The mvvm converter.
+ * @file The mvvm visitor.
  *
  * @author kuanghongrui@baijiahulian.com
  */
 
-/// <reference path="../../../../../lib/typings/tsd.d.ts" />
+import {Binding} from './data/Binding';
+import {IParserVisitor} from '../parsers/IParserVisitor';
+import {IModel} from './IModel';
+import {IViewModel} from './IViewModel';
+import {UIComponent} from '../components/UIComponent';
 
-import {Binding} from '../data/Binding';
-import {IConverter} from './IConverter';
-import {IModel} from '../IModel';
-import {IViewModel} from '../IViewModel';
-
-export class MVVMConverter implements IConverter {
+export class MVVMVisitor implements IParserVisitor {
 
     /**
      * @override
      * convert ${} into the model
      */
-    public convert(element: Element, component: IViewModel, cxt: IViewModel): void {
+    public visit(element: Element, component: UIComponent/*, vm: IViewModel*/): void {
+        var vm: IViewModel = null;
         var textNodes: Text[] = [];
         if (element.nodeType === 1) { // node
             var attrs: NamedNodeMap = element.attributes;
             for (var i: number = 0, j = attrs.length; i < j; ++i) {
                 var attr: Attr = attrs.item(i);
                 if (/\$\{([\w|\d|\.]*)\}/g.test(attr.value)) {
-                    this.bindByexpression(RegExp.$1, attr, component, cxt);
+                    this.bindByexpression(RegExp.$1, attr, component, vm);
                 }
+                console.debug(attr.name);
             }
         } else if (element.nodeType === 3) { // text node
             textNodes.push(<Text><Node>element);
@@ -35,7 +36,7 @@ export class MVVMConverter implements IConverter {
             /\$\{([\w|\d|\.]*)\}/g.test(exp);
             var text: Text = textNodeMap[exp];
             text.data = '';
-            this.bindByexpression(RegExp.$1, text, component, cxt);
+            this.bindByexpression(RegExp.$1, text, component, vm);
         }
     }
 
@@ -59,11 +60,12 @@ export class MVVMConverter implements IConverter {
     /**
      * @param {string} expression
      * @param {Node} node Attr/Text
-     * @param {IViewModel} cxt
+     * @param {UIComponent} component
+     * @param {IViewModel} vm
      */
-    private bindByexpression(expression: string, node: Node, component: IViewModel, cxt: IViewModel): void {
+    private bindByexpression(expression: string, node: Node, component: UIComponent, vm: IViewModel): void {
         if (node instanceof Attr) {
-            new Binding().bind(expression, node.name, component, cxt);
+            new Binding().bind(expression, node.name, component, vm);
         } else if (node instanceof Text) {
             // TODO
         }

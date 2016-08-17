@@ -18,8 +18,9 @@ export class FormItem extends UIComponentContainer implements IValidation {
     private params: IFormItemParams;
 
     constructor(params?: IFormItemParams) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**

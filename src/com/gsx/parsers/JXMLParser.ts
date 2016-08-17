@@ -6,7 +6,7 @@
 
 import {DFTXMLTraversal} from '../xml/traversal/DFTXMLTraversal';
 import {IContainer} from '../components/IContainer';
-import {MVVMConverter} from '../mvvm/converter/MVVMConverter';
+import {IParserVisitor} from './IParserVisitor';
 import {UIComponent} from '../components/UIComponent';
 import {StringUtil} from '../utils/StringUtil';
 import {XMLParser} from './XMLParser';
@@ -16,16 +16,27 @@ export class JXMLParser extends XMLParser {
     /**
      * @override
      */
-    public parse(content: string): UIComponent {
+    public parse(content: string): UIComponent;
+
+    /**
+     * @override
+     */
+    public parse(content: string, visitor: IParserVisitor): UIComponent;
+
+    /**
+     * @override
+     */
+    public parse(content: string, visitor?: any): UIComponent {
         var xmlDoc: XMLDocument = this.parseXML2XMLDocument(content);
-        return this.convert2UIComponent(<Element>xmlDoc.firstChild);
+        return this.convert2UIComponent(<Element>xmlDoc.firstChild, visitor);
     }
 
     /**
      * Convert element to the UI Component.
      * @param {Element} rootElement
+     * @param {IParserVisitor} visitor
      */
-    private convert2UIComponent(rootElement: Element): UIComponent {
+    private convert2UIComponent(rootElement: Element, visitor?: IParserVisitor): UIComponent {
         var rootComponent: UIComponent = null;
         var componentMap: Object = {};
         new DFTXMLTraversal().traverse(rootElement, function (itemElement: Element): void {
@@ -38,7 +49,9 @@ export class JXMLParser extends XMLParser {
                     rootComponent = component;
                 }
                 componentMap[itemElement.id] = component;
-                new MVVMConverter().convert(itemElement, component, rootComponent);
+                if (visitor) {
+                    visitor.visit(itemElement, component);
+                }
             }
         }.bind(this));
         return rootComponent;

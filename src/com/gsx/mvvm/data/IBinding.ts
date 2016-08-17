@@ -13,8 +13,7 @@ export interface IBinding {
      * Bind expression data.
      * @param {string} expression The expression.
      * @param {string} attr The binding attr name in the component element.
-     * @param {UIComponent} component The component which expression in.
-     * @param {IViewModel} cxt.
+     * @param {IViewModel} vm.
      */
-    bind(expression: string, attr: string, component: UIComponent, cxt: IViewModel): void;
+    bind(expression: string, attr: string, component: UIComponent, vm: IViewModel): void;
 }

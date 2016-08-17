@@ -9,43 +9,13 @@
 import {EventDispatcher} from '../events/EventDispatcher';
 import {IModel} from './IModel';
 import {IViewModel} from './IViewModel';
-import {ObjectUtil} from '../utils/ObjectUtil';
-import {StringUtil} from '../utils/StringUtil';
+//import {ObjectUtil} from '../utils/ObjectUtil';
+//import {StringUtil} from '../utils/StringUtil';
 
-export class ViewModel extends EventDispatcher implements IViewModel {
-
-    private viewmodel: IViewModel;
+export abstract class ViewModel extends EventDispatcher implements IViewModel {
 
     constructor() {
         super();
-    }
-
-    /**
-     * @override
-     */
-    public getByExp(expression: string): any {
-        var getterFun: Function = this['get' + StringUtil.toUpperCaseInitial(expression)];
-        return getterFun ? getterFun.call(this) : this['_' + expression];
-    }
-
-    /**
-     * @override
-     */
-    public setByExp(expression: string, value: any): void {
-        if (this['_' + expression] !== value) {
-            var setterFun: Function = this['set' + StringUtil.toUpperCaseInitial(expression)];
-            if (setterFun) {
-                setterFun.call(this, value);
-            }
-            var model: IModel = {
-                name: expression,
-                newValue: value,
-                oldValue: this['_' + expression]
-            };
-            this.emit('watch', model);
-            this.emit('watch:' + expression, model);
-            this['_' + expression] = value;
-        }
     }
 
     /**

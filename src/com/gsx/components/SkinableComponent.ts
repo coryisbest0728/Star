@@ -4,10 +4,12 @@
  * @author kuanghongrui@baijiahulian.com
  */
 
+import {EventDispatcher} from '../events/EventDispatcher';
+import {IDestroyable} from './IDestroyable';
+import {IEventDispatcher} from '../events/IEventDispatcher';
 import {ISkinable} from './ISkinable';
-import {ViewModel} from '../mvvm/ViewModel';
 
-export abstract class SkinableComponent extends ViewModel implements ISkinable {
+export abstract class SkinableComponent extends EventDispatcher implements IEventDispatcher, ISkinable, IDestroyable {
 
     private specSkinClass: string = '';
 
@@ -113,7 +115,6 @@ export abstract class SkinableComponent extends ViewModel implements ISkinable {
      * @override
      */
     public destroy(): void {
-        super.destroy();
         delete this.specSkinClass;
     }
 }

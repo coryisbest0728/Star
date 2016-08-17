@@ -14,8 +14,9 @@ export class Form extends UIComponentContainer implements IValidation {
     private params: FormParams;
 
     constructor(params?: FormParams) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**

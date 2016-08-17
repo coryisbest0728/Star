@@ -35,6 +35,12 @@ module.exports = function(config) {
         'release/**/*.js',
         'tests-release/**/*.ts'
     ],
+    
+//    plugins: [
+//        'karma-chrome-launcher',
+//        'karma-jasmine',
+//        'karma-requirejs'
+//    ],
 
 
     // test results reporter to use

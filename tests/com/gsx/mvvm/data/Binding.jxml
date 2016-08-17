@@ -1,4 +1,4 @@
-<f:Form xmlns:f="com/gsx/components/form">
+<f:Form xmlns:f="com/gsx/components/form" view-model="com/gsx/mvvm/FormViewModel">
     <f:FormItem label="用户名567">
         <f:TextBox spec-skin-class="form-control" placeholder="username" name="username" value="${username}" />
     </f:FormItem>
@@ -18,6 +18,11 @@
     <f:FormItem>
         <f:CheckBox checked="${disabled}" label="禁用" value="2"/>
         <f:Button disabled="${disabled}" label="测试Disabled状态" />
+    </f:FormItem>
+    <f:FormItem>
+        <f:TextBox spec-skin-class="form-control" value="${user.nickname}" />
+        <f:TextBox spec-skin-class="form-control" value="${user.nickname}" />
+        <!-- <f:TextBox spec-skin-class="form-control" value="${user.types}" /> -->
     </f:FormItem>
     <f:FormItem>
         <f:Button label="${password}" />

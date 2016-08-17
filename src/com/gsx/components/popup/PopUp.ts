@@ -21,14 +21,15 @@ export class PopUp extends UIComponentContainer {
     private positionSkins: {};
 
     constructor(params?: PopUpParams) {
+        params = params || {};
+        super(params);
+        this.params = params;
         this.positionTypeKeys = ['CENTER', 'TOP', 'RIGHT', 'BOTTOM', 'LEFT', 'TOP_LEFT', 'TOP_RIGHT', 'BOTTOM_LEFT',
             'BOTTOM_RIGHT'];
         this.positionSkins = {};
         this.positionTypeKeys.forEach(function (positionTypeValue: string): void {
             this.positionSkins[PositionType[positionTypeValue]] = positionTypeValue.toLowerCase().replace('_', '-');
         }, this);
-        this.params = params || {};
-        super(this.params);
     }
 
     /**

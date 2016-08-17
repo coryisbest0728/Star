@@ -15,8 +15,9 @@ export abstract class InputBox extends FormComponent {
     private params: {disabled?: boolean; readonly?: boolean; specSkinClass?: string;};
 
     constructor(params?: {disabled?: boolean; readonly?: boolean; specSkinClass?: string;}) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**

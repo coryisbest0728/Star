@@ -19,9 +19,10 @@ export abstract class UIApplication extends UIComponentContainer implements IApp
     private theme: string;
 
     constructor(params?: IUIApplicationParams) {
+        params = params || {};
+        super(params);
+        this.params = params;
         this.theme = 'plain';
-        this.params = params || {};
-        super(this.params);
     }
 
     /**

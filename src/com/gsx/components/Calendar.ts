@@ -28,8 +28,9 @@ export class Calendar extends UIComponent {
     private selectedMoment: moment.Moment;
 
     constructor(params?: CalendarParams) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**

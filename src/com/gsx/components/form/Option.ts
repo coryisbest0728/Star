@@ -15,8 +15,9 @@ export class Option extends LabelledFormComponent {
     private params: OptionParams;
 
     constructor(params?: OptionParams) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**

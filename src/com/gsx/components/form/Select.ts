@@ -18,8 +18,9 @@ export class Select extends FormContainerComponent {
     private params: ISelectParams;
 
     constructor(params?: ISelectParams) {
-        this.params = params || {};
-        super(this.params);
+        params = params || {};
+        super(params);
+        this.params = params;
     }
 
     /**
